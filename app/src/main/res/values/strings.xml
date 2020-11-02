@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">La Jungla Matematica</string>
+    <string name="LogoMenuPrincipal">LogoMenuPrincipal</string>
+    <string name="BT_empezarJuego">Empezar Juego</string>
+    <string name="BT_partidasGuardadas">Partidas Guardadas</string>
+    <string name="BT_Ranking">Ranking</string>
+    <string name="BT_Salir">Salir</string>
+    <string name="BT_NivelTortuga">Nivel Tortuga</string>
+    <string name="BT_NivelZorro">Nivel Zorro</string>
+    <string name="BT_NivelMono">Nivel Mono</string>
+    <string name="BT_NivelLeopardo">Nivel Leopardo</string>
+    <string name="BT_NivelJungla">Nivel Jungla</string>
+    <string name="BT_Atras">Guardar y Salir</string>
+</resources>

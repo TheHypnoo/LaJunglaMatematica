@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PartidasGuardadas">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardas_Izquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardas_Derecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardadas_Arriba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardadas_Arriba2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardadas_Arriba3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardadas_Arriba4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardadas_Arriba5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GL_Partidas_Guardadas_TextViewArriba"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <Button
+        android:id="@+id/BT_PrimeraPartida"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba2"
+        app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
+        app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
+        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_TextViewArriba" />
+
+    <Button
+        android:id="@+id/BT_SegundaPartida"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba3"
+        app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
+        app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
+        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba2" />
+
+    <Button
+        android:id="@+id/BT_TerceraPartida"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba4"
+        app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
+        app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
+        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba3" />
+
+    <Button
+        android:id="@+id/BT_EditarPartida"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba5"
+        app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
+        app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
+        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba4" />
+
+    <TextView
+        android:id="@+id/TV_NombrePartida"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_TextViewArriba"
+        app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
+        app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
+        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba" />
+</androidx.constraintlayout.widget.ConstraintLayout>
