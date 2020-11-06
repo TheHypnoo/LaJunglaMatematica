@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
         <activity android:name=".PantallaCarga">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".PartidasGuardadas" />
         <activity android:name=".Nivel" />
