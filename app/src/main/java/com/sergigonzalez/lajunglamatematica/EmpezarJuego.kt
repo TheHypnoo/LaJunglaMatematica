@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.widget.Button
+import androidx.preference.PreferenceManager
 
 class EmpezarJuego : AppCompatActivity() {
     private lateinit var BT_NivelTortuga: Button
@@ -32,6 +33,13 @@ class EmpezarJuego : AppCompatActivity() {
     }
 
     private fun initListeners() {
+        /*val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val myEditor = myPreferences.edit()
+        myEditor.putString("NPartida1", "");
+        myEditor.putBoolean("NPartida1", false)
+        val name = myPreferences.getString("NPartida1", "")
+        myEditor.commit();
+         */
         BT_NivelTortuga.setOnClickListener { println("Nivel Tortuga")
             val Nivel: Intent = Intent(applicationContext ,Nivel:: class.java)
             startActivity(Nivel)}

@@ -1,25 +1,29 @@
 package com.sergigonzalez.lajunglamatematica
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
-import android.widget.EditText
+import com.airbnb.lottie.LottieAnimationView
 
 class Nivel : AppCompatActivity() {
-
-    private lateinit var ET_Respuesta: EditText
+    private lateinit var animacionIncorrecto: LottieAnimationView
+    private lateinit var animacionCorrecto: LottieAnimationView
+    private lateinit var Corregir: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_nivel)
-        InitButtons()
-        initListeners()
+        animacionCorrecto = findViewById(R.id.animacionCorrecto)
+        animacionIncorrecto = findViewById(R.id.animacionIncorrecto)
+        Corregir = findViewById(R.id.Corregir)
+        animacionIncorrecto.pauseAnimation()
+        animacionCorrecto.pauseAnimation()
+        Corregir.setOnClickListener {
+            animacionCorrecto.playAnimation()
+            animacionIncorrecto.playAnimation()
+            println("Boton apretado, animaciones encendidas!")
+        }
     }
 
-    private fun InitButtons() {
-        ET_Respuesta = findViewById(R.id.editTextNumber)
-    }
-    private fun initListeners() {
-//"https://medium.com/mobile-app-development-publication/making-android-edittext-accept-number-only-efbe2ba1cd69"
-    }
 }

@@ -1,8 +1,7 @@
 package com.sergigonzalez.lajunglamatematica
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -30,18 +29,13 @@ class PartidasGuardadas : AppCompatActivity() {
     }
 
     private fun initListeners() {
-
         val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val myEditor = myPreferences.edit()
-        myEditor.putString("Nombre", "");
+        myEditor.putString("NPartida1", "");
         myEditor.commit();
-
-        //
-
 
         val builder = AlertDialog.Builder(this)
         //builder.setMessage("We have a message")
-
 
         BT_PrimeraPartida.setOnClickListener {
             val input = EditText(this)
@@ -52,18 +46,19 @@ class PartidasGuardadas : AppCompatActivity() {
             input.layoutParams = lp
 
             builder.setTitle("Ingrese un nombre")
-            builder.setView(input) // uncomment this line
+            builder.setView(input)
             builder.setPositiveButton("Aceptar") { position, which ->
                 try {
-                    myEditor.putString("Nombre", input.toString())
+                    while(input != null) {
+                        myEditor.putString("NPartida1", input.toString())
+                    }
                 } catch (e: Exception) {
                     Toast.makeText(this, "No vàlid", Toast.LENGTH_SHORT).show()
                 }
             }
-            val name = myPreferences.getString("Nombre", "")
-            TV_NombrePartida.text = name
             builder.show()
         }
-
+        val name = myPreferences.getString("NPartida1", "")
+        TV_NombrePartida.setText(name)
     }
 }
