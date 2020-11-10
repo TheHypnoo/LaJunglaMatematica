@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33738091248",
+    "firebase_url": "https://la-jungla-matematica.firebaseio.com",
+    "project_id": "la-jungla-matematica",
+    "storage_bucket": "la-jungla-matematica.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33738091248:android:6f681ef9c720d965b73035",
+        "android_client_info": {
+          "package_name": "com.sergigonzalez.lajunglamatematica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33738091248-s06c3r0vmgckjc7cagck6n65m3fgvt32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK8OEWdZBL1bJ06GdUHDH-xKbgxfxnVEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33738091248-s06c3r0vmgckjc7cagck6n65m3fgvt32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

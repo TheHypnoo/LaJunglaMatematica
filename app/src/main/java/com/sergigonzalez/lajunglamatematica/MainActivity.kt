@@ -45,7 +45,10 @@ class MainActivity : AppCompatActivity() {
             val PartidasGuardadas: Intent = Intent(applicationContext ,PartidasGuardadas:: class.java)
             startActivity(PartidasGuardadas)
             println("Partidas Guardadas")}
-        BT_Ranking.setOnClickListener { println("Ranking")}
+        BT_Ranking.setOnClickListener {
+            val Ranking: Intent = Intent(applicationContext ,Ranking:: class.java)
+            startActivity(Ranking)
+            println("Ranking")}
         BT_Salir.setOnClickListener {finish()
         println("Juego cerrado!")}
     }

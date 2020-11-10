@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
-        <activity android:name=".PantallaCarga">
-        </activity>
-        <activity android:name=".PartidasGuardadas" />
-        <activity android:name=".Nivel" />
-        <activity android:name=".EmpezarJuego" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Ranking"></activity>
+        <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PantallaCarga" />
+        <activity android:name=".PartidasGuardadas" />
+        <activity android:name=".Nivel" />
+        <activity android:name=".EmpezarJuego" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
