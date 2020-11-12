@@ -12,7 +12,7 @@ class PantallaCarga : AppCompatActivity() {
     }
 
     private fun alMain(){
-        val MainActivity: Intent = Intent(applicationContext ,MainActivity:: class.java)
+        val MainActivity: Intent = Intent(applicationContext ,menuPrincipal:: class.java)
         startActivity(MainActivity)
     }
 }

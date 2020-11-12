@@ -8,7 +8,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 
-class MainActivity : AppCompatActivity() {
+class menuPrincipal : AppCompatActivity() {
 
     private lateinit var BT_EmpezarJuego: Button
     private lateinit var BT_PartidasGuardadas: Button
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_menu)
 
         InitButtons()
         initListeners()
@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         BT_EmpezarJuego.setOnClickListener {
-            val EmpezarJuego: Intent = Intent(applicationContext ,EmpezarJuego:: class.java)
-            startActivity(EmpezarJuego)
+            val Niveles: Intent = Intent(applicationContext ,Nivel:: class.java)
+            startActivity(Niveles)
             println("Empezar Juego")}
         BT_PartidasGuardadas.setOnClickListener {
             val PartidasGuardadas: Intent = Intent(applicationContext ,PartidasGuardadas:: class.java)

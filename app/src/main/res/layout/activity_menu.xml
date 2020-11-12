@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".menuPrincipal">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GL_ArribaIzquierda"
@@ -32,28 +32,28 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GL_BotonTercero"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.54" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GL_BotonCuarto"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.63" />
+        app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GL_BotonQuinto"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.68" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GL_Arriba"
@@ -71,22 +71,18 @@
         android:background="@drawable/bordes_redondos"
         android:text="@string/BT_empezarJuego"
 
-        app:layout_constraintBottom_toTopOf="@+id/GL_BotonSecundario"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_BotonPrimario"
-
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toTopOf="@+id/GL_BotonPrimario" />
 
     <Button
         android:id="@+id/BT_PartidasGuardadas"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/BT_partidasGuardadas"
         android:background="@drawable/bordes_redondos"
-        app:layout_constraintBottom_toTopOf="@+id/GL_BotonTercero"
+        android:text="@string/BT_partidasGuardadas"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
         app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
         app:layout_constraintTop_toTopOf="@+id/GL_BotonSecundario" />
@@ -95,9 +91,9 @@
         android:id="@+id/BT_Ranking"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/BT_Ranking"
         android:background="@drawable/bordes_redondos"
-        app:layout_constraintBottom_toTopOf="@+id/GL_BotonCuarto"
+        android:text="@string/BT_Ranking"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
         app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
         app:layout_constraintTop_toTopOf="@+id/GL_BotonTercero" />
@@ -115,15 +111,38 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animacionLogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="244dp"
+        android:layout_height="181dp"
         app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
         app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
         app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
+        app:layout_constraintVertical_bias="1.0"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/logo_menuprincipal"
+        app:lottie_rawRes="@raw/logo"
         tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.38" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.58" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

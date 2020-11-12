@@ -12,11 +12,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthActivity : AppCompatActivity() {
-    private lateinit var Obtener: Button
     private lateinit var nomUsuari: TextView
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
-    private lateinit var SignUpButton: Button
+    private lateinit var Registrar: TextView
     private lateinit var logInButton: Button
     // Access a Cloud Firestore instance from your Activity
     private val db = FirebaseFirestore.getInstance()
@@ -24,24 +23,21 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        nomUsuari = findViewById(R.id.nomUsuari)
-        Obtener = findViewById(R.id.Obtener)
         setup()
-        CrearUsuari()
-        Obtener.setOnClickListener {
-            saberUsuari()
-        }
 
     }
 
     private fun setup(){
         title = "Autenticación"
-        SignUpButton = findViewById(R.id.SignUpButton)
-        logInButton = findViewById(R.id.logInButton)
+        Registrar = findViewById(R.id.SignUp)
+        logInButton = findViewById(R.id.RegisterButton)
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
 
-        SignUpButton.setOnClickListener {
+        Registrar.setOnClickListener {
+            val Registrarse: Intent = Intent(applicationContext ,RegisterActivity:: class.java)
+            startActivity(Registrarse)
+            /*
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     emailEditText.text.toString(),
@@ -54,6 +50,8 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
             }
+            */
+
         }
 
         logInButton.setOnClickListener {
@@ -120,7 +118,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun showHome(email: String){
-        val homeIntent = Intent(this,MainActivity::class.java).apply {
+        val homeIntent = Intent(this,menuPrincipal::class.java).apply {
             putExtra("email",email)
         }
         startActivity(homeIntent)

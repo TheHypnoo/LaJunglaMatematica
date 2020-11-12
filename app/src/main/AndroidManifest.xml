@@ -4,12 +4,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icono"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
-        <activity android:name=".Ranking"></activity>
         <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,11 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PantallaCarga" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".menuPrincipal" />
         <activity android:name=".PartidasGuardadas" />
+        <activity android:name=".Ranking" />
         <activity android:name=".Nivel" />
-        <activity android:name=".EmpezarJuego" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".pruebate"></activity>
+        <activity android:name=".PantallaCarga" />
     </application>
 
 </manifest>

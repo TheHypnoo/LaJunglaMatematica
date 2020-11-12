@@ -31,13 +31,39 @@
             app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/authanimate"
+            app:lottie_rawRes="@raw/register"
             tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="154dp"
+            android:layout_height="254dp"
             android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/UsuarioEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_user"
+                android:ems="10"
+                android:hint="Nombre de Usuario"
+                android:inputType="textEmailAddress" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_action_date"
+                android:ems="10"
+                android:hint="Fecha de Nacimiento"
+                android:inputType="date" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
             <EditText
                 android:id="@+id/emailEditText"
@@ -73,10 +99,10 @@
                 <Button
                     android:id="@+id/RegisterButton"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/colorSecondary"
-                    android:text="Login"
+                    android:text="Registrar"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
@@ -90,23 +116,8 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_weight="0" />
-
-            <TextView
-                android:id="@+id/SignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="No estas registrado? Registrate"
-                android:clickable="true"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:layout_height="284dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/credits"
