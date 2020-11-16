@@ -55,28 +55,25 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_Partidas_Guardadas_TextViewArriba"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
-
     <Button
         android:id="@+id/BT_PrimeraPartida"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
+        android:text="Partida Guardada"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@drawable/bordes_redondos"
         app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba2"
         app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
         app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_TextViewArriba" />
+        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba" />
 
     <Button
         android:id="@+id/BT_SegundaPartida"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
+        android:text="Partida Guardada"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@drawable/bordes_redondos"
         app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba3"
         app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
         app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
@@ -86,7 +83,9 @@
         android:id="@+id/BT_TerceraPartida"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
+        android:text="Partida Guardada"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@drawable/bordes_redondos"
         app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba4"
         app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
         app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
@@ -94,20 +93,14 @@
 
     <Button
         android:id="@+id/BT_EditarPartida"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
+        android:background="@drawable/bordes_redondos"
+        android:text="Editar"
         app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_Arriba5"
         app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
         app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
         app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba4" />
 
-    <TextView
-        android:id="@+id/TV_NombrePartida"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/GL_Partidas_Guardadas_TextViewArriba"
-        app:layout_constraintEnd_toStartOf="@+id/GL_Partidas_Guardas_Derecha"
-        app:layout_constraintStart_toStartOf="@+id/GL_Partidas_Guardas_Izquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_Partidas_Guardadas_Arriba" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,6 @@ import java.lang.Exception
 
 class PartidasGuardadas : AppCompatActivity() {
 
-    private lateinit var TV_NombrePartida: TextView
     private lateinit var BT_PrimeraPartida: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,6 @@ class PartidasGuardadas : AppCompatActivity() {
     }
 
     private fun InitButtons(){
-        TV_NombrePartida = findViewById(R.id.TV_NombrePartida)
         BT_PrimeraPartida = findViewById(R.id.BT_PrimeraPartida)
 
     }
@@ -59,6 +57,5 @@ class PartidasGuardadas : AppCompatActivity() {
             builder.show()
         }
         val name = myPreferences.getString("NPartida1", "")
-        TV_NombrePartida.setText(name)
     }
 }

@@ -22,49 +22,738 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/TituloTextView"
             android:layout_width="match_parent"
             android:layout_height="85dp"
             android:gravity="center"
-            android:text="¿Qué és la suma?   La suma és el resultado al unir en una sola  varias cantidades. " />
+            android:hint="¿Qué és la suma?"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DefinicionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:gravity="center"
+            android:hint="Consiste en añadir dos números o más para obtener una cantidad total." />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView7"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4+5 =" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/editTextNumber2"
+                <TextView
+                    android:id="@+id/Number1TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/SignoTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+" />
+
+                <TextView
+                    android:id="@+id/Number2TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:gravity="left"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado1"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado1"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/Number3TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo1TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number4TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado2"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado2"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado2"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/Number5TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo2TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number6TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado3"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado3"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado3"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/Number7TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo3TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number8TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado4"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado4"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado4"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Number9TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo4TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number10TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado5"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado5"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado5"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/Number11TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo5TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number12TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado6"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado6"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado6"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView8"
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="4+5 =" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Number13TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo6TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number14TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado7"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado7"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado7"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/Number15TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo7TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number16TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado8"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado8"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado8"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Number17TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo8TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number18TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado9"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado9"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado9"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/Number19TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <TextView
+                    android:id="@+id/Signo9TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="+" />
+
+                <TextView
+                    android:id="@+id/Number20TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="1" />
+
+                <EditText
+                    android:id="@+id/Resultado10"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/correctoResultado10"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/correcto" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/IncorrectoResultado10"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:gravity="right|left"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/incorrecto" />
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/BT_Corregir"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bordes_redondos"
+            android:text="Corregir" />
 
     </LinearLayout>
 
