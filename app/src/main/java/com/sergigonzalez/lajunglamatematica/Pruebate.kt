@@ -14,7 +14,7 @@ import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_nivel.*
 
-class pruebate : AppCompatActivity() {
+class Pruebate : AppCompatActivity() {
     //Titulo y Definicion
     private lateinit var TituloTextView: TextView
     private lateinit var DefinicionTextView: TextView

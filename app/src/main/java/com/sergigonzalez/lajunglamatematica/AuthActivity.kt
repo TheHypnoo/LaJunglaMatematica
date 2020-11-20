@@ -122,6 +122,7 @@ class AuthActivity : AppCompatActivity() {
             putExtra("email",email)
         }
         startActivity(homeIntent)
+        finish()
     }
 
 }

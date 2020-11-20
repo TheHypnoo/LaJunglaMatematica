@@ -40,6 +40,7 @@ class menuPrincipal : AppCompatActivity() {
         BT_EmpezarJuego.setOnClickListener {
             val Niveles: Intent = Intent(applicationContext ,AnimationGame:: class.java)
             startActivity(Niveles)
+            finish()
             println("Empezar Juego")}
         BT_PartidasGuardadas.setOnClickListener {
             val PartidasGuardadas: Intent = Intent(applicationContext ,PartidasGuardadas:: class.java)

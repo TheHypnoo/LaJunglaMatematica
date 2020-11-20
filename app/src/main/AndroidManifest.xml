@@ -3,14 +3,12 @@
     package="com.sergigonzalez.lajunglamatematica">
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/icono"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icono"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
-        <activity android:name=".AnimationLoading"></activity>
-        <activity android:name=".AnimationGame" />
         <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+
+        <activity android:name=".AnimationLoading" />
         <activity android:name=".menuPrincipal" />
+        <activity android:name=".AnimationGame" />
+        <activity android:name=".Pruebate" />
+        <activity android:name=".Nivel" />
         <activity android:name=".PartidasGuardadas" />
         <activity android:name=".Ranking" />
-        <activity android:name=".Nivel" />
-        <activity android:name=".pruebate" />
-        <activity android:name=".PantallaCarga" />
 
         <meta-data
             android:name="preloaded_fonts"

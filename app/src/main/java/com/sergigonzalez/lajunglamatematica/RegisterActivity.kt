@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_register.*
 import java.net.PasswordAuthentication
@@ -26,7 +27,33 @@ class RegisterActivity : AppCompatActivity() {
         title = "Registro"
         FindID()
         RegisterButton.setOnClickListener{
-
+            val user = Usuario.text.toString()
+            val date = FechaNacimiento.text.toString()
+            val email = Email.text.toString()
+            val password = Password.text.toString()
+            if (Email.text.isNotEmpty() && Password.text.isNotEmpty() && FechaNacimiento.text.isNotEmpty() && Usuario.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(Email.text.toString(), Password.text.toString()).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val users = hashMapOf(
+                                "Nombre de Usuario" to user,
+                                "Fecha de Nacimiento" to date,
+                                "Email" to email,
+                                //Esto como que no,no?"Password" to password
+                        )
+                        db.collection("users").add(users).addOnSuccessListener { documentReference ->
+                            Log.d("DB: Users", "Añadido con el ID => ${documentReference.id}")
+                            showHome()
+                        }
+                                .addOnFailureListener { e ->
+                                    Log.w("DB: Users", "Error al añadir el usuario", e)
+                                }
+                    } else {
+                        showAlert()
+                    }
+                }
+                } else {
+                    showAlert()
+            }
         }
 
     }
@@ -40,29 +67,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun GuardaUsuario() {
-        val user = Usuario.text
-        val date = FechaNacimiento.text
-        val email = Email.text
-        val password = Password.text
 
-        if(user.isEmpty() && date.isEmpty() && email.isEmpty() && password.isEmpty()) {
-            showAlert()
-        } else {
-            val users = hashMapOf(
-                    "Nombre de Usuario" to user,
-                    "Fecha de Nacimiento" to date,
-                    "Email" to email,
-                    "Password" to password
-            )
 
-            db.collection("users").add(users).addOnSuccessListener { documentReference ->
-                        Log.d("DB: Users", "Añadido con el ID => ${documentReference.id}")
-                        showHome()
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w("DB: Users", "Error al añadir el usuario", e)
-                    }
-        }
 
     }
 
@@ -78,6 +84,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun showHome(){
         val homeIntent = Intent(this,menuPrincipal::class.java)
         startActivity(homeIntent)
+        finish()
     }
 
 }
