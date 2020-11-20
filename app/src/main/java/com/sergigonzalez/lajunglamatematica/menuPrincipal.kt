@@ -38,7 +38,7 @@ class menuPrincipal : AppCompatActivity() {
 
     private fun initListeners() {
         BT_EmpezarJuego.setOnClickListener {
-            val Niveles: Intent = Intent(applicationContext ,pruebate:: class.java)
+            val Niveles: Intent = Intent(applicationContext ,AnimationGame:: class.java)
             startActivity(Niveles)
             println("Empezar Juego")}
         BT_PartidasGuardadas.setOnClickListener {

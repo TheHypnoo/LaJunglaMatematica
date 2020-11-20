@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animacionLogo"
+            android:id="@+id/Loading"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
@@ -53,7 +53,7 @@
                 android:layout_height="8dp" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/FechaNacimientoEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_date"

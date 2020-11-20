@@ -755,6 +755,25 @@
             android:background="@drawable/bordes_redondos"
             android:text="Corregir" />
 
+        <TextView
+            android:id="@+id/pasaNivelTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:hint="Pasando al Nivel..."
+            android:textSize="24sp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/Loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/next"
+            tools:ignore="MissingConstraints" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

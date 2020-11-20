@@ -110,7 +110,7 @@
         app:layout_constraintTop_toTopOf="@+id/GL_BotonCuarto" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animacionLogo"
+        android:id="@+id/Loading"
         android:layout_width="244dp"
         android:layout_height="181dp"
         app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"

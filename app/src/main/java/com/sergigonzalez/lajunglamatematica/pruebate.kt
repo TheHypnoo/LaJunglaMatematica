@@ -4,13 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.view.isVisible
 import com.airbnb.lottie.LottieAnimationView
+import kotlinx.android.synthetic.main.activity_nivel.*
 
 class pruebate : AppCompatActivity() {
     //Titulo y Definicion
@@ -49,6 +51,8 @@ class pruebate : AppCompatActivity() {
     private lateinit var Number20TextView: TextView
     //Boton
     private lateinit var BT_Corregir: Button
+    private lateinit var pasaNivelTextView: TextView
+    private lateinit var AnimacionNext: LottieAnimationView
     //Resultados
     private lateinit var Resultado1: EditText
     private lateinit var Resultado2: EditText
@@ -90,7 +94,7 @@ class pruebate : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_pruebate)
         val Signos = arrayOf("+","-","x","/")
         FindID()
@@ -145,6 +149,8 @@ class pruebate : AppCompatActivity() {
         Number20TextView = findViewById(R.id.Number20TextView)
         //Bottom
         BT_Corregir = findViewById(R.id.BT_Corregir)
+        pasaNivelTextView = findViewById(R.id.pasaNivelTextView)
+        AnimacionNext = findViewById(R.id.Loading)
         //Resultado
         Resultado1 = findViewById(R.id.Resultado1)
         Resultado2 = findViewById(R.id.Resultado2)
@@ -234,6 +240,16 @@ class pruebate : AppCompatActivity() {
         //Botton
         BT_Corregir.setOnClickListener {
             SumaResultado()
+            BT_Corregir.visibility = View.GONE
+            pasaNivelTextView.setText("Pasando al nivel..")
+            pasaNivelTextView.visibility = View.VISIBLE
+            AnimacionNext.visibility = View.VISIBLE
+            Loading.speed = 2.50F
+            Handler(Looper.getMainLooper()).postDelayed({
+                val mainIntent = Intent(this, Nivel::class.java)
+                startActivity(mainIntent)
+                finish()
+            }, 4000)
 
         }
     }

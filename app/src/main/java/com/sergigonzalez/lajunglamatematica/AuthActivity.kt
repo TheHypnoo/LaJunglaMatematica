@@ -18,7 +18,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var Registrar: TextView
     private lateinit var logInButton: Button
     // Access a Cloud Firestore instance from your Activity
-    private val db = FirebaseFirestore.getInstance()
+     val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,7 +118,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun showHome(email: String){
-        val homeIntent = Intent(this,menuPrincipal::class.java).apply {
+        val homeIntent = Intent(this,AnimationLoading::class.java).apply {
             putExtra("email",email)
         }
         startActivity(homeIntent)

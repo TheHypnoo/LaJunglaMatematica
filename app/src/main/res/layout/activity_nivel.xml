@@ -22,16 +22,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animacionLogo"
+            android:id="@+id/Loading"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
-            app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-            app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-            app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
+            android:layout_height="100dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/nivel"
+            app:lottie_rawRes="@raw/animalanimation"
             tools:ignore="MissingConstraints" />
 
         <Space
@@ -49,26 +45,33 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/queHacer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/abril_fatface"
                     android:gravity="center"
-                    android:text="Responde a esta pregunta " />
+                    android:hint="Suma los dos numeros y escribe el resultado abajo."
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/enunciadoNivel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/andika"
                     android:gravity="center"
-                    android:text=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a   comprar fruta al mercado y me ha pedido que compre 4 manzanas  y 2 peras. ¿Cuantas piezas de fruta  tengo que comprar en total?" />
+                    android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas  y 2 peras. ¿Cuantas piezas de fruta  tengo que comprar en total?"
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/Correcto"
@@ -76,15 +79,10 @@
                         android:layout_height="90dp"
                         android:layout_marginStart="0dp"
                         android:layout_marginLeft="0dp"
-                        android:layout_toEndOf="@+id/Incorrecto"
-                        android:layout_toRightOf="@+id/Incorrecto"
                         android:gravity="left"
-                        app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
-                        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-                        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-                        app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
                         app:lottie_rawRes="@raw/correcto"
                         tools:ignore="MissingConstraints" />
 
@@ -92,47 +90,55 @@
                         android:id="@+id/Incorrecto"
                         android:layout_width="190dp"
                         android:layout_height="90dp"
-                        android:layout_weight="0"
                         android:gravity="right"
-                        app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
-                        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-                        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-                        app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="false"
+                        app:lottie_loop="false"
                         app:lottie_rawRes="@raw/incorrecto"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        tools:visibility="gone" />
+                </LinearLayout>
 
-                    <LinearLayout
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:visibility="gone"
+                    tools:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Space
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="10dp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp" />
+                    <EditText
+                        android:id="@+id/ResultadoEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number" />
 
-                        <EditText
-                            android:id="@+id/editTextNumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:ems="10"
-                            android:inputType="number" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="15dp" />
+                    <Button
+                        android:id="@+id/bt_corregir"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bordes_redondos"
+                        android:text="Corregir" />
 
-                        <Button
-                            android:id="@+id/button"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:background="@drawable/bordes_redondos"
-                            android:text="Corregir" />
-                    </LinearLayout>
-                </RelativeLayout>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

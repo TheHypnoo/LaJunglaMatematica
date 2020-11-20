@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
+        <activity android:name=".AnimationLoading"></activity>
+        <activity android:name=".AnimationGame" />
         <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,8 +23,12 @@
         <activity android:name=".PartidasGuardadas" />
         <activity android:name=".Ranking" />
         <activity android:name=".Nivel" />
-        <activity android:name=".pruebate"></activity>
+        <activity android:name=".pruebate" />
         <activity android:name=".PantallaCarga" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
