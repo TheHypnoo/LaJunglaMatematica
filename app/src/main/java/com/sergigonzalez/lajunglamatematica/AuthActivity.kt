@@ -61,7 +61,7 @@ class AuthActivity : AppCompatActivity() {
                     passwordEditText.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        showHome(it.result?.user?.email ?: "")
+                        showHome()
                     } else {
                         showAlert()
                     }
@@ -117,10 +117,8 @@ class AuthActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showHome(email: String){
-        val homeIntent = Intent(this,AnimationLoading::class.java).apply {
-            putExtra("email",email)
-        }
+    private fun showHome(){
+        val homeIntent = Intent(this,AnimationLoading::class.java)
         startActivity(homeIntent)
         finish()
     }

@@ -43,10 +43,9 @@ class RegisterActivity : AppCompatActivity() {
                         db.collection("users").add(users).addOnSuccessListener { documentReference ->
                             Log.d("DB: Users", "Añadido con el ID => ${documentReference.id}")
                             showHome()
-                        }
-                                .addOnFailureListener { e ->
+                        }.addOnFailureListener { e ->
                                     Log.w("DB: Users", "Error al añadir el usuario", e)
-                                }
+                        }
                     } else {
                         showAlert()
                     }
@@ -64,12 +63,6 @@ class RegisterActivity : AppCompatActivity() {
         Email = findViewById(R.id.emailEditText)
         Password = findViewById(R.id.passwordEditText)
         RegisterButton = findViewById(R.id.RegisterButton)
-    }
-
-    fun GuardaUsuario() {
-
-
-
     }
 
     private fun showAlert() {
