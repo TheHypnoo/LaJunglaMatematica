@@ -2,12 +2,21 @@ package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ServerTimestamp
+import com.google.firestore.v1.DocumentTransform
+import com.google.type.TimeZone
+import io.grpc.Server
+import java.sql.Time
+import java.sql.Types.TIMESTAMP
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class menuPrincipal : AppCompatActivity() {
@@ -25,13 +34,17 @@ class menuPrincipal : AppCompatActivity() {
         var user = FirebaseAuth.getInstance().currentUser
         var email = user?.email
 
-        val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName("Admin").build()
-
-        var name = user?.displayName
-
-        user!!.updateProfile(profileUpdates)
-        println("Email: $email Usuario: $name")
+        db.collection("users")
+                .whereEqualTo("Email", email)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d("TAG", "${document.id} => ${document.data}")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("TAG", "Error getting documents: ", exception)
+                }
 
         InitButtons()
         initListeners()

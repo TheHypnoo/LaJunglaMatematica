@@ -65,6 +65,38 @@ class Nivel : AppCompatActivity() {
 
             bt_corregir.visibility = View.GONE
             Handler(Looper.getMainLooper()).postDelayed({
+                Nivel2Suma()
+                Incorrecto.visibility = View.GONE
+                Correcto.visibility = View.GONE
+                bt_corregir.visibility = View.VISIBLE
+                ResultadoEditText.text.clear()
+            }, 3000)
+
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun Nivel2Suma(){
+        numero1 = generaNumeros()
+        numero2 = generaNumeros()
+        queHacer.text = "Suma los dos numeros y escribe el resultado abajo."
+        enunciadoNivel.text =
+                "A cambio de comprarle la fruta, mi mama me dio "+
+                        numero1+ " euros así que los fui a meter en mi hucha. A más, yo ya tenía en mi hucha " +
+        numero2+ " euros. ¿Cuánto dinero tengo ahora en la hucha?"
+
+        Resultado = numero1 + numero2
+        bt_corregir.setOnClickListener{
+            if(ResultadoEditText.text.toString() == Resultado.toString()) {
+                Correcto.visibility = View.VISIBLE
+                Correcto.playAnimation()
+            } else {
+                Incorrecto.visibility = View.VISIBLE
+                Incorrecto.playAnimation()
+            }
+
+            bt_corregir.visibility = View.GONE
+            Handler(Looper.getMainLooper()).postDelayed({
                 val mainIntent = Intent(this, menuPrincipal::class.java)
                 startActivity(mainIntent)
                 finish()
