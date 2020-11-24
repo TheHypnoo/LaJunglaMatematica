@@ -21,8 +21,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/cargaNivel"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:hint="Cargando el nivel..."
+            android:textSize="24sp"
+            android:visibility="visible" />
+
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/Loading"
+            android:id="@+id/loadingAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/next"
+            tools:ignore="MissingConstraints" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimalAnimation"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:lottie_autoPlay="true"
@@ -35,9 +55,11 @@
             android:layout_height="8dp" />
 
         <LinearLayout
+            android:id="@+id/todoNivel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"

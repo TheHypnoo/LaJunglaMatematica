@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.HandlerThread
 import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
@@ -22,7 +24,12 @@ class Nivel : AppCompatActivity() {
     private lateinit var Incorrecto: LottieAnimationView
     private lateinit var ResultadoEditText: EditText
     private lateinit var bt_corregir: Button
+    private lateinit var loadingAnimation: LottieAnimationView
+    private lateinit var cargaNivel: TextView
+    private lateinit var todoNivel: LinearLayout
     val db = FirebaseFirestore.getInstance()
+    val user = FirebaseAuth.getInstance().currentUser
+    val email = user?.email
     var id = ""
     private var numero1 = 0
     private var numero2 = 0
@@ -35,13 +42,14 @@ class Nivel : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_nivel)
         findID()
-        whenNiveles()
-        nivelSuma()
-    }
-
-    override fun onStart() {
+        loadingAnimation.speed = 4.50F
         buscaNivel()
-        super.onStart()
+         Handler(Looper.getMainLooper()).postDelayed({
+             loadingAnimation.visibility = View.GONE
+             cargaNivel.visibility = View.GONE
+             todoNivel.visibility = View.VISIBLE
+             nivelSuma()
+         }, 2500)
 
     }
 
@@ -52,11 +60,17 @@ class Nivel : AppCompatActivity() {
         Incorrecto = findViewById(R.id.Incorrecto)
         ResultadoEditText = findViewById(R.id.ResultadoEditText)
         bt_corregir = findViewById(R.id.bt_corregir)
+        loadingAnimation = findViewById(R.id.loadingAnimation)
+        cargaNivel = findViewById(R.id.cargaNivel)
+        todoNivel = findViewById(R.id.todoNivel)
+    }
+
+    private fun guardaNivel(){
+        db.collection("users").document(id).update("queNivel",x)
+        println("Guardado: $x AND $posNivel")
     }
 
     private fun buscaNivel(): Int {
-        val user = FirebaseAuth.getInstance().currentUser
-        val email = user?.email
         db.collection("users")
                 .whereEqualTo("Email", email)
                 .get()
@@ -76,10 +90,10 @@ class Nivel : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun whenNiveles(){
-        println("Level: $posNivel")
         if(posNivel >= x) {
             x = posNivel
-
+            println("Switch: $x AND $posNivel")
+        }
         when (x) {
             0 -> {
                 enunciadoNivel.text =
@@ -95,9 +109,21 @@ class Nivel : AppCompatActivity() {
                                 numero2 + " euros. ¿Cuánto dinero tengo ahora en la hucha?"
                 }
             2 -> {
-                enunciadoNivel.text =
-                        "Y este es el puto lvl3"
+                enunciadoNivel.text = "Mi papa también me pidió que le ayudara. Esta vez teníamos que lavar un"+
+                "par de coches y me dijo que necesitábamos $numero1 litros de agua y $numero2 litros de jabón."+
+                "¿Cuántos litros de jabón y agua tengo que coger en total?"
             }
+            3 -> {
+                enunciadoNivel.text = "Mientras lavamos los coches se nos acabó el jabón y el agua y mi papa me"+
+                        "mandó a por $numero1 litros de jabón y $numero2 litros de agua más. ¿Cuántos litros"+
+                "necesitamos esta vez?"
+            }
+            4 -> {
+                "Cuándo acabamos de lavar los coches ya era la hora de cenar así que entré"+
+                "en casa y ayudé a mi mama a hacer la cena. Mientras mi mama cocinaba, yo"+
+                "tenía que poner la mesa: $numero1 tenedores, $numero2 cuchillos. ¿Entonces,"+
+                "cuántos cubiertos debo poner en la mesa entre cucharas, tenedores y"+
+                "cuchillos?"
             }
         }
     }
@@ -109,6 +135,7 @@ class Nivel : AppCompatActivity() {
         whenNiveles()
         queHacer.text = "Suma los dos numeros y escribe el resultado abajo."
         Resultado = numero1 + numero2
+
         bt_corregir.setOnClickListener{
             if(ResultadoEditText.text.toString() == Resultado.toString()) {
                 Correcto.visibility = View.VISIBLE
@@ -118,16 +145,18 @@ class Nivel : AppCompatActivity() {
                 Incorrecto.playAnimation()
             }
             bt_corregir.visibility = View.GONE
-
-            Handler(Looper.getMainLooper()).postDelayed({
+            Handler(Looper.myLooper()!!).postDelayed({
                 ++x
+                if (x >= posNivel) {
+                    guardaNivel()
+                }
+                println("PosNivel: $posNivel X: $x")
                 Incorrecto.visibility = View.GONE
                 Correcto.visibility = View.GONE
                 bt_corregir.visibility = View.VISIBLE
                 ResultadoEditText.text.clear()
                 nivelSuma()
-            }, 3000)
-
+            }, 1500)
         }
     }
 

@@ -149,8 +149,8 @@ class Pruebate : AppCompatActivity() {
         Number20TextView = findViewById(R.id.Number20TextView)
         //Bottom
         BT_Corregir = findViewById(R.id.BT_Corregir)
-        pasaNivelTextView = findViewById(R.id.pasaNivelTextView)
-        AnimacionNext = findViewById(R.id.Loading)
+        pasaNivelTextView = findViewById(R.id.cargaNivel)
+        AnimacionNext = findViewById(R.id.AnimalAnimation)
         //Resultado
         Resultado1 = findViewById(R.id.Resultado1)
         Resultado2 = findViewById(R.id.Resultado2)
@@ -244,7 +244,7 @@ class Pruebate : AppCompatActivity() {
             pasaNivelTextView.setText("Pasando al nivel..")
             pasaNivelTextView.visibility = View.VISIBLE
             AnimacionNext.visibility = View.VISIBLE
-            Loading.speed = 2.50F
+            AnimalAnimation.speed = 2.50F
             Handler(Looper.getMainLooper()).postDelayed({
                 val mainIntent = Intent(this, Nivel::class.java)
                 startActivity(mainIntent)

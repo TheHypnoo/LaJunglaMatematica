@@ -756,7 +756,7 @@
             android:text="Corregir" />
 
         <TextView
-            android:id="@+id/pasaNivelTextView"
+            android:id="@+id/cargaNivel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -765,7 +765,7 @@
             android:textSize="24sp" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/Loading"
+            android:id="@+id/AnimalAnimation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"

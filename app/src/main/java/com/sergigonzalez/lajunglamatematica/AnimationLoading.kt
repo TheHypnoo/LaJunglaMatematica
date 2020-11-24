@@ -14,7 +14,7 @@ class AnimationLoading : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_animation_loading)
-        Loading = findViewById(R.id.Loading)
+        Loading = findViewById(R.id.AnimalAnimation)
         Loading.speed = 0.35F
         Handler(Looper.getMainLooper()).postDelayed({
             val mainIntent = Intent(this, menuPrincipal::class.java)

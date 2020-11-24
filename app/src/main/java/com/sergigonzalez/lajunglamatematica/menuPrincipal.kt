@@ -61,11 +61,9 @@ class menuPrincipal : AppCompatActivity() {
             if(animGame) {
                 val Niveles: Intent = Intent(applicationContext, Nivel::class.java)
                 startActivity(Niveles)
-                finish()
             } else {
                 val Animacion: Intent = Intent(applicationContext, AnimationGame::class.java)
                 startActivity(Animacion)
-                finish()
                 db.collection("users").document(id).update("animGame",true)
             }
             println("Empezar Juego")
