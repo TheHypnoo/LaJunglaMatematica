@@ -28,7 +28,8 @@
             android:gravity="center"
             android:hint="Cargando el nivel..."
             android:textSize="24sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:visibility="gone" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loadingAnimation"
@@ -39,7 +40,8 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/next"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:visibility="gone" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/AnimalAnimation"
@@ -59,7 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -159,6 +162,48 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="10dp" />
+
+                    <TextView
+                        android:id="@+id/textlvl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="Nivel:" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lvlDown"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="left"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:visibility="gone"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/lvldown"
+                            tools:ignore="MissingConstraints"
+                            tools:visibility="visible" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lvlUP"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="right"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:visibility="gone"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/lvlup"
+                            tools:ignore="MissingConstraints"
+                            tools:visibility="visible" />
+                    </LinearLayout>
 
                 </LinearLayout>
 

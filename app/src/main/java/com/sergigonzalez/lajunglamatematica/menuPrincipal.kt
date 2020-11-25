@@ -36,7 +36,6 @@ class menuPrincipal : AppCompatActivity() {
                         Log.d("TAG", "${document.id} => ${document.data}")
                         id = document.id
                         animGame = document.data["animGame"] as Boolean
-                        println("Info1: $animGame")
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -45,10 +44,9 @@ class menuPrincipal : AppCompatActivity() {
 
         InitButtons()
         initListeners()
-        println("Juego iniciado correctamente!")
     }
 
-    private fun InitButtons(){
+    private fun InitButtons() {
         BT_EmpezarJuego = findViewById(R.id.BT_EmpezarJuego)
         BT_PartidasGuardadas = findViewById(R.id.BT_PartidasGuardadas)
         BT_Ranking = findViewById(R.id.BT_Ranking)
@@ -58,25 +56,28 @@ class menuPrincipal : AppCompatActivity() {
     private fun initListeners() {
 
         BT_EmpezarJuego.setOnClickListener {
-            if(animGame) {
+            if (animGame) {
                 val Niveles: Intent = Intent(applicationContext, Nivel::class.java)
                 startActivity(Niveles)
             } else {
                 val Animacion: Intent = Intent(applicationContext, AnimationGame::class.java)
                 startActivity(Animacion)
-                db.collection("users").document(id).update("animGame",true)
+                db.collection("users").document(id).update("animGame", true)
             }
-            println("Empezar Juego")
-            println("Info1.1: $animGame")}
-        BT_PartidasGuardadas.setOnClickListener {
-            val PartidasGuardadas: Intent = Intent(applicationContext, PartidasGuardadas::class.java)
-            startActivity(PartidasGuardadas)
-            println("Partidas Guardadas")}
-        BT_Ranking.setOnClickListener {
-            val Ranking: Intent = Intent(applicationContext, Ranking::class.java)
-            startActivity(Ranking)
-            println("Ranking")}
-        BT_Salir.setOnClickListener {finish()
-        println("Juego cerrado!")}
+            BT_PartidasGuardadas.setOnClickListener {
+                val PartidasGuardadas: Intent = Intent(applicationContext, PartidasGuardadas::class.java)
+                startActivity(PartidasGuardadas)
+                println("Partidas Guardadas")
+            }
+            BT_Ranking.setOnClickListener {
+                val Ranking: Intent = Intent(applicationContext, Ranking::class.java)
+                startActivity(Ranking)
+                println("Ranking")
+            }
+            BT_Salir.setOnClickListener {
+                finish()
+                println("Juego cerrado!")
+            }
+        }
     }
 }
