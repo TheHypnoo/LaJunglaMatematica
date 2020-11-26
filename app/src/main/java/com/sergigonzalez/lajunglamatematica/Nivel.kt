@@ -32,6 +32,8 @@ class Nivel : AppCompatActivity() {
     private var numero1 = 0
     private var numero2 = 0
     private var Resultado = 0
+    private var dbPuntuacion = 0
+    private var puntuacion = 0
 
     private var estoySuma = true
     private var finalSuma = false
@@ -119,7 +121,8 @@ class Nivel : AppCompatActivity() {
         if(lvlDivision >= dbDivision)
             db.collection("users").document(id).update("lvlDivision", lvlDivision)
 
-        println("Guardado: $lvlSuma AND $dbSuma")
+        if(puntuacion >= dbPuntuacion)
+            db.collection("users").document(id).update("puntuacion", puntuacion)
     }
 
     private fun buscaNivel() {
@@ -132,6 +135,7 @@ class Nivel : AppCompatActivity() {
                         dbResta = document.data["lvlResta"].toString().toLong().toInt()
                         dbMultiplica = document.data["lvlMultiplica"].toString().toLong().toInt()
                         dbDivision = document.data["lvlDivision"].toString().toLong().toInt()
+                        dbPuntuacion = document.data["puntuacion"].toString().toLong().toInt()
                         println("InfoNivel: $dbSuma AND $dbResta")
                     }
                 }
@@ -329,6 +333,7 @@ class Nivel : AppCompatActivity() {
                 if(ResultadoEditText.text.toString() == Resultado.toString()) {
                     Correcto.visibility = View.VISIBLE
                     Correcto.playAnimation()
+                    ++puntuacion
                 } else {
                     Incorrecto.visibility = View.VISIBLE
                     Incorrecto.playAnimation()
@@ -336,7 +341,7 @@ class Nivel : AppCompatActivity() {
                 bt_corregir.visibility = View.GONE
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlSuma
-                    if (lvlSuma >= dbSuma) {
+                    if (lvlSuma >= dbSuma || puntuacion >= dbPuntuacion) {
                         guardaNivel()
                     }
                     println("PosNivel: $dbSuma X: $lvlSuma")
@@ -389,6 +394,7 @@ class Nivel : AppCompatActivity() {
             if(ResultadoEditText.text.toString() == Resultado.toString()) {
                 Correcto.visibility = View.VISIBLE
                 Correcto.playAnimation()
+                ++puntuacion
             } else {
                 Incorrecto.visibility = View.VISIBLE
                 Incorrecto.playAnimation()
@@ -396,7 +402,7 @@ class Nivel : AppCompatActivity() {
             bt_corregir.visibility = View.GONE
             Handler(Looper.myLooper()!!).postDelayed({
                 ++lvlResta
-                if (lvlResta >= dbResta) {
+                if (lvlResta >= dbResta || puntuacion >= dbPuntuacion) {
                     guardaNivel()
                 }
                 Incorrecto.visibility = View.GONE
@@ -447,6 +453,7 @@ class Nivel : AppCompatActivity() {
             if(ResultadoEditText.text.toString() == Resultado.toString()) {
                 Correcto.visibility = View.VISIBLE
                 Correcto.playAnimation()
+                ++puntuacion
             } else {
                 Incorrecto.visibility = View.VISIBLE
                 Incorrecto.playAnimation()
@@ -454,7 +461,7 @@ class Nivel : AppCompatActivity() {
             bt_corregir.visibility = View.GONE
             Handler(Looper.myLooper()!!).postDelayed({
                 ++lvlMultiplica
-                if (lvlMultiplica >= dbMultiplica) {
+                if (lvlMultiplica >= dbMultiplica || puntuacion >= dbPuntuacion) {
                     guardaNivel()
                 }
                 Incorrecto.visibility = View.GONE
@@ -496,6 +503,7 @@ class Nivel : AppCompatActivity() {
             if(ResultadoEditText.text.toString() == Resultado.toString()) {
                 Correcto.visibility = View.VISIBLE
                 Correcto.playAnimation()
+                ++puntuacion
             } else {
                 Incorrecto.visibility = View.VISIBLE
                 Incorrecto.playAnimation()
@@ -503,7 +511,7 @@ class Nivel : AppCompatActivity() {
             bt_corregir.visibility = View.GONE
             Handler(Looper.myLooper()!!).postDelayed({
                 ++lvlDivision
-                if (lvlDivision >= dbDivision) {
+                if (lvlDivision >= dbDivision || puntuacion >= dbPuntuacion) {
                     guardaNivel()
                 }
                 Incorrecto.visibility = View.GONE
