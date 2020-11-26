@@ -25,10 +25,6 @@
             android:id="@+id/AnimalAnimation"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
-            app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-            app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-            app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/authanimate"
@@ -59,7 +55,8 @@
                 android:drawableLeft="@drawable/ic_action_lock"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/ic_action_lock" />
 
             <Space
                 android:layout_width="match_parent"
@@ -72,7 +69,7 @@
 
                 <Button
                     android:id="@+id/RegisterButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/colorSecondary"
@@ -84,28 +81,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:orientation="vertical">
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="50dp"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/SignUp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_weight="1"
-                android:text="No estas registrado? Registrate"
                 android:clickable="true"
+                android:fontFamily="@font/andika"
+                android:gravity="center_horizontal"
+                android:text="No estas registrado? Registrate"
                 android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAllCaps="false"
+                android:textColor="@color/ic_launcher_background"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_weight="0" />
 
             <TextView

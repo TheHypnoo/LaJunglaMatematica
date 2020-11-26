@@ -2,9 +2,12 @@ package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.Window
 import android.widget.Button
+import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,12 +23,13 @@ class menuPrincipal : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     var id = ""
     var animGame = false
+    private var mLastClickTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_menu)
-        var user = FirebaseAuth.getInstance().currentUser
-        var email = user?.email
+        val user = FirebaseAuth.getInstance().currentUser
+        val email = user?.email
 
 
         db.collection("users")
@@ -54,30 +58,87 @@ class menuPrincipal : AppCompatActivity() {
     }
 
     private fun initListeners() {
-
         BT_EmpezarJuego.setOnClickListener {
-            if (animGame) {
-                val Niveles: Intent = Intent(applicationContext, Nivel::class.java)
-                startActivity(Niveles)
-            } else {
-                val Animacion: Intent = Intent(applicationContext, AnimationGame::class.java)
-                startActivity(Animacion)
-                db.collection("users").document(id).update("animGame", true)
+                if (animGame) {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                        return@setOnClickListener
+                    } else {
+                        val Niveles: Intent = Intent(applicationContext, Nivel::class.java)
+                        startActivity(Niveles)
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
+                } else if(!animGame){
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                        return@setOnClickListener
+                    } else {
+                        val Animacion: Intent = Intent(applicationContext, AnimationGame::class.java)
+                        startActivity(Animacion)
+                        db.collection("users").document(id).update("animGame", true)
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+                }
             }
-            BT_PartidasGuardadas.setOnClickListener {
-                val PartidasGuardadas: Intent = Intent(applicationContext, PartidasGuardadas::class.java)
-                startActivity(PartidasGuardadas)
-                println("Partidas Guardadas")
-            }
-            BT_Ranking.setOnClickListener {
-                val Ranking: Intent = Intent(applicationContext, Ranking::class.java)
-                startActivity(Ranking)
-                println("Ranking")
-            }
-            BT_Salir.setOnClickListener {
+        BT_PartidasGuardadas.setOnClickListener {
+            val PartidasGuardadas: Intent = Intent(applicationContext, PartidasGuardadas::class.java)
+            startActivity(PartidasGuardadas)
+            println("Partidas Guardadas")
+        }
+        BT_Ranking.setOnClickListener {
+            val Ranking: Intent = Intent(applicationContext, Ranking::class.java)
+            startActivity(Ranking)
+            println("Ranking")
+        }
+        BT_Salir.setOnClickListener {
+            val alertDialog = AlertDialog.Builder(this).create()
+            alertDialog.setTitle("Title")
+            alertDialog.setMessage("Message")
+
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes"
+            ) { dialog, which -> dialog.dismiss() }
+
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No"
+            ) { dialog, which -> dialog.dismiss() }
+
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Cancel"
+            ) { dialog, which -> dialog.dismiss() }
+            alertDialog.show()
+
+            val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            val btnNeutral = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+
+            val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+            layoutParams.weight = 10f
+            btnNeutral.layoutParams = layoutParams
+            btnPositive.layoutParams = layoutParams
+            btnNegative.layoutParams = layoutParams
+
+
+
+
+
+
+            /*
+            val builder = AlertDialog.Builder(this)
+            //builder.setMessage("Seleccione Cerrar Sesión o Salir y Cerrar sesión")
+
+            builder.setPositiveButton("Cerrar Sesión") { dialog, which ->
+                val CerrarSesion: Intent = Intent(applicationContext, AuthActivity::class.java)
+                startActivity(CerrarSesion)
                 finish()
-                println("Juego cerrado!")
             }
+
+            builder.setNegativeButton("Salir y cerrar Sesión") { dialog, which ->
+                finish()
+            }
+            builder.setNeutralButton("Cancelar",null)
+
+
+
+            builder.show()
+
+             */
         }
     }
 }

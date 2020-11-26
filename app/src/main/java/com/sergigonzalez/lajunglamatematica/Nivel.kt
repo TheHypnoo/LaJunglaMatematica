@@ -32,14 +32,23 @@ class Nivel : AppCompatActivity() {
     private var numero1 = 0
     private var numero2 = 0
     private var Resultado = 0
+
     private var estoySuma = true
     private var finalSuma = false
     private var estoyResta = false
     private var finalResta = false
+    private var estoyMultiplica = false
+    private var finalMultiplica = false
+    private var estoyDivision = false
+    private var finalDivision = false
     private var dbSuma = -1
     private var dbResta = -1
+    private var dbMultiplica = -1
+    private var dbDivision = -1
     private var lvlSuma = 0
     private var lvlResta = 0
+    private var lvlMultiplica = 0
+    private var lvlDivision = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,14 +61,32 @@ class Nivel : AppCompatActivity() {
              loadingAnimation.visibility = View.GONE
              cargaNivel.visibility = View.GONE
              todoNivel.visibility = View.VISIBLE
-             if (dbSuma >= 3) {
+             //Escojo la media
+             if(!finalSuma) {
+                 estoySuma = true
+             } else if(!finalResta) {
                  estoySuma = false
                  estoyResta = true
+             } else if(!finalMultiplica) {
+                 estoyResta = false
+                 estoyMultiplica = true
+             } else if(!finalDivision) {
+                 estoyMultiplica = false
+                 estoyDivision = true
              }
-             if (estoySuma) {
-                 nivelSuma()
-             } else if (estoyResta) {
-                 nivelResta()
+             when {
+                 estoySuma -> {
+                     nivelSuma()
+                 }
+                 estoyResta -> {
+                     nivelResta()
+                 }
+                 estoyMultiplica -> {
+                     nivelMultiplica()
+                 }
+                 estoyDivision -> {
+                     nivelDivision()
+                 }
              }
          }, 2500)
 
@@ -80,16 +107,22 @@ class Nivel : AppCompatActivity() {
     }
 
     private fun guardaNivel(){
-        if(lvlSuma >= dbSuma) {
+        if(lvlSuma >= dbSuma)
             db.collection("users").document(id).update("lvlSuma", lvlSuma)
-        }
-        if(lvlResta >= dbResta) {
+
+        if(lvlResta >= dbResta)
             db.collection("users").document(id).update("lvlResta", lvlResta)
-        }
+
+        if(lvlMultiplica >= dbMultiplica)
+            db.collection("users").document(id).update("lvlMultiplica", lvlMultiplica)
+
+        if(lvlDivision >= dbDivision)
+            db.collection("users").document(id).update("lvlDivision", lvlDivision)
+
         println("Guardado: $lvlSuma AND $dbSuma")
     }
 
-    private fun buscaNivel(): Int {
+    private fun buscaNivel() {
 
         db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener { documents ->
                     for (document in documents) {
@@ -97,13 +130,14 @@ class Nivel : AppCompatActivity() {
                         id = document.id
                         dbSuma = document.data["lvlSuma"].toString().toLong().toInt()
                         dbResta = document.data["lvlResta"].toString().toLong().toInt()
+                        dbMultiplica = document.data["lvlMultiplica"].toString().toLong().toInt()
+                        dbDivision = document.data["lvlDivision"].toString().toLong().toInt()
                         println("InfoNivel: $dbSuma AND $dbResta")
                     }
                 }
                 .addOnFailureListener { exception ->
                     Log.w("TAG", "Error getting documents: ", exception)
                 }
-        return dbSuma
     }
 
     @SuppressLint("SetTextI18n")
@@ -114,9 +148,9 @@ class Nivel : AppCompatActivity() {
         }
         if(lvlSuma == 6) {
             finalSuma = true
-            nivelResta()
             estoySuma = false
             estoyResta = true
+            nivelResta()
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
         }
@@ -161,29 +195,129 @@ class Nivel : AppCompatActivity() {
             println("Switch: $lvlResta AND $dbResta")
         }
 
+        if(lvlResta == 6) {
+            finalResta = true
+            estoyResta = false
+            estoyMultiplica = true
+            nivelMultiplica()
+            lvlUP.visibility = View.GONE
+            lvlDown.visibility = View.GONE
+        }
+        while(numero1 < numero2) numero1 = generaNumeros()
+
         when (lvlResta) {
             0 -> {
                 enunciadoNivel.text =
-                        " Resta1"
+                        "¡Hola amigo! Necesito tu ayuda. Quiero comerme un donut para merendar y ahora tengo $numero1 euros. " +
+                                "Si el donut me cuesta $numero2, ¿cuánto dinero me queda?  "
             }
             1 -> {
                 enunciadoNivel.text =
-                        "Resta2"
+                        "Cuando llego a casa, mi papa me da $numero1 € para que vaya a comprar pizza para cenar. " +
+                                "Cuando vuelvo a casa con las pizzas y el cambio, este es de $numero2 €. " +
+                                "¿Cuánto me han costado las pizzas?"
             }
             2 -> {
-                enunciadoNivel.text = "Resta3"
+                enunciadoNivel.text = "La pizza está cortada en $numero1 trozos y cojo $numero2. ¿Cuántos trozos quedan de pizza?"
             }
             3 -> {
-                enunciadoNivel.text = "Resta4"
+                enunciadoNivel.text = "A la mañana siguiente, me levanto y bajo a la cocina a prepárame el desayuno. Veo $numero1 naranjas en la cesta de la fruta y cojo $numero2 para hacerme el zumo. " +
+                        "¿Cuántas naranjas quedan ahora en la cesta?"
             }
             4 -> {
-                enunciadoNivel.text = "Resta5"
+                enunciadoNivel.text = "Cuando acabo de desayunar mi mama me lleva a la escuela y me da $numero1 € para que me compre el desayuno." +
+                        " A la hora del patio, voy al comedor y pido un bocadillo y un zumo y una vez pago me queda $numero2 €. " +
+                        "¿Cuánto me ha costado el bocata y el zumo?"
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun whenMultiplica(){
+        if(dbMultiplica >= lvlMultiplica) {
+            lvlMultiplica = dbMultiplica
+            println("Switch: $lvlMultiplica AND $dbMultiplica")
+        }
+
+        if(lvlMultiplica == 6) {
+            finalMultiplica = true
+
+            estoyMultiplica = false
+            estoyDivision = true
+            nivelDivision()
+            lvlUP.visibility = View.GONE
+            lvlDown.visibility = View.GONE
+        }
+
+        when (lvlMultiplica) {
+            0 -> {
+                enunciadoNivel.text = "¡Hola amigo! Tengo un pequeño problema. Hoy he ido al mercado y he comprado $numero1 plátanos que cuestan $numero2 euros cada uno." +
+                        " ¿Me podrías decir cuánto dinero tengo que pagar por los plátanos?"
+            }
+            1 -> {
+                enunciadoNivel.text =
+                        "A más, también he comprado $numero1 peras a $numero2 € por pieza. ¿Cuánto tengo que pagar por las peras?"
+            }
+            2 -> {
+                enunciadoNivel.text = "Y, por último, he comprado $numero1 kg de uvas a $numero2 € el kg. ¿A cuánto pago las uvas?"
+            }
+            3 -> {
+                enunciadoNivel.text = "Multiplica4"
+            }
+            4 -> {
+                enunciadoNivel.text = "Multiplica5"
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun whenDivision(){
+        if(dbDivision >= lvlDivision) {
+            lvlDivision = dbDivision
+            println("Switch: $lvlDivision AND $dbDivision")
+        }
+
+        if(lvlDivision == 6) {
+            finalDivision = true
+            estoyDivision = false
+            lvlUP.visibility = View.GONE
+            lvlDown.visibility = View.GONE
+        }
+        while(numero1 < numero2) numero1 = generaNumeros()
+
+        when (lvlDivision) {
+            0 -> {
+                enunciadoNivel.text =
+                        "¡Hola amigo! ¿Me puedes ayudar un momento? He quedado con mis amigos para merendar y he comprado $numero1 magdalenas. Si somos $numero2 amigos, " +
+                                "¿Cuántas magdalenas nos podemos comer cada uno?"
+            }
+            1 -> {
+                enunciadoNivel.text =
+                        "Division2"
+            }
+            2 -> {
+                enunciadoNivel.text = "Division3"
+            }
+            3 -> {
+                enunciadoNivel.text = "Division4"
+            }
+            4 -> {
+                enunciadoNivel.text = "Division5"
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun nivelSuma(){
+        if(!finalResta && lvlSuma >= 3) {
+            lvlUP.visibility = View.VISIBLE
+            lvlUP.setOnClickListener {
+                nivelResta()
+                lvlUP.visibility = View.GONE
+            }
+        } else {
+            lvlUP.visibility = View.GONE
+        }
         numero1 = generaNumeros()
         numero2 = generaNumeros()
         whenSuma()
@@ -236,6 +370,15 @@ class Nivel : AppCompatActivity() {
         } else {
             lvlDown.visibility = View.GONE
         }
+        if(finalSuma && !finalMultiplica) {
+            lvlUP.visibility = View.VISIBLE
+            lvlUP.setOnClickListener {
+                nivelMultiplica()
+                lvlUP.visibility = View.GONE
+            }
+        } else {
+            lvlUP.visibility = View.GONE
+        }
         numero1 = generaNumeros()
         numero2 = generaNumeros()
         whenResta()
@@ -256,12 +399,118 @@ class Nivel : AppCompatActivity() {
                 if (lvlResta >= dbResta) {
                     guardaNivel()
                 }
-                println("PosNivel: $dbResta X: $lvlResta")
                 Incorrecto.visibility = View.GONE
                 Correcto.visibility = View.GONE
                 bt_corregir.visibility = View.VISIBLE
                 ResultadoEditText.text.clear()
+                if (lvlResta >= 3 && finalSuma) {
+                    lvlUP.visibility = View.VISIBLE
+                    lvlUP.setOnClickListener {
+                        nivelMultiplica()
+                        lvlUP.visibility = View.GONE
+                    }
+                    nivelResta()
+                } else {
+                    nivelResta()
+                }
+            }, 1500)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun nivelMultiplica(){
+        if(!finalResta) {
+            lvlDown.visibility = View.VISIBLE
+            lvlDown.setOnClickListener {
                 nivelResta()
+                lvlDown.visibility = View.GONE
+            }
+        } else {
+            lvlDown.visibility = View.GONE
+        }
+        if(finalResta && !finalDivision) {
+            lvlUP.visibility = View.VISIBLE
+            lvlUP.setOnClickListener {
+                nivelDivision()
+                lvlUP.visibility = View.GONE
+            }
+        } else {
+            lvlUP.visibility = View.GONE
+        }
+        numero1 = generaNumeros()
+        numero2 = generaNumeros()
+        whenMultiplica()
+        queHacer.text = "Multiplica los dos numeros y escribe el resultado abajo."
+        Resultado = numero1 * numero2
+
+        bt_corregir.setOnClickListener{
+            if(ResultadoEditText.text.toString() == Resultado.toString()) {
+                Correcto.visibility = View.VISIBLE
+                Correcto.playAnimation()
+            } else {
+                Incorrecto.visibility = View.VISIBLE
+                Incorrecto.playAnimation()
+            }
+            bt_corregir.visibility = View.GONE
+            Handler(Looper.myLooper()!!).postDelayed({
+                ++lvlMultiplica
+                if (lvlMultiplica >= dbMultiplica) {
+                    guardaNivel()
+                }
+                Incorrecto.visibility = View.GONE
+                Correcto.visibility = View.GONE
+                bt_corregir.visibility = View.VISIBLE
+                ResultadoEditText.text.clear()
+                if (lvlMultiplica >= 3 && finalResta) {
+                    lvlUP.visibility = View.VISIBLE
+                    lvlUP.setOnClickListener {
+                        nivelDivision()
+                        lvlUP.visibility = View.GONE
+                    }
+                    nivelMultiplica()
+                } else {
+                    nivelMultiplica()
+                }
+            }, 1500)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun nivelDivision(){
+        if(!finalMultiplica) {
+            lvlDown.visibility = View.VISIBLE
+            lvlDown.setOnClickListener {
+                nivelMultiplica()
+                lvlDown.visibility = View.GONE
+            }
+        } else {
+            lvlDown.visibility = View.GONE
+        }
+        numero1 = generaNumeros()
+        numero2 = generaNumeros()
+        whenDivision()
+        queHacer.text = "Divide los dos numeros y escribe el resultado abajo."
+        Resultado = numero1 / numero2
+
+        bt_corregir.setOnClickListener{
+            if(ResultadoEditText.text.toString() == Resultado.toString()) {
+                Correcto.visibility = View.VISIBLE
+                Correcto.playAnimation()
+            } else {
+                Incorrecto.visibility = View.VISIBLE
+                Incorrecto.playAnimation()
+            }
+            bt_corregir.visibility = View.GONE
+            Handler(Looper.myLooper()!!).postDelayed({
+                ++lvlDivision
+                if (lvlDivision >= dbDivision) {
+                    guardaNivel()
+                }
+                Incorrecto.visibility = View.GONE
+                Correcto.visibility = View.GONE
+                bt_corregir.visibility = View.VISIBLE
+                ResultadoEditText.text.clear()
+                nivelDivision()
             }, 1500)
         }
     }

@@ -1,13 +1,14 @@
 package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -19,6 +20,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var logInButton: Button
     // Access a Cloud Firestore instance from your Activity
      val db = FirebaseFirestore.getInstance()
+    private var mLastClickTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +37,14 @@ class AuthActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.passwordEditText)
 
         Registrar.setOnClickListener {
-            val Registrarse: Intent = Intent(applicationContext ,RegisterActivity:: class.java)
-            startActivity(Registrarse)
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                return@setOnClickListener
+            } else {
+                val Registrarse: Intent = Intent(applicationContext, RegisterActivity::class.java)
+                startActivity(Registrarse)
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+
             /*
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -57,16 +65,27 @@ class AuthActivity : AppCompatActivity() {
         logInButton.setOnClickListener {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(
-                    emailEditText.text.toString(),
-                    passwordEditText.text.toString()
+                        emailEditText.text.toString(),
+                        passwordEditText.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        showHome()
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 5000) {
+                            return@addOnCompleteListener;
+                        } else {
+                            showHome()
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                     } else {
-                        showAlert()
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                            return@addOnCompleteListener;
+                        } else {
+                            showAlert()
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                     }
                 }
             }
+
         }
 
     }
@@ -74,10 +93,10 @@ class AuthActivity : AppCompatActivity() {
     private fun CrearUsuari(){
         // Create a new user with a first and last name
         val user = hashMapOf(
-            "Nombre" to "Sergi",
-            "Apellido" to "Gonzalez",
-            "Nombre de Usuario" to "TheHypnoo",
-            "Fecha de nacimiento" to 2000
+                "Nombre" to "Sergi",
+                "Apellido" to "Gonzalez",
+                "Nombre de Usuario" to "TheHypnoo",
+                "Fecha de nacimiento" to 2000
         )
 
         // Add a new document with a generated ID
@@ -112,13 +131,13 @@ class AuthActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
         builder.setMessage("Se ha producido un error autenticando al usuario")
-        builder.setPositiveButton("Aceptar",null)
+        builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
 
     private fun showHome(){
-        val homeIntent = Intent(this,AnimationLoading::class.java)
+        val homeIntent = Intent(this, AnimationLoading::class.java)
         startActivity(homeIntent)
         finish()
     }

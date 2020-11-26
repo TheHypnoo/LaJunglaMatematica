@@ -38,6 +38,11 @@ class RegisterActivity : AppCompatActivity() {
                                 "Nombre de Usuario" to user,
                                 "Fecha de Nacimiento" to date,
                                 "Email" to email,
+                                "animGame" to false,
+                                "lvlSuma" to 0,
+                                "lvlResta" to 0,
+                                "lvlMultiplica" to 0,
+                                "lvlDivision" to 0
                                 //Esto como que no,no?"Password" to password
                         )
                         db.collection("users").add(users).addOnSuccessListener { documentReference ->
