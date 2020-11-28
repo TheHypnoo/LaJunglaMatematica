@@ -43,7 +43,11 @@ class RegisterActivity : AppCompatActivity() {
                                 "lvlResta" to 0,
                                 "lvlMultiplica" to 0,
                                 "lvlDivision" to 0,
-                                "puntuacion" to 0
+                                "puntuacion" to 0,
+                                "pruebateSuma" to false,
+                                "pruebateResta" to false,
+                                "pruebateMultiplica" to false,
+                                "pruebateDivision" to false
                                 //Esto como que no,no?"Password" to password
                         )
                         db.collection("users").add(users).addOnSuccessListener { documentReference ->

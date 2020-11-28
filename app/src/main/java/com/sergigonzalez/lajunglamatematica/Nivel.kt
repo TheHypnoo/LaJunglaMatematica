@@ -1,6 +1,7 @@
 package com.sergigonzalez.lajunglamatematica
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,16 +26,21 @@ class Nivel : AppCompatActivity() {
     private lateinit var todoNivel: LinearLayout
     private lateinit var lvlUP: LottieAnimationView
     private lateinit var lvlDown: LottieAnimationView
-    val db = FirebaseFirestore.getInstance()
-    val user = FirebaseAuth.getInstance().currentUser
-    val email = user?.email
-    var id = ""
+    private val db = FirebaseFirestore.getInstance()
+    private val user = FirebaseAuth.getInstance().currentUser
+    private val email = user?.email
+    private var id = ""
     private var numero1 = 0
     private var numero2 = 0
     private var Resultado = 0
     private var dbPuntuacion = 0
     private var puntuacion = 0
 
+
+    private var pruebateSuma = false
+    private var pruebateResta = false
+    private var pruebateMultiplica = false
+    private var pruebateDivision = false
     private var estoySuma = true
     private var finalSuma = false
     private var estoyResta = false
@@ -54,7 +60,7 @@ class Nivel : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_nivel)
         findID()
         loadingAnimation.speed = 4.50F
@@ -63,7 +69,6 @@ class Nivel : AppCompatActivity() {
              loadingAnimation.visibility = View.GONE
              cargaNivel.visibility = View.GONE
              todoNivel.visibility = View.VISIBLE
-             //Escojo la media
              if(!finalSuma) {
                  estoySuma = true
              } else if(!finalResta) {
@@ -136,6 +141,10 @@ class Nivel : AppCompatActivity() {
                         dbMultiplica = document.data["lvlMultiplica"].toString().toLong().toInt()
                         dbDivision = document.data["lvlDivision"].toString().toLong().toInt()
                         dbPuntuacion = document.data["puntuacion"].toString().toLong().toInt()
+                        pruebateSuma = document.data["pruebateSuma"] as Boolean
+                        pruebateResta = document.data["pruebateResta"] as Boolean
+                        pruebateMultiplica = document.data["pruebateMultiplica"] as Boolean
+                        pruebateDivision = document.data["pruebateDivision"] as Boolean
                         println("InfoNivel: $dbSuma AND $dbResta")
                     }
                 }
@@ -313,24 +322,106 @@ class Nivel : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun nivelSuma(){
-        if(!finalResta && lvlSuma >= 3) {
-            lvlUP.visibility = View.VISIBLE
-            lvlUP.setOnClickListener {
-                nivelResta()
+        if(pruebateSuma) {
+            if (!finalResta && lvlSuma >= 3) {
+                lvlUP.visibility = View.VISIBLE
+                lvlUP.setOnClickListener {
+                    if (!pruebateResta) {
+                        val mainIntent = Intent(this, Pruebate::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    } else {
+                        nivelResta()
+                    }
+                    lvlUP.visibility = View.GONE
+                }
+            } else {
                 lvlUP.visibility = View.GONE
             }
-        } else {
-            lvlUP.visibility = View.GONE
-        }
-        numero1 = generaNumeros()
-        numero2 = generaNumeros()
-        whenSuma()
-        if(!finalSuma) {
-            queHacer.text = "Suma los dos numeros y escribe el resultado abajo."
-            Resultado = numero1 + numero2
+            numero1 = generaNumeros()
+            numero2 = generaNumeros()
+            whenSuma()
+            if (!finalSuma) {
+                queHacer.text = "Suma los dos numeros y escribe el resultado abajo."
+                Resultado = numero1 + numero2
 
-            bt_corregir.setOnClickListener{
-                if(ResultadoEditText.text.toString() == Resultado.toString()) {
+                bt_corregir.setOnClickListener {
+                    if (ResultadoEditText.text.toString() == Resultado.toString()) {
+                        Correcto.visibility = View.VISIBLE
+                        Correcto.playAnimation()
+                        ++puntuacion
+                    } else {
+                        Incorrecto.visibility = View.VISIBLE
+                        Incorrecto.playAnimation()
+                    }
+                    bt_corregir.visibility = View.GONE
+                    Handler(Looper.myLooper()!!).postDelayed({
+                        ++lvlSuma
+                        if (lvlSuma >= dbSuma || puntuacion >= dbPuntuacion) {
+                            guardaNivel()
+                        }
+                        println("PosNivel: $dbSuma X: $lvlSuma")
+                        Incorrecto.visibility = View.GONE
+                        Correcto.visibility = View.GONE
+                        bt_corregir.visibility = View.VISIBLE
+                        ResultadoEditText.text.clear()
+                        if (lvlSuma >= 3) {
+                            lvlUP.visibility = View.VISIBLE
+                            lvlUP.setOnClickListener {
+                                if (!pruebateResta) {
+                                    val mainIntent = Intent(this, Pruebate::class.java)
+                                    startActivity(mainIntent)
+                                    finish()
+                                } else {
+                                    nivelResta()
+                                }
+                                lvlUP.visibility = View.GONE
+                            }
+                            nivelSuma()
+                        } else {
+                            nivelSuma()
+                        }
+                    }, 1500)
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun nivelResta() {
+        if (pruebateResta) {
+            if (!finalSuma) {
+                lvlDown.visibility = View.VISIBLE
+                lvlDown.setOnClickListener {
+                    nivelSuma()
+                    lvlDown.visibility = View.GONE
+                }
+            } else {
+                lvlDown.visibility = View.GONE
+            }
+            if (finalSuma && !finalMultiplica) {
+                lvlUP.visibility = View.VISIBLE
+                lvlUP.setOnClickListener {
+                    if (!pruebateMultiplica) {
+                        val mainIntent = Intent(this, Pruebate::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    } else {
+                        nivelMultiplica()
+                    }
+                    lvlUP.visibility = View.GONE
+                }
+            } else {
+                lvlUP.visibility = View.GONE
+            }
+            numero1 = generaNumeros()
+            numero2 = generaNumeros()
+            whenResta()
+            queHacer.text = "Resta los dos numeros y escribe el resultado abajo."
+            Resultado = numero1 - numero2
+
+            bt_corregir.setOnClickListener {
+                if (ResultadoEditText.text.toString() == Resultado.toString()) {
                     Correcto.visibility = View.VISIBLE
                     Correcto.playAnimation()
                     ++puntuacion
@@ -340,24 +431,29 @@ class Nivel : AppCompatActivity() {
                 }
                 bt_corregir.visibility = View.GONE
                 Handler(Looper.myLooper()!!).postDelayed({
-                    ++lvlSuma
-                    if (lvlSuma >= dbSuma || puntuacion >= dbPuntuacion) {
+                    ++lvlResta
+                    if (lvlResta >= dbResta || puntuacion >= dbPuntuacion) {
                         guardaNivel()
                     }
-                    println("PosNivel: $dbSuma X: $lvlSuma")
                     Incorrecto.visibility = View.GONE
                     Correcto.visibility = View.GONE
                     bt_corregir.visibility = View.VISIBLE
                     ResultadoEditText.text.clear()
-                    if (lvlSuma >= 3) {
+                    if (lvlResta >= 3 && finalSuma) {
                         lvlUP.visibility = View.VISIBLE
                         lvlUP.setOnClickListener {
-                            nivelResta()
+                            if (!pruebateMultiplica) {
+                                val mainIntent = Intent(this, Pruebate::class.java)
+                                startActivity(mainIntent)
+                                finish()
+                            } else {
+                                nivelMultiplica()
+                            }
                             lvlUP.visibility = View.GONE
                         }
-                        nivelSuma()
+                        nivelResta()
                     } else {
-                        nivelSuma()
+                        nivelResta()
                     }
                 }, 1500)
             }
@@ -365,161 +461,118 @@ class Nivel : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun nivelResta(){
-        if(!finalSuma) {
-            lvlDown.visibility = View.VISIBLE
-            lvlDown.setOnClickListener {
-                nivelSuma()
+    private fun nivelMultiplica() {
+        if (pruebateMultiplica) {
+            if (!finalResta) {
+                lvlDown.visibility = View.VISIBLE
+                lvlDown.setOnClickListener {
+                    nivelResta()
+                    lvlDown.visibility = View.GONE
+                }
+            } else {
                 lvlDown.visibility = View.GONE
             }
-        } else {
-            lvlDown.visibility = View.GONE
-        }
-        if(finalSuma && !finalMultiplica) {
-            lvlUP.visibility = View.VISIBLE
-            lvlUP.setOnClickListener {
-                nivelMultiplica()
-                lvlUP.visibility = View.GONE
-            }
-        } else {
-            lvlUP.visibility = View.GONE
-        }
-        numero1 = generaNumeros()
-        numero2 = generaNumeros()
-        whenResta()
-        queHacer.text = "Resta los dos numeros y escribe el resultado abajo."
-        Resultado = numero1 - numero2
-
-        bt_corregir.setOnClickListener{
-            if(ResultadoEditText.text.toString() == Resultado.toString()) {
-                Correcto.visibility = View.VISIBLE
-                Correcto.playAnimation()
-                ++puntuacion
-            } else {
-                Incorrecto.visibility = View.VISIBLE
-                Incorrecto.playAnimation()
-            }
-            bt_corregir.visibility = View.GONE
-            Handler(Looper.myLooper()!!).postDelayed({
-                ++lvlResta
-                if (lvlResta >= dbResta || puntuacion >= dbPuntuacion) {
-                    guardaNivel()
-                }
-                Incorrecto.visibility = View.GONE
-                Correcto.visibility = View.GONE
-                bt_corregir.visibility = View.VISIBLE
-                ResultadoEditText.text.clear()
-                if (lvlResta >= 3 && finalSuma) {
-                    lvlUP.visibility = View.VISIBLE
-                    lvlUP.setOnClickListener {
-                        nivelMultiplica()
-                        lvlUP.visibility = View.GONE
-                    }
-                    nivelResta()
-                } else {
-                    nivelResta()
-                }
-            }, 1500)
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun nivelMultiplica(){
-        if(!finalResta) {
-            lvlDown.visibility = View.VISIBLE
-            lvlDown.setOnClickListener {
-                nivelResta()
-                lvlDown.visibility = View.GONE
-            }
-        } else {
-            lvlDown.visibility = View.GONE
-        }
-        if(finalResta && !finalDivision) {
-            lvlUP.visibility = View.VISIBLE
-            lvlUP.setOnClickListener {
-                nivelDivision()
-                lvlUP.visibility = View.GONE
-            }
-        } else {
-            lvlUP.visibility = View.GONE
-        }
-        numero1 = generaNumeros()
-        numero2 = generaNumeros()
-        whenMultiplica()
-        queHacer.text = "Multiplica los dos numeros y escribe el resultado abajo."
-        Resultado = numero1 * numero2
-
-        bt_corregir.setOnClickListener{
-            if(ResultadoEditText.text.toString() == Resultado.toString()) {
-                Correcto.visibility = View.VISIBLE
-                Correcto.playAnimation()
-                ++puntuacion
-            } else {
-                Incorrecto.visibility = View.VISIBLE
-                Incorrecto.playAnimation()
-            }
-            bt_corregir.visibility = View.GONE
-            Handler(Looper.myLooper()!!).postDelayed({
-                ++lvlMultiplica
-                if (lvlMultiplica >= dbMultiplica || puntuacion >= dbPuntuacion) {
-                    guardaNivel()
-                }
-                Incorrecto.visibility = View.GONE
-                Correcto.visibility = View.GONE
-                bt_corregir.visibility = View.VISIBLE
-                ResultadoEditText.text.clear()
-                if (lvlMultiplica >= 3 && finalResta) {
-                    lvlUP.visibility = View.VISIBLE
-                    lvlUP.setOnClickListener {
+            if (finalResta && !finalDivision) {
+                lvlUP.visibility = View.VISIBLE
+                lvlUP.setOnClickListener {
+                    if (!pruebateDivision) {
+                        val mainIntent = Intent(this, Pruebate::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    } else {
                         nivelDivision()
-                        lvlUP.visibility = View.GONE
                     }
-                    nivelMultiplica()
-                } else {
-                    nivelMultiplica()
+                    lvlUP.visibility = View.GONE
                 }
-            }, 1500)
+            } else {
+                lvlUP.visibility = View.GONE
+            }
+            numero1 = generaNumeros()
+            numero2 = generaNumeros()
+            whenMultiplica()
+            queHacer.text = "Multiplica los dos numeros y escribe el resultado abajo."
+            Resultado = numero1 * numero2
+
+            bt_corregir.setOnClickListener {
+                if (ResultadoEditText.text.toString() == Resultado.toString()) {
+                    Correcto.visibility = View.VISIBLE
+                    Correcto.playAnimation()
+                    ++puntuacion
+                } else {
+                    Incorrecto.visibility = View.VISIBLE
+                    Incorrecto.playAnimation()
+                }
+                bt_corregir.visibility = View.GONE
+                Handler(Looper.myLooper()!!).postDelayed({
+                    ++lvlMultiplica
+                    if (lvlMultiplica >= dbMultiplica || puntuacion >= dbPuntuacion) {
+                        guardaNivel()
+                    }
+                    Incorrecto.visibility = View.GONE
+                    Correcto.visibility = View.GONE
+                    bt_corregir.visibility = View.VISIBLE
+                    ResultadoEditText.text.clear()
+                    if (lvlMultiplica >= 3 && finalResta) {
+                        lvlUP.visibility = View.VISIBLE
+                        lvlUP.setOnClickListener {
+                            if (!pruebateDivision) {
+                                val mainIntent = Intent(this, Pruebate::class.java)
+                                startActivity(mainIntent)
+                                finish()
+                            } else {
+                                nivelDivision()
+                            }
+                            lvlUP.visibility = View.GONE
+                        }
+                        nivelMultiplica()
+                    } else {
+                        nivelMultiplica()
+                    }
+                }, 1500)
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun nivelDivision(){
-        if(!finalMultiplica) {
-            lvlDown.visibility = View.VISIBLE
-            lvlDown.setOnClickListener {
-                nivelMultiplica()
+    private fun nivelDivision() {
+        if (pruebateDivision) {
+            if (!finalMultiplica) {
+                lvlDown.visibility = View.VISIBLE
+                lvlDown.setOnClickListener {
+                    nivelMultiplica()
+                    lvlDown.visibility = View.GONE
+                }
+            } else {
                 lvlDown.visibility = View.GONE
             }
-        } else {
-            lvlDown.visibility = View.GONE
-        }
-        numero1 = generaNumeros()
-        numero2 = generaNumeros()
-        whenDivision()
-        queHacer.text = "Divide los dos numeros y escribe el resultado abajo."
-        Resultado = numero1 / numero2
+            numero1 = generaNumeros()
+            numero2 = generaNumeros()
+            whenDivision()
+            queHacer.text = "Divide los dos numeros y escribe el resultado abajo."
+            Resultado = numero1 / numero2
 
-        bt_corregir.setOnClickListener{
-            if(ResultadoEditText.text.toString() == Resultado.toString()) {
-                Correcto.visibility = View.VISIBLE
-                Correcto.playAnimation()
-                ++puntuacion
-            } else {
-                Incorrecto.visibility = View.VISIBLE
-                Incorrecto.playAnimation()
-            }
-            bt_corregir.visibility = View.GONE
-            Handler(Looper.myLooper()!!).postDelayed({
-                ++lvlDivision
-                if (lvlDivision >= dbDivision || puntuacion >= dbPuntuacion) {
-                    guardaNivel()
+            bt_corregir.setOnClickListener {
+                if (ResultadoEditText.text.toString() == Resultado.toString()) {
+                    Correcto.visibility = View.VISIBLE
+                    Correcto.playAnimation()
+                    ++puntuacion
+                } else {
+                    Incorrecto.visibility = View.VISIBLE
+                    Incorrecto.playAnimation()
                 }
-                Incorrecto.visibility = View.GONE
-                Correcto.visibility = View.GONE
-                bt_corregir.visibility = View.VISIBLE
-                ResultadoEditText.text.clear()
-                nivelDivision()
-            }, 1500)
+                bt_corregir.visibility = View.GONE
+                Handler(Looper.myLooper()!!).postDelayed({
+                    ++lvlDivision
+                    if (lvlDivision >= dbDivision || puntuacion >= dbPuntuacion) {
+                        guardaNivel()
+                    }
+                    Incorrecto.visibility = View.GONE
+                    Correcto.visibility = View.GONE
+                    bt_corregir.visibility = View.VISIBLE
+                    ResultadoEditText.text.clear()
+                    nivelDivision()
+                }, 1500)
+            }
         }
     }
 

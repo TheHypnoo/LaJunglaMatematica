@@ -7,6 +7,7 @@
     tools:context=".Pruebate">
 
     <LinearLayout
+        android:id="@+id/CargaPruebate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
@@ -16,6 +17,60 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/cargandoNivel"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:hint="Cargando el Tutorial..."
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/next"
+            tools:ignore="MissingConstraints" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimacionAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animalanimation"
+            tools:ignore="MissingConstraints" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Pruebate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,21 +113,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/SignoTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="+" />
+                    android:text="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number2TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado1"
@@ -121,21 +181,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo1TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number4TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado2"
@@ -199,21 +264,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo2TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number6TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado3"
@@ -262,21 +332,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo3TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number8TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado4"
@@ -340,21 +415,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo4TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number10TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado5"
@@ -403,21 +483,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo5TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number12TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado6"
@@ -481,21 +566,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo6TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number14TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado7"
@@ -544,21 +634,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo7TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number16TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado8"
@@ -622,21 +717,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo8TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number18TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado9"
@@ -685,21 +785,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Signo9TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="+" />
+                    android:hint="+"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Number20TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="1" />
+                    android:hint="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/Resultado10"
@@ -760,9 +865,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="gone"
             android:hint="Pasando al Nivel..."
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:visibility="gone" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/AnimalAnimation"
