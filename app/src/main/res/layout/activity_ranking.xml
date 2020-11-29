@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Ranking">
 
     <LinearLayout
@@ -18,27 +18,52 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimacionAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ranking"
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="horizontal">
+
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jugadores" />
+                android:text="Jugadores"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="250dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Puntuación" />
+                android:text="Puntuación Total"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -52,28 +77,42 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/trofeo1" />
+
                 <TextView
                     android:id="@+id/top1"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0"
-                    android:text="Jugador1" />
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador1" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
 
                 <TextView
                     android:id="@+id/puntuaTop1"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0"
                     android:gravity="center"
-                    android:text="Puntuacion0" />
+                    android:hint="1000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -81,7 +120,59 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/trofeo2" />
+
+                <TextView
+                    android:id="@+id/top2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador2" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop2"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="100"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,28 +181,477 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/trofeo3" />
+
+                <TextView
+                    android:id="@+id/top3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador3" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop3"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="50"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/top4"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador4" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop4"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:orientation="horizontal">
 
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
                 <TextView
-                    android:id="@+id/top2"
-                    android:layout_width="match_parent"
+                    android:id="@+id/top5"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0"
-                    android:text="Jugador1" />
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador5" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
 
                 <TextView
-                    android:id="@+id/puntuaTop2"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/puntuaTop5"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0"
                     android:gravity="center"
-                    android:text="Puntuacion0" />
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/top6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador6" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop6"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/top7"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador7" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop7"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/top8"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador8" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop8"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/top9"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador9" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop9"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@mipmap/insignia" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/top10"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/aclonica"
+                    android:hint="Jugador10" />
+
+                <Space
+                    android:layout_width="175dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/puntuaTop10"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

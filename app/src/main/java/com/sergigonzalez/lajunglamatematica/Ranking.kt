@@ -20,6 +20,7 @@ class Ranking : AppCompatActivity() {
     private lateinit var Jugadores: ArrayList<String>
     private lateinit var Puntuacion: ArrayList<Int>
     private var x = 0
+    private var puntuacion = 0
     private lateinit var top1: TextView
     private lateinit var puntuaTop1: TextView
     private lateinit var top2: TextView
@@ -33,6 +34,7 @@ class Ranking : AppCompatActivity() {
         FindID()
         Handler(Looper.getMainLooper()).postDelayed({
             ordenaMejor()
+            escribe()
         },2000)
     }
 
@@ -51,7 +53,7 @@ class Ranking : AppCompatActivity() {
             for (document in documents) {
                 Log.d("TAG", "${document.id} => ${document.data}")
                 id = document.id
-                Jugadores.add(x,document.data["Nombre de usuario"].toString()).toString()
+                Jugadores.add(x,document.data["Nombre de Usuario"].toString()).toString()
                 Puntuacion.add(x,document.data["puntuacion"].toString().toLong().toInt()).toString()
                 x++
             }
@@ -66,7 +68,7 @@ class Ranking : AppCompatActivity() {
             for (document in documents) {
                 Log.d("TAG", "${document.id} => ${document.data}")
                 id = document.id
-                Jugadores.add(x,document.data["Nombre de usuario"].toString()).toString()
+                Jugadores.add(x,document.data["Nombre de Usuario"].toString()).toString()
                 Puntuacion.add(x,document.data["puntuacion"].toString().toLong().toInt()).toString()
                 x++
             }
@@ -78,16 +80,30 @@ class Ranking : AppCompatActivity() {
 
     private fun ordenaMejor(){
         var tmp: Int
+        var tmp2: String
         for(x in 0 until Puntuacion.size) {
             for(y in 0 until Puntuacion.size) {
                 if(Puntuacion[x] > Puntuacion[y]) {
                     tmp = Puntuacion[x]
+                    tmp2 = Jugadores[x]
+                    Jugadores[x] = Jugadores[y]
+                    Jugadores[y] = tmp2
                     Puntuacion[x] = Puntuacion[y]
                     Puntuacion[y] = tmp
                 }
             }
         }
+        println("\nJugadores: $Jugadores")
         println("\nArray ordenado: $Puntuacion")
+
+    }
+
+    private fun escribe(){
+        top1.text = Jugadores[puntuacion]
+        puntuaTop1.text = Puntuacion[puntuacion].toString()
+        puntuacion++
+        top2.text = Jugadores[puntuacion]
+        puntuaTop2.text = Puntuacion[puntuacion].toString()
 
     }
 
