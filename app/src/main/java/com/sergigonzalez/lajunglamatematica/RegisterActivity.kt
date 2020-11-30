@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
             val user = Usuario.text.toString()
             val date = FechaNacimiento.text.toString()
             val email = Email.text.toString()
-            val password = Password.text.toString()
+            //val password = Password.text.toString()
             if (Email.text.isNotEmpty() && Password.text.isNotEmpty() && FechaNacimiento.text.isNotEmpty() && Usuario.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(Email.text.toString(), Password.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -38,7 +38,6 @@ class RegisterActivity : AppCompatActivity() {
                                 "Nombre de Usuario" to user,
                                 "Fecha de Nacimiento" to date,
                                 "Email" to email,
-                                "animGame" to false,
                                 "lvlSuma" to 0,
                                 "lvlResta" to 0,
                                 "lvlMultiplica" to 0,

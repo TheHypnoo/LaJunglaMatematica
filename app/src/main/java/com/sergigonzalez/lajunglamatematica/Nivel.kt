@@ -36,18 +36,14 @@ class Nivel : AppCompatActivity() {
     private var dbPuntuacion = 0
     private var puntuacion = 0
 
-
+    private var dondeEstoy = -1
     private var pruebateSuma = false
     private var pruebateResta = false
     private var pruebateMultiplica = false
     private var pruebateDivision = false
-    private var estoySuma = true
     private var finalSuma = false
-    private var estoyResta = false
     private var finalResta = false
-    private var estoyMultiplica = false
     private var finalMultiplica = false
-    private var estoyDivision = false
     private var finalDivision = false
     private var dbSuma = -1
     private var dbResta = -1
@@ -69,34 +65,22 @@ class Nivel : AppCompatActivity() {
              loadingAnimation.visibility = View.GONE
              cargaNivel.visibility = View.GONE
              todoNivel.visibility = View.VISIBLE
-             if(!finalSuma) {
-                 estoySuma = true
-             } else if(!finalResta) {
-                 estoySuma = false
-                 estoyResta = true
-             } else if(!finalMultiplica) {
-                 estoyResta = false
-                 estoyMultiplica = true
-             } else if(!finalDivision) {
-                 estoyMultiplica = false
-                 estoyDivision = true
-             }
-             when {
-                 estoySuma -> {
-                     nivelSuma()
-                 }
-                 estoyResta -> {
-                     nivelResta()
-                 }
-                 estoyMultiplica -> {
-                     nivelMultiplica()
-                 }
-                 estoyDivision -> {
-                     nivelDivision()
-                 }
-             }
+             compruebaEjecuta()
          }, 2500)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        findID()
+        loadingAnimation.speed = 4.50F
+        buscaNivel()
+        Handler(Looper.getMainLooper()).postDelayed({
+            loadingAnimation.visibility = View.GONE
+            cargaNivel.visibility = View.GONE
+            todoNivel.visibility = View.VISIBLE
+            compruebaEjecuta()
+        }, 2500)
     }
 
     private fun findID(){
@@ -128,6 +112,7 @@ class Nivel : AppCompatActivity() {
 
         if(puntuacion >= dbPuntuacion)
             db.collection("users").document(id).update("puntuacion", puntuacion)
+
     }
 
     private fun buscaNivel() {
@@ -145,7 +130,7 @@ class Nivel : AppCompatActivity() {
                         pruebateResta = document.data["pruebateResta"] as Boolean
                         pruebateMultiplica = document.data["pruebateMultiplica"] as Boolean
                         pruebateDivision = document.data["pruebateDivision"] as Boolean
-                        println("InfoNivel: $dbSuma AND $dbResta")
+                        dondeEstoy = document.data["dondeEstoy"] .toString().toLong().toInt()
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -155,18 +140,20 @@ class Nivel : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun whenSuma(){
+        //Si lo tengo guardado es más grande de lo que tengo, lo cojo.
         if(dbSuma >= lvlSuma) {
             lvlSuma = dbSuma
-            println("Switch: $lvlSuma AND $dbSuma")
         }
-        if(lvlSuma == 6) {
+        //Si llego al final, entonces finalizo el nivel y paso al siguiente
+        if(lvlSuma >= 10) {
             finalSuma = true
-            estoySuma = false
-            estoyResta = true
             nivelResta()
+            dondeEstoy = 1
+            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
         }
+
         when (lvlSuma) {
             0 -> {
                 enunciadoNivel.text =
@@ -198,21 +185,122 @@ class Nivel : AppCompatActivity() {
                         "cuántos cubiertos debo poner en la mesa entre cucharas, tenedores y" +
                         "cuchillos?"
             }
+            5 -> {
+                enunciadoNivel.text = "Para cenar mi mama ha hecho mis cenas favoritas: crema de verdura y" +
+                        " tortilla de patatas. Si en la mesa hay $numero1 platos de crema de verduras y $numero2 de" +
+                        " tortilla de patatas. ¿En cuántos platos está repartida nuestra cena?"
+            }
+            6 -> {
+                enunciadoNivel.text = "Después de cenar como cada noche, miramos un rato la tele en el salón." +
+                        " Este es grande con $numero1 sofás y $numero2 sillas. ¿Cuántos sitios para sentarse tiene" +
+                        " entonces el salón?"
+            }
+            7 -> {
+                enunciadoNivel.text = "Ya es un nuevo día, y hoy tengo que ir a visitar a mi yaya. Mientras voy en" +
+                        " coche a casa de mi yaya voy observando el paisaje y mi mama me propone" +
+                        " que cuente todas las palmeras y arbustos que vea hasta llegar a su casa." +
+                        " Cuando llegamos había contado $numero1 palmeras y $numero2 arbustos y mi mama me" +
+                        " pregunta: “¿Cuántas plantas has visto en total?”"
+            }
+            8 -> {
+                enunciadoNivel.text = "Como siempre que venimos a visitar a mi yaya, mi mama le ha traído algo" +
+                        " para que desayune. Hoy le hemos traído $numero1 magdalenas y la yaya nos ha dicho" +
+                        " que aún le quedaban $numero2 magdalenas de la última vez. ¿Cuántas magdalenas" +
+                        " tiene en total ahora?"
+            }
+            9 -> {
+                enunciadoNivel.text = "A más, hoy mi mama también le ha traído $numero1 naranjas porque le gustan" +
+                        " mucho a mi yaya. ¿Cuántas piezas de fruta tiene ahora mi yaya si ya tenía $numero2" +
+                        " naranjas?"
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
+    private fun nivelSuma(){
+            numero1 = generaNumeros()
+            numero2 = generaNumeros()
+            whenSuma()
+        //Revisar esta parte de la visibility
+            if (lvlSuma >= 3) {
+                lvlUP.visibility = View.VISIBLE
+
+                lvlUP.setOnClickListener {
+                    if (!pruebateResta) {
+                        val mainIntent = Intent(this, Pruebate::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    } else {
+                        nivelResta()
+                    }
+                    dondeEstoy = 1
+                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                    lvlUP.visibility = View.GONE
+                }
+            } else {
+                lvlUP.visibility = View.GONE
+            }
+
+                queHacer.text = "Suma los dos numeros y escribe el resultado abajo."
+                Resultado = numero1 + numero2
+
+                bt_corregir.setOnClickListener {
+
+                    if (ResultadoEditText.text.toString() == Resultado.toString()) {
+                        Correcto.visibility = View.VISIBLE
+                        Correcto.playAnimation()
+                        ++puntuacion
+                    } else {
+                        Incorrecto.visibility = View.VISIBLE
+                        Incorrecto.playAnimation()
+                    }
+
+                    bt_corregir.visibility = View.GONE
+
+                    Handler(Looper.myLooper()!!).postDelayed({
+                        ++lvlSuma
+
+                        if (lvlSuma >= dbSuma || puntuacion >= dbPuntuacion) {
+                            guardaNivel()
+                        }
+
+                        desmarcar()
+
+                        if (lvlSuma >= 3) {
+                            lvlUP.visibility = View.VISIBLE
+
+                            lvlUP.setOnClickListener {
+                                if (!pruebateResta) {
+                                    val mainIntent = Intent(this, Pruebate::class.java)
+                                    startActivity(mainIntent)
+                                    finish()
+                                } else {
+                                    nivelResta()
+                                }
+                                dondeEstoy = 1
+                                db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                                lvlUP.visibility = View.GONE
+                            }
+                            nivelSuma()
+                        } else {
+                            nivelSuma()
+                        }
+                    }, 1500)
+                }
+            }
+
+    @SuppressLint("SetTextI18n")
     private fun whenResta(){
+
         if(dbResta >= lvlResta) {
             lvlResta = dbResta
-            println("Switch: $lvlResta AND $dbResta")
         }
 
-        if(lvlResta == 6) {
+        if(lvlResta == 10) {
             finalResta = true
-            estoyResta = false
-            estoyMultiplica = true
             nivelMultiplica()
+            dondeEstoy = 2
+            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
         }
@@ -242,170 +330,60 @@ class Nivel : AppCompatActivity() {
                         " A la hora del patio, voy al comedor y pido un bocadillo y un zumo y una vez pago me queda $numero2 €. " +
                         "¿Cuánto me ha costado el bocata y el zumo?"
             }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun whenMultiplica(){
-        if(dbMultiplica >= lvlMultiplica) {
-            lvlMultiplica = dbMultiplica
-            println("Switch: $lvlMultiplica AND $dbMultiplica")
-        }
-
-        if(lvlMultiplica == 6) {
-            finalMultiplica = true
-
-            estoyMultiplica = false
-            estoyDivision = true
-            nivelDivision()
-            lvlUP.visibility = View.GONE
-            lvlDown.visibility = View.GONE
-        }
-
-        when (lvlMultiplica) {
-            0 -> {
-                enunciadoNivel.text = "¡Hola amigo! Tengo un pequeño problema. Hoy he ido al mercado y he comprado $numero1 plátanos que cuestan $numero2 euros cada uno." +
-                        " ¿Me podrías decir cuánto dinero tengo que pagar por los plátanos?"
+            5 -> {
+                enunciadoNivel.text = "Al salir del cole vamos a comer a casa mi yaya. Mi yaya prepara $numero1 bandejas" +
+                        " de canelones. Si nos comemos $numero2 bandejas. ¿Sobra alguna bandeja de" +
+                        " canelones?"
             }
-            1 -> {
-                enunciadoNivel.text =
-                        "A más, también he comprado $numero1 peras a $numero2 € por pieza. ¿Cuánto tengo que pagar por las peras?"
+            6 -> {
+                enunciadoNivel.text = "Cuándo nos comemos los canelones, mi yaya saca una bandeja con $numero1" +
+                        "galletas. Empezamos a comer galletas hasta que estamos llenos. ¿Cuántas" +
+                        "galletas nos hemos comido si en la bandeja solo quedan $numero2 galletas?"
             }
-            2 -> {
-                enunciadoNivel.text = "Y, por último, he comprado $numero1 kg de uvas a $numero2 € el kg. ¿A cuánto pago las uvas?"
+            7 -> {
+                enunciadoNivel.text = "Por la tarde, acompaño a mi madre a comprar al mercado fruta. " +
+                        "Allí compramos $numero1 piezas de fruta y seguramente mañana solo queden $numero2 piezas." +
+                        "¿Cuántas piezas de fruta nos habremos comido?"
             }
-            3 -> {
-                enunciadoNivel.text = "Multiplica4"
+            8 -> {
+                enunciadoNivel.text = "Mientras regresamos a casa, escucho a mi madre decirle a mi padre que de" +
+                        " los $numero1 € que le había dado para comprar solo le quedan $numero2. " +
+                        "¿Cuánto dinero se ha gastado en fruta?"
             }
-            4 -> {
-                enunciadoNivel.text = "Multiplica5"
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun whenDivision(){
-        if(dbDivision >= lvlDivision) {
-            lvlDivision = dbDivision
-            println("Switch: $lvlDivision AND $dbDivision")
-        }
-
-        if(lvlDivision == 6) {
-            finalDivision = true
-            estoyDivision = false
-            lvlUP.visibility = View.GONE
-            lvlDown.visibility = View.GONE
-        }
-        while(numero1 < numero2) numero1 = generaNumeros()
-
-        when (lvlDivision) {
-            0 -> {
-                enunciadoNivel.text =
-                        "¡Hola amigo! ¿Me puedes ayudar un momento? He quedado con mis amigos para merendar y he comprado $numero1 magdalenas. Si somos $numero2 amigos, " +
-                                "¿Cuántas magdalenas nos podemos comer cada uno?"
-            }
-            1 -> {
-                enunciadoNivel.text =
-                        "Division2"
-            }
-            2 -> {
-                enunciadoNivel.text = "Division3"
-            }
-            3 -> {
-                enunciadoNivel.text = "Division4"
-            }
-            4 -> {
-                enunciadoNivel.text = "Division5"
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun nivelSuma(){
-        if(pruebateSuma) {
-            if (!finalResta && lvlSuma >= 3) {
-                lvlUP.visibility = View.VISIBLE
-                lvlUP.setOnClickListener {
-                    if (!pruebateResta) {
-                        val mainIntent = Intent(this, Pruebate::class.java)
-                        startActivity(mainIntent)
-                        finish()
-                    } else {
-                        nivelResta()
-                    }
-                    lvlUP.visibility = View.GONE
-                }
-            } else {
-                lvlUP.visibility = View.GONE
-            }
-            numero1 = generaNumeros()
-            numero2 = generaNumeros()
-            whenSuma()
-            if (!finalSuma) {
-                queHacer.text = "Suma los dos numeros y escribe el resultado abajo."
-                Resultado = numero1 + numero2
-
-                bt_corregir.setOnClickListener {
-                    if (ResultadoEditText.text.toString() == Resultado.toString()) {
-                        Correcto.visibility = View.VISIBLE
-                        Correcto.playAnimation()
-                        ++puntuacion
-                    } else {
-                        Incorrecto.visibility = View.VISIBLE
-                        Incorrecto.playAnimation()
-                    }
-                    bt_corregir.visibility = View.GONE
-                    Handler(Looper.myLooper()!!).postDelayed({
-                        ++lvlSuma
-                        if (lvlSuma >= dbSuma || puntuacion >= dbPuntuacion) {
-                            guardaNivel()
-                        }
-                        println("PosNivel: $dbSuma X: $lvlSuma")
-                        Incorrecto.visibility = View.GONE
-                        Correcto.visibility = View.GONE
-                        bt_corregir.visibility = View.VISIBLE
-                        ResultadoEditText.text.clear()
-                        if (lvlSuma >= 3) {
-                            lvlUP.visibility = View.VISIBLE
-                            lvlUP.setOnClickListener {
-                                if (!pruebateResta) {
-                                    val mainIntent = Intent(this, Pruebate::class.java)
-                                    startActivity(mainIntent)
-                                    finish()
-                                } else {
-                                    nivelResta()
-                                }
-                                lvlUP.visibility = View.GONE
-                            }
-                            nivelSuma()
-                        } else {
-                            nivelSuma()
-                        }
-                    }, 1500)
-                }
+            9 -> {
+                enunciadoNivel.text = "Cuando llegamos a casa, mi mama me pide que prepare la mesa para $numero1, ya" +
+                        " que esa misma noche teníamos una cena con la familia, pero justo cuando" +
+                        " acaba de terminar de montar la mesa me avisa mi mama que $numero2 al final no podrá asistir." +
+                        " ¿Cuántas personas seremos al final?"
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun nivelResta() {
-        if (pruebateResta) {
+        numero1 = generaNumeros()
+        numero2 = generaNumeros()
+        whenResta()
             if (!finalSuma) {
                 lvlDown.visibility = View.VISIBLE
                 lvlDown.setOnClickListener {
                     nivelSuma()
+                    dondeEstoy = 0
+                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                     lvlDown.visibility = View.GONE
                 }
             } else {
                 lvlDown.visibility = View.GONE
             }
-            if (finalSuma && !finalMultiplica) {
+            if (finalSuma && !finalMultiplica && lvlResta >= 3) {
                 lvlUP.visibility = View.VISIBLE
                 lvlUP.setOnClickListener {
                     if (!pruebateMultiplica) {
                         val mainIntent = Intent(this, Pruebate::class.java)
                         startActivity(mainIntent)
                         finish()
+                        dondeEstoy = 2
+                        db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                     } else {
                         nivelMultiplica()
                     }
@@ -414,9 +392,7 @@ class Nivel : AppCompatActivity() {
             } else {
                 lvlUP.visibility = View.GONE
             }
-            numero1 = generaNumeros()
-            numero2 = generaNumeros()
-            whenResta()
+
             queHacer.text = "Resta los dos numeros y escribe el resultado abajo."
             Resultado = numero1 - numero2
 
@@ -435,10 +411,7 @@ class Nivel : AppCompatActivity() {
                     if (lvlResta >= dbResta || puntuacion >= dbPuntuacion) {
                         guardaNivel()
                     }
-                    Incorrecto.visibility = View.GONE
-                    Correcto.visibility = View.GONE
-                    bt_corregir.visibility = View.VISIBLE
-                    ResultadoEditText.text.clear()
+                    desmarcar()
                     if (lvlResta >= 3 && finalSuma) {
                         lvlUP.visibility = View.VISIBLE
                         lvlUP.setOnClickListener {
@@ -446,9 +419,12 @@ class Nivel : AppCompatActivity() {
                                 val mainIntent = Intent(this, Pruebate::class.java)
                                 startActivity(mainIntent)
                                 finish()
+                                dondeEstoy = 2
                             } else {
+                                dondeEstoy = 2
                                 nivelMultiplica()
                             }
+                            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                             lvlUP.visibility = View.GONE
                         }
                         nivelResta()
@@ -456,6 +432,65 @@ class Nivel : AppCompatActivity() {
                         nivelResta()
                     }
                 }, 1500)
+            }
+        }
+
+    @SuppressLint("SetTextI18n")
+    private fun whenMultiplica(){
+        if(dbMultiplica >= lvlMultiplica) {
+            lvlMultiplica = dbMultiplica
+        }
+
+        if(lvlMultiplica == 10) {
+            finalMultiplica = true
+            nivelDivision()
+            dondeEstoy = 4
+            lvlUP.visibility = View.GONE
+            lvlDown.visibility = View.GONE
+        }
+
+        when (lvlMultiplica) {
+            0 -> {
+                enunciadoNivel.text = "¡Hola amigo! Tengo un pequeño problema. Hoy he ido al mercado y he comprado $numero1 plátanos que cuestan $numero2 euros cada uno." +
+                        " ¿Me podrías decir cuánto dinero tengo que pagar por los plátanos?"
+            }
+            1 -> {
+                enunciadoNivel.text =
+                        "A más, también he comprado $numero1 peras a $numero2 € por pieza. ¿Cuánto tengo que pagar por las peras?"
+            }
+            2 -> {
+                enunciadoNivel.text = "Y, por último, he comprado $numero1 kg de uvas a $numero2 € el kg. ¿A cuánto pago las uvas?"
+            }
+            3 -> {
+                enunciadoNivel.text = "Después de dejar la fruta en casa, he ido a desayunar con una amiga y nos" +
+                        "hemos pedido $numero1 bocadillos a $numero2€. " +
+                        " ¿Cuánto cuestan los bocadillos?"
+            }
+            4 -> {
+                enunciadoNivel.text = "A más, también nos hemos bebidos $numero1 zumos de naranja a $numero2€. " +
+                        "¿Cuánto cuestan los zumos de naranja?"
+            }
+            5 -> {
+                enunciadoNivel.text = "Y una vez hemos pagamos, le acompaño a comprar-se alguna ropa." +
+                        " Sí se acaba comprando $numero1 prendas a $numero2€, ¿Cuánto dinero se gasta en ropa?"
+            }
+            6 -> {
+                enunciadoNivel.text = "También yo me acabo comprando alguna camiseta a $numero1€ cada una." +
+                        " Si he comprado $numero2, ¿Cuánto dinero me he gastado yo?"
+            }
+            7 -> {
+                enunciadoNivel.text = "Después de pasarnos la mañana comprando ropa, decidimos ir a comer a un" +
+                        "restaurante de tapas muy famoso de la ciudad. En total, me como $numero1 tapas y" +
+                        "cada una me cuesta $numero2 €. ¿Cuánto dinero pago por la comida?"
+            }
+            8 -> {
+                enunciadoNivel.text = "En cambio, mi amiga coge $numero1 tapas y cada una le cuestan $numero2€." +
+                        "¿A cuánto le sale a ella la comida?"
+            }
+            9 -> {
+                enunciadoNivel.text = "Una vez hemos pagado, la acompaño a su casa con el coche y de camino" +
+                        "a casa paro en la gasolinera para rellenar el depósito. Si en total relleno $numero1 litros" +
+                        "y el litro cuesta $numero2 €. ¿Cuánto pago por la gasolina del coche?"
             }
         }
     }
@@ -534,6 +569,74 @@ class Nivel : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
+    private fun whenDivision(){
+        if(dbDivision >= lvlDivision) {
+            lvlDivision = dbDivision
+        }
+
+        if(lvlDivision == 10) {
+            finalDivision = true
+            lvlUP.visibility = View.GONE
+            lvlDown.visibility = View.GONE
+        }
+        while(numero1 < numero2) numero1 = generaNumeros()
+
+        when (lvlDivision) {
+            0 -> {
+                enunciadoNivel.text =
+                        "¡Hola amigo! ¿Me puedes ayudar un momento? He quedado con mis amigos para merendar y he comprado $numero1 magdalenas. " +
+                                "Si somos $numero2 amigos ¿Cuántas magdalenas nos podemos comer cada uno?"
+            }
+            1 -> {
+                enunciadoNivel.text =
+                        "Cuando nos acabamos las magdalenas un amigo saca una bolsa de" +
+                                "chuches, si en total hay $numero1 chuches y repartimos $numero2 chuches a cada uno." +
+                                "¿Entre cuantas personas podríamos repartir las chuches a partes iguales?"
+            }
+            2 -> {
+                enunciadoNivel.text = "Después de pasar la tarde con mis amigos, vuelvo a casa y esa noche mi" +
+                        " mama ha preparado tortilla de patatas para cenar. Si la tortilla esta cortada en $numero1" +
+                        " trozos y somos $numero2 personas cenando. ¿Cuántos trozos nos podemos comer cada uno?"
+            }
+            3 -> {
+                enunciadoNivel.text = "A parte de tortilla, mama también ha hecho una tarta de chocolate de postre." +
+                        "Si la tarta esta cortada en $numero1 trozos y cada uno nos comemos $numero2 trozos." +
+                        "¿Cuántas personas podrían comer de esa tarta?"
+            }
+            4 -> {
+                enunciadoNivel.text = "A más, como es viernes noche, nos toca noche de peli y para decidir quién la" +
+                        "elige mi papa siempre nos plantea un problema a mi y a mi hermana, ¿me" +
+                        "ayudas a responder de manera correcta? Mira esté es el problema: “Si tengo" +
+                        "$numero1 € para repartir entre $numero2 hijos. ¿Cuánto dinero le tengo que dar a cada hijo?”"
+            }
+            5 -> {
+                enunciadoNivel.text = "Después de ver la peli, me lavo los dientes y me voy a dormir. A la mañana" +
+                        "siguiente cuando me levanto, huelo las tortitas con chocolate tan ricas que" +
+                        "prepara mamá. Si en total hay preparadas x tortitas y somos x personas para" +
+                        "desayunar. ¿Cuántas tortitas nos podemos comer cada uno?"
+            }
+            6 -> {
+                enunciadoNivel.text = "Una vez hemos desayunado, nos dirigimos al río dónde hacemos una" +
+                        "barbacoa. Al llegar somos los primeros de la familia i, por tanto, nos toca elegir" +
+                        "sitio. Si en total somos $numero1 personas y en cada mesa solo caben $numero2. " +
+                        "¿Cuántas mesas debemos coger para que nadie se quede sin sitio?"
+            }
+            7 -> {
+                enunciadoNivel.text = "Entre mi papa y yo, empezamos a hacer la barbacoa. Tenemos salchichas," +
+                        "hamburguesa y panceta. Si en total hacemos $numero1 salchichas y hay $numero2 personas" +
+                        "que quieren. ¿Cuántas salchichas se pueden comer cada uno?"
+            }
+            8 -> {
+                enunciadoNivel.text = "Y si hacemos $numero1 hamburguesas y $numero2 personas quieren." +
+                        " ¿Cuántas se pueden comer cada una?"
+            }
+            9 -> {
+                enunciadoNivel.text = "Y de panceta, ¿si hay $numero1 pancetas y $numero2 personas quieren?"
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun nivelDivision() {
         if (pruebateDivision) {
             if (!finalMultiplica) {
@@ -547,6 +650,12 @@ class Nivel : AppCompatActivity() {
             }
             numero1 = generaNumeros()
             numero2 = generaNumeros()
+
+            while(numero1 < numero2 && numero1 % numero2 != 0) {
+                numero1 = generaNumeros()
+                numero2 = generaNumeros()
+            }
+
             whenDivision()
             queHacer.text = "Divide los dos numeros y escribe el resultado abajo."
             Resultado = numero1 / numero2
@@ -578,6 +687,50 @@ class Nivel : AppCompatActivity() {
 
     private fun generaNumeros(): Int {
         return (1..9).random()
+    }
+
+    private fun compruebaEjecuta() {
+        if(dondeEstoy < 0) {
+            dondeEstoy = 0
+        }
+
+        when {
+            dbSuma >= 10 -> {
+                finalSuma = true
+            }
+            dbResta >= 10 -> {
+                finalResta = true
+            }
+            dbMultiplica >= 10 -> {
+                finalMultiplica = true
+            }
+            dbDivision >= 10 -> {
+                finalDivision = true
+            }
+        }
+
+        when (dondeEstoy){
+            0 -> {
+                nivelSuma()
+            }
+            1 -> {
+                nivelResta()
+            }
+            2 -> {
+                nivelMultiplica()
+            }
+            3 -> {
+                nivelDivision()
+            }
+
+        }
+    }
+
+    private fun desmarcar() {
+        Incorrecto.visibility = View.GONE
+        Correcto.visibility = View.GONE
+        bt_corregir.visibility = View.VISIBLE
+        ResultadoEditText.text.clear()
     }
 
 }

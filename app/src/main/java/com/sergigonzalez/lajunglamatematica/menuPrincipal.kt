@@ -2,6 +2,8 @@ package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
 import android.view.Window
@@ -20,32 +22,18 @@ class menuPrincipal : AppCompatActivity() {
     private lateinit var BT_PartidasGuardadas: Button
     private lateinit var BT_Ranking: Button
     private lateinit var BT_Salir: Button
-    val db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     var id = ""
-    var animGame = false
+    private var pruebateSuma = false
+    private val user = FirebaseAuth.getInstance().currentUser
+    private val email = user?.email
     private var mLastClickTime: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_menu)
-        val user = FirebaseAuth.getInstance().currentUser
-        val email = user?.email
-
-
-        db.collection("users")
-                .whereEqualTo("Email", email)
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        Log.d("TAG", "${document.id} => ${document.data}")
-                        id = document.id
-                        animGame = document.data["animGame"] as Boolean
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("TAG", "Error getting documents: ", exception)
-                }
-
+        buscaPruebate()
         InitButtons()
         initListeners()
     }
@@ -57,39 +45,64 @@ class menuPrincipal : AppCompatActivity() {
         BT_Salir = findViewById(R.id.BT_Salir)
     }
 
+    private fun buscaPruebate(){
+        db.collection("users")
+                .whereEqualTo("Email", email)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d("TAG", "${document.id} => ${document.data}")
+                        id = document.id
+                        pruebateSuma = document.data["pruebateSuma"].toString().toBoolean()
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("TAG", "Error getting documents: ", exception)
+                }
+    }
+
     private fun initListeners() {
         BT_EmpezarJuego.setOnClickListener {
-                if (animGame) {
+            buscaPruebate()
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                if (pruebateSuma) {
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
-                        return@setOnClickListener
+                        return@postDelayed
                     } else {
-                        val Niveles: Intent = Intent(applicationContext, Nivel::class.java)
-                        startActivity(Niveles)
+                        startActivity(Intent(applicationContext, Nivel::class.java))
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
 
-                } else if(!animGame){
+                } else if(!pruebateSuma){
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
-                        return@setOnClickListener
+                        return@postDelayed
                     } else {
-                        val Animacion: Intent = Intent(applicationContext, AnimationGame::class.java)
-                        startActivity(Animacion)
-                        db.collection("users").document(id).update("animGame", true)
+                        startActivity(Intent(applicationContext, Pruebate::class.java))
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
                 }
+            },200)
             }
+
         BT_PartidasGuardadas.setOnClickListener {
+            //A saber que hago con esto...
             val PartidasGuardadas: Intent = Intent(applicationContext, PartidasGuardadas::class.java)
             startActivity(PartidasGuardadas)
             println("Partidas Guardadas")
         }
+
         BT_Ranking.setOnClickListener {
-            val Ranking: Intent = Intent(applicationContext, Ranking::class.java)
-            startActivity(Ranking)
-            println("Ranking")
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                return@setOnClickListener
+            } else {
+                startActivity(Intent(applicationContext, Ranking::class.java))
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
         }
+
         BT_Salir.setOnClickListener {
+            //Sin hacer :C
             val alertDialog = AlertDialog.Builder(this).create()
             alertDialog.setTitle("Title")
             alertDialog.setMessage("Message")

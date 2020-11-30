@@ -167,7 +167,6 @@ class Pruebate : AppCompatActivity() {
 
     }
 
-
     @SuppressLint("CutPasteId")
     private fun FindID(){
         //Titulo,Definicion
@@ -421,18 +420,18 @@ class Pruebate : AppCompatActivity() {
             Number19TextView.text = generaNumeros().toString()
             Signo9TextView.text = Signos[1]
             Number20TextView.text = generaNumeros().toString()
-/*
+
             while(
-                    (Number1TextView.toString().toInt() < Number2TextView.toString().toInt())
-                    || (Number3TextView.toString().toInt() < Number4TextView.toString().toInt())
-                    || (Number5TextView.toString().toInt() < Number6TextView.toString().toInt())
-                    || (Number7TextView.toString().toInt() < Number8TextView.toString().toInt())
-                    || (Number9TextView.toString().toInt() < Number10TextView.toString().toInt())
-                    || (Number11TextView.toString().toInt() < Number12TextView.toString().toInt())
-                    || (Number13TextView.toString().toInt() < Number14TextView.toString().toInt())
-                    || (Number15TextView.toString().toInt() < Number16TextView.toString().toInt())
-                    || (Number17TextView.toString().toInt() < Number18TextView.toString().toInt())
-                    || (Number19TextView.toString().toInt() < Number20TextView.toString().toInt())
+                    (Number1TextView.text.toString().toInt() < Number2TextView.text.toString().toInt())
+                    || (Number3TextView.text.toString().toInt() < Number4TextView.text.toString().toInt())
+                    || (Number5TextView.text.toString().toInt() < Number6TextView.text.toString().toInt())
+                    || (Number7TextView.text.toString().toInt() < Number8TextView.text.toString().toInt())
+                    || (Number9TextView.text.toString().toInt() < Number10TextView.text.toString().toInt())
+                    || (Number11TextView.text.toString().toInt() < Number12TextView.text.toString().toInt())
+                    || (Number13TextView.text.toString().toInt() < Number14TextView.text.toString().toInt())
+                    || (Number15TextView.text.toString().toInt() < Number16TextView.text.toString().toInt())
+                    || (Number17TextView.text.toString().toInt() < Number18TextView.text.toString().toInt())
+                    || (Number19TextView.text.toString().toInt() < Number20TextView.text.toString().toInt())
             ) {
                 Number1TextView.text = generaNumeros().toString()
                 Number3TextView.text = generaNumeros().toString()
@@ -445,7 +444,6 @@ class Pruebate : AppCompatActivity() {
                 Number17TextView.text = generaNumeros().toString()
                 Number19TextView.text = generaNumeros().toString()
             }
- */
 
             //Botton
             BT_Corregir.setOnClickListener {
