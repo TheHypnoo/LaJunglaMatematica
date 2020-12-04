@@ -3,29 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context=".Ranking">
 
     <LinearLayout
+        android:id="@+id/LayoutCarga"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/cargaRanking"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:hint="Cargando el Ranking..."
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/AnimacionAnimal"
+            android:id="@+id/animationCargaRanking"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/next"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LayoutRanking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/rankingAnimation"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:lottie_autoPlay="true"
@@ -35,7 +68,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
@@ -74,7 +107,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0"
             android:orientation="horizontal">
 
@@ -92,7 +125,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador1" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -118,7 +151,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -137,7 +170,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador2" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -162,9 +195,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
             <ImageView
@@ -181,7 +214,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador3" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -195,7 +228,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
-                android:hint="50"
+                android:hint="0"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -206,9 +239,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
             <Space
@@ -235,7 +268,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador4" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -260,7 +293,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -289,7 +322,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador5" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -314,7 +347,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -343,7 +376,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador6" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -368,7 +401,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -397,7 +430,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador7" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -422,7 +455,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -451,7 +484,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador8" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -476,7 +509,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -505,7 +538,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador9" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"
@@ -530,7 +563,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:orientation="horizontal">
@@ -559,7 +592,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador10" />
+                android:hint="Jugador" />
 
             <Space
                 android:layout_width="175dp"

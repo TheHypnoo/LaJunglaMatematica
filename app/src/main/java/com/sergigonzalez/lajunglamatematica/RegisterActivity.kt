@@ -45,6 +45,7 @@ class RegisterActivity : AppCompatActivity() {
                                 "lvlMultiplica" to 0,
                                 "lvlDivision" to 0,
                                 "puntuacion" to 0,
+                                "vidas" to 0,
                                 "pruebateSuma" to false,
                                 "pruebateResta" to false,
                                 "pruebateMultiplica" to false,
@@ -86,8 +87,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun showHome(){
-        val homeIntent = Intent(this,AnimationLoading::class.java)
-        startActivity(homeIntent)
+        startActivity(Intent(this, menuPrincipal::class.java))
         finish()
     }
 

@@ -21,6 +21,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimalAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading"
+            tools:ignore="MissingConstraints" />
+
         <ImageView
             android:id="@+id/imageView11"
             android:layout_width="match_parent"
@@ -49,17 +58,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/ranking" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/credits" />
 
         <Space
             android:layout_width="match_parent"

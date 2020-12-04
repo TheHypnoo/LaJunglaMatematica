@@ -35,17 +35,6 @@
             android:textSize="36sp"
             android:textStyle="bold" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/AnimalAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:visibility="gone"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/dolphin1"
-            tools:ignore="MissingConstraints"
-            tools:visibility="gone" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="154dp"

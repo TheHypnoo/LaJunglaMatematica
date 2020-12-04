@@ -23,21 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/AnimalAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
-            app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-            app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-            app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/dolphin"
-            tools:ignore="MissingConstraints"
-            tools:visibility="invisible" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="254dp"

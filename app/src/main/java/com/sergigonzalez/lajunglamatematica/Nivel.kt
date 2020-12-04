@@ -26,6 +26,7 @@ class Nivel : AppCompatActivity() {
     private lateinit var todoNivel: LinearLayout
     private lateinit var lvlUP: LottieAnimationView
     private lateinit var lvlDown: LottieAnimationView
+    private lateinit var lvlPuntua: TextView
     private val db = FirebaseFirestore.getInstance()
     private val user = FirebaseAuth.getInstance().currentUser
     private val email = user?.email
@@ -33,8 +34,10 @@ class Nivel : AppCompatActivity() {
     private var numero1 = 0
     private var numero2 = 0
     private var Resultado = 0
-    private var dbPuntuacion = 0
+    private var dbPuntuacion = -1
     private var puntuacion = 0
+    private var dbVidas = 0
+    private var vidas = 0
 
     private var dondeEstoy = -1
     private var pruebateSuma = false
@@ -95,6 +98,7 @@ class Nivel : AppCompatActivity() {
         todoNivel = findViewById(R.id.todoNivel)
         lvlUP = findViewById(R.id.lvlUP)
         lvlDown = findViewById(R.id.lvlDown)
+        lvlPuntua = findViewById(R.id.lvlPuntua)
     }
 
     private fun guardaNivel(){
@@ -130,6 +134,7 @@ class Nivel : AppCompatActivity() {
                         pruebateMultiplica = document.data["pruebateMultiplica"] as Boolean
                         pruebateDivision = document.data["pruebateDivision"] as Boolean
                         dondeEstoy = document.data["dondeEstoy"] .toString().toLong().toInt()
+                        dbVidas = document.data["vidas"].toString().toLong().toInt()
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -143,6 +148,10 @@ class Nivel : AppCompatActivity() {
         if(dbSuma >= lvlSuma) {
             lvlSuma = dbSuma
         }
+        if(dbPuntuacion >= puntuacion) {
+            puntuacion = dbPuntuacion
+        }
+        lvlPuntua.text = "Puntuación: $puntuacion"
         //Si llego al final, entonces finalizo el nivel y paso al siguiente
         if(lvlSuma >= 10) {
             finalSuma = true
@@ -306,11 +315,13 @@ class Nivel : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun whenResta(){
-
         if(dbResta >= lvlResta) {
             lvlResta = dbResta
         }
-
+        if(dbPuntuacion >= puntuacion) {
+            puntuacion = dbPuntuacion
+        }
+        lvlPuntua.text = "Puntuación: $puntuacion"
         if(lvlResta == 10) {
             finalResta = true
             if (!pruebateMultiplica) {
@@ -469,7 +480,10 @@ class Nivel : AppCompatActivity() {
         if(dbMultiplica >= lvlMultiplica) {
             lvlMultiplica = dbMultiplica
         }
-
+        if(dbPuntuacion >= puntuacion) {
+            puntuacion = dbPuntuacion
+        }
+        lvlPuntua.text = "Puntuación: $puntuacion"
         if(lvlMultiplica == 10) {
             finalMultiplica = true
             if (!pruebateDivision) {
@@ -619,6 +633,10 @@ class Nivel : AppCompatActivity() {
         if(dbDivision >= lvlDivision) {
             lvlDivision = dbDivision
         }
+        if(dbPuntuacion >= puntuacion) {
+            puntuacion = dbPuntuacion
+        }
+        lvlPuntua.text = "Puntuación: $puntuacion"
         if(lvlDivision == 10) {
             finalDivision = true
             println("Finalizado game.")
@@ -629,7 +647,7 @@ class Nivel : AppCompatActivity() {
 
         } else if(!finalDivision) {
 
-            while ((numero1 < numero2) && (numero1 % numero2 != 0)) {
+            while ((numero1 % numero2 != 0)) {
                 numero1 = generaNumeros()
                 numero2 = generaNumeros()
             }
@@ -706,25 +724,7 @@ class Nivel : AppCompatActivity() {
         } else {
             lvlDown.visibility = View.GONE
         }
-        /*
-        if (finalMultiplica && !finalDivision && lvlDivision >= 3) {
-            lvlUP.visibility = View.VISIBLE
-            lvlUP.setOnClickListener {
-                if (!pruebateDivision) {
-                    val mainIntent = Intent(this, Pruebate::class.java)
-                    startActivity(mainIntent)
-                    finish()
-                    dondeEstoy = 3
-                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
-                } else {
-                    nivelDivision()
-                }
-                lvlUP.visibility = View.GONE
-            }
-        } else {
-            lvlUP.visibility = View.GONE
-        }
-        */
+
         if(lvlDivision == 8 && !finalMultiplica) {
             println("Debes terminar la Multiplicación para seguir con la División")
             whenMultiplica()

@@ -13,7 +13,6 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthActivity : AppCompatActivity() {
-    private lateinit var animation: LottieAnimationView
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var register: TextView
@@ -33,8 +32,6 @@ class AuthActivity : AppCompatActivity() {
         logInButton = findViewById(R.id.RegisterButton)
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
-        animation = findViewById(R.id.AnimalAnimation)
-        animation.speed = 0.80F
 
 
 
@@ -85,8 +82,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun showHome(){
-        val homeIntent = Intent(this, AnimationLoading::class.java)
-        startActivity(homeIntent)
+        startActivity(Intent(this, menuPrincipal::class.java))
         finish()
     }
 

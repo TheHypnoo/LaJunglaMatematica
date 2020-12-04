@@ -47,7 +47,7 @@
             tools:ignore="MissingConstraints" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/AnimacionAnimal"
+            android:id="@+id/rankingAnimation"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:lottie_autoPlay="true"

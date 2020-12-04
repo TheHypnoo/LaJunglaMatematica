@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Jungla Matematica</string>
-    <string name="startGame">Start</string>
+    <string name="startGame">Comenzar Juego</string>
+    <string name="Continue">Continuar</string>
     <string name="ranking">Ranking</string>
     <string name="credits">Creditos</string>
     <string name="leave">Salir</string>
