@@ -9,13 +9,13 @@ import android.view.Window
 import com.airbnb.lottie.LottieAnimationView
 
 class AnimationLoading : AppCompatActivity() {
-    private lateinit var Loading: LottieAnimationView
+    private lateinit var loading: LottieAnimationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_animation_loading)
-        Loading = findViewById(R.id.AnimalAnimation)
-        Loading.speed = 0.35F
+        loading = findViewById(R.id.AnimalAnimation)
+        loading.speed = 0.35F
         Handler(Looper.getMainLooper()).postDelayed({
             val mainIntent = Intent(this, menuPrincipal::class.java)
             startActivity(mainIntent)

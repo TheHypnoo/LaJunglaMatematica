@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
+    android:scaleType="fitXY"
     tools:context=".AuthActivity">
 
     <LinearLayout
@@ -25,14 +27,16 @@
             android:id="@+id/AnimalAnimation"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
             app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
             app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
             app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/register"
-            tools:ignore="MissingConstraints" />
+            app:lottie_rawRes="@raw/dolphin"
+            tools:ignore="MissingConstraints"
+            tools:visibility="invisible" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +50,8 @@
                 android:drawableLeft="@drawable/ic_action_user"
                 android:ems="10"
                 android:hint="Nombre de Usuario"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColorHint="#FFFFFF" />
 
             <Space
                 android:layout_width="match_parent"
@@ -59,7 +64,8 @@
                 android:drawableLeft="@drawable/ic_action_date"
                 android:ems="10"
                 android:hint="Fecha de Nacimiento"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textColorHint="#FFFFFF" />
 
             <Space
                 android:layout_width="match_parent"
@@ -72,7 +78,8 @@
                 android:drawableLeft="@drawable/ic_action_email"
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColorHint="#FFFFFF" />
 
             <Space
                 android:layout_width="match_parent"
@@ -85,7 +92,8 @@
                 android:drawableLeft="@drawable/ic_action_lock"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
 
             <Space
                 android:layout_width="match_parent"

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_jungla"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/logo_jungla_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
         <activity android:name=".AuthActivity">
@@ -17,13 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-
         <activity android:name=".AnimationLoading" />
         <activity android:name=".menuPrincipal" />
-        <activity android:name=".AnimationGame" />
         <activity android:name=".Pruebate" />
         <activity android:name=".Nivel" />
-        <activity android:name=".PartidasGuardadas" />
         <activity android:name=".Ranking" />
 
         <meta-data

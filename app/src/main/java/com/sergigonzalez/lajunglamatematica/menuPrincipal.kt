@@ -18,12 +18,11 @@ import java.util.*
 
 class menuPrincipal : AppCompatActivity() {
 
-    private lateinit var BT_EmpezarJuego: Button
-    private lateinit var BT_PartidasGuardadas: Button
-    private lateinit var BT_Ranking: Button
-    private lateinit var BT_Salir: Button
+    private lateinit var startGame: Button
+    private lateinit var ranking: Button
+    private lateinit var leave: Button
     private val db = FirebaseFirestore.getInstance()
-    var id = ""
+    private var id = ""
     private var pruebateSuma = false
     private val user = FirebaseAuth.getInstance().currentUser
     private val email = user?.email
@@ -31,18 +30,17 @@ class menuPrincipal : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_menu)
         buscaPruebate()
-        InitButtons()
+        findID()
         initListeners()
     }
 
-    private fun InitButtons() {
-        BT_EmpezarJuego = findViewById(R.id.BT_EmpezarJuego)
-        BT_PartidasGuardadas = findViewById(R.id.BT_PartidasGuardadas)
-        BT_Ranking = findViewById(R.id.BT_Ranking)
-        BT_Salir = findViewById(R.id.BT_Salir)
+    private fun findID() {
+        startGame = findViewById(R.id.startGame)
+        ranking = findViewById(R.id.ranking)
+        leave = findViewById(R.id.leave)
     }
 
     private fun buscaPruebate(){
@@ -62,7 +60,7 @@ class menuPrincipal : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        BT_EmpezarJuego.setOnClickListener {
+        startGame.setOnClickListener {
             buscaPruebate()
             Handler(Looper.getMainLooper()).postDelayed({
 
@@ -72,7 +70,7 @@ class menuPrincipal : AppCompatActivity() {
                     } else {
                         startActivity(Intent(applicationContext, Nivel::class.java))
                     }
-                    mLastClickTime = SystemClock.elapsedRealtime();
+                    mLastClickTime = SystemClock.elapsedRealtime()
 
                 } else if(!pruebateSuma){
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
@@ -80,41 +78,34 @@ class menuPrincipal : AppCompatActivity() {
                     } else {
                         startActivity(Intent(applicationContext, Pruebate::class.java))
                     }
-                    mLastClickTime = SystemClock.elapsedRealtime();
+                    mLastClickTime = SystemClock.elapsedRealtime()
                 }
             },200)
             }
 
-        BT_PartidasGuardadas.setOnClickListener {
-            //A saber que hago con esto...
-            val PartidasGuardadas: Intent = Intent(applicationContext, PartidasGuardadas::class.java)
-            startActivity(PartidasGuardadas)
-            println("Partidas Guardadas")
-        }
-
-        BT_Ranking.setOnClickListener {
+        ranking.setOnClickListener {
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
                 return@setOnClickListener
             } else {
                 startActivity(Intent(applicationContext, Ranking::class.java))
             }
-            mLastClickTime = SystemClock.elapsedRealtime();
+            mLastClickTime = SystemClock.elapsedRealtime()
         }
 
-        BT_Salir.setOnClickListener {
+        leave.setOnClickListener {
             //Sin hacer :C
             val alertDialog = AlertDialog.Builder(this).create()
             alertDialog.setTitle("Title")
             alertDialog.setMessage("Message")
 
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes"
-            ) { dialog, which -> dialog.dismiss() }
+            ) { dialog, _ -> dialog.dismiss() }
 
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No"
-            ) { dialog, which -> dialog.dismiss() }
+            ) { dialog, _ -> dialog.dismiss() }
 
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Cancel"
-            ) { dialog, which -> dialog.dismiss() }
+            ) { dialog, _ -> dialog.dismiss() }
             alertDialog.show()
 
             val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)

@@ -4,35 +4,37 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_register.*
-import java.net.PasswordAuthentication
+
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var Usuario: EditText
-    private lateinit var FechaNacimiento: EditText
-    private lateinit var Email: EditText
-    private lateinit var Password: EditText
-    private lateinit var RegisterButton: Button
-    val db = FirebaseFirestore.getInstance()
+    private lateinit var user: EditText
+    private lateinit var birthDate: EditText
+    private lateinit var email: EditText
+    private lateinit var password: EditText
+    private lateinit var btRegister: Button
+    private lateinit var animation: LottieAnimationView
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_register)
-        title = "Registro"
+        //title = "Registro"
         FindID()
-        RegisterButton.setOnClickListener{
-            val user = Usuario.text.toString()
-            val date = FechaNacimiento.text.toString()
-            val email = Email.text.toString()
-            //val password = Password.text.toString()
-            if (Email.text.isNotEmpty() && Password.text.isNotEmpty() && FechaNacimiento.text.isNotEmpty() && Usuario.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(Email.text.toString(), Password.text.toString()).addOnCompleteListener {
+        animation.speed = 0.80F
+        btRegister.setOnClickListener{
+            val user = user.text.toString()
+            val date = birthDate.text.toString()
+            val email = email.text.toString()
+            if (this.email.text.isNotEmpty() && password.text.isNotEmpty() && birthDate.text.isNotEmpty() && this.user.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(this.email.text.toString(), password.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val users = hashMapOf(
                                 "Nombre de Usuario" to user,
@@ -47,7 +49,6 @@ class RegisterActivity : AppCompatActivity() {
                                 "pruebateResta" to false,
                                 "pruebateMultiplica" to false,
                                 "pruebateDivision" to false
-                                //Esto como que no,no?"Password" to password
                         )
                         db.collection("users").add(users).addOnSuccessListener { documentReference ->
                             Log.d("DB: Users", "Añadido con el ID => ${documentReference.id}")
@@ -66,12 +67,13 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    fun FindID() {
-        Usuario = findViewById(R.id.UsuarioEditText)
-        FechaNacimiento = findViewById(R.id.FechaNacimientoEditText)
-        Email = findViewById(R.id.emailEditText)
-        Password = findViewById(R.id.passwordEditText)
-        RegisterButton = findViewById(R.id.RegisterButton)
+    private fun FindID() {
+        user = findViewById(R.id.UsuarioEditText)
+        birthDate = findViewById(R.id.FechaNacimientoEditText)
+        email = findViewById(R.id.emailEditText)
+        password = findViewById(R.id.passwordEditText)
+        btRegister = findViewById(R.id.loginButton)
+        animation = findViewById(R.id.AnimalAnimation)
     }
 
     private fun showAlert() {
@@ -84,7 +86,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun showHome(){
-        val homeIntent = Intent(this,menuPrincipal::class.java)
+        val homeIntent = Intent(this,AnimationLoading::class.java)
         startActivity(homeIntent)
         finish()
     }

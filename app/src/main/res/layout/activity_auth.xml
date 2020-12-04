@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:scaleType="fitXY"
     tools:context=".AuthActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
@@ -21,14 +24,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:fontFamily="@font/atomic_age"
+            android:gravity="center"
+            android:text="La Jungla Matematica"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/AnimalAnimation"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:visibility="gone"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/authanimate"
-            tools:ignore="MissingConstraints" />
+            app:lottie_rawRes="@raw/dolphin1"
+            tools:ignore="MissingConstraints"
+            tools:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +58,10 @@
                 android:drawableLeft="@drawable/ic_action_email"
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -52,11 +71,13 @@
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_action_lock"
                 android:drawableLeft="@drawable/ic_action_lock"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -87,27 +108,27 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="95dp"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/SignUp"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_weight="0"
                 android:clickable="true"
-                android:fontFamily="@font/andika"
-                android:gravity="center_horizontal"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center"
                 android:text="No estas registrado? Registrate"
                 android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/ic_launcher_background"
+                android:textColor="#FFFC67"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="125dp"
                 android:layout_weight="0" />
 
             <TextView
@@ -118,6 +139,7 @@
                 android:gravity="right"
                 android:text="Created by TheHypnoo"
                 android:textAllCaps="true"
+                android:textColor="#8F8F8F"
                 android:textSize="8sp"
                 android:textStyle="bold|italic" />
         </LinearLayout>

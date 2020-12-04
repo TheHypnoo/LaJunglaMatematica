@@ -16,7 +16,7 @@ import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_nivel.*
+
 
 class Pruebate : AppCompatActivity() {
     //Titulo y Definicion
@@ -316,7 +316,7 @@ class Pruebate : AppCompatActivity() {
                 pasaNivelTextView.text = "Pasando al nivel.."
                 pasaNivelTextView.visibility = View.VISIBLE
                 AnimacionNext.visibility = View.VISIBLE
-                AnimalAnimation.speed = 2.50F
+                AnimacionNext.speed = 2.50F
                 Handler(Looper.getMainLooper()).postDelayed({
                     val mainIntent = Intent(this, Nivel::class.java)
                     startActivity(mainIntent)
@@ -453,7 +453,7 @@ class Pruebate : AppCompatActivity() {
                 pasaNivelTextView.text = "Pasando al nivel.."
                 pasaNivelTextView.visibility = View.VISIBLE
                 AnimacionNext.visibility = View.VISIBLE
-                AnimalAnimation.speed = 2.50F
+                AnimacionNext.speed = 2.50F
                 Handler(Looper.getMainLooper()).postDelayed({
                     val mainIntent = Intent(this, Nivel::class.java)
                     startActivity(mainIntent)
@@ -566,7 +566,7 @@ class Pruebate : AppCompatActivity() {
                 pasaNivelTextView.text = "Pasando al nivel.."
                 pasaNivelTextView.visibility = View.VISIBLE
                 AnimacionNext.visibility = View.VISIBLE
-                AnimalAnimation.speed = 2.50F
+                AnimacionNext.speed = 2.50F
                 Handler(Looper.getMainLooper()).postDelayed({
                     val mainIntent = Intent(this, Nivel::class.java)
                     startActivity(mainIntent)
@@ -672,16 +672,16 @@ class Pruebate : AppCompatActivity() {
             Number20TextView.text = generaNumeros().toString()
 
             while(
-                    ((Number1TextView.text.toString().toInt() < Number2TextView.text.toString().toInt()) || (Number1TextView.text.toString().toInt() % Number2TextView.text.toString().toInt() == 0))
-                    || ((Number3TextView.text.toString().toInt() < Number4TextView.text.toString().toInt() || (Number3TextView.text.toString().toInt() % Number4TextView.text.toString().toInt() == 0)))
-                    || ((Number5TextView.text.toString().toInt() < Number6TextView.text.toString().toInt() || (Number5TextView.text.toString().toInt() % Number6TextView.text.toString().toInt() == 0)))
-                    || ((Number7TextView.text.toString().toInt() < Number8TextView.text.toString().toInt() || (Number7TextView.text.toString().toInt() % Number8TextView.text.toString().toInt() == 0)))
-                    || ((Number9TextView.text.toString().toInt() < Number10TextView.text.toString().toInt() || (Number9TextView.text.toString().toInt() % Number10TextView.text.toString().toInt() == 0)))
-                    || ((Number11TextView.text.toString().toInt() < Number12TextView.text.toString().toInt() || (Number11TextView.text.toString().toInt() % Number12TextView.text.toString().toInt() == 0)))
-                    || ((Number13TextView.text.toString().toInt() < Number14TextView.text.toString().toInt() || (Number13TextView.text.toString().toInt() % Number14TextView.text.toString().toInt() == 0)))
-                    || ((Number15TextView.text.toString().toInt() < Number16TextView.text.toString().toInt() || (Number15TextView.text.toString().toInt() % Number16TextView.text.toString().toInt() == 0)))
-                    || ((Number17TextView.text.toString().toInt() < Number18TextView.text.toString().toInt() || (Number17TextView.text.toString().toInt() % Number18TextView.text.toString().toInt() == 0)))
-                    || ((Number19TextView.text.toString().toInt() < Number20TextView.text.toString().toInt() || (Number19TextView.text.toString().toInt() % Number20TextView.text.toString().toInt() == 0)))
+                    ((Number1TextView.text.toString().toInt() < Number2TextView.text.toString().toInt()) || (Number1TextView.text.toString().toInt().toDouble() % Number2TextView.text.toString().toInt().toDouble() != 0.0))
+                    || ((Number3TextView.text.toString().toInt() < Number4TextView.text.toString().toInt() || (Number3TextView.text.toString().toInt().toDouble() % Number4TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number5TextView.text.toString().toInt() < Number6TextView.text.toString().toInt() || (Number5TextView.text.toString().toInt().toDouble() % Number6TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number7TextView.text.toString().toInt() < Number8TextView.text.toString().toInt() || (Number7TextView.text.toString().toInt().toDouble() % Number8TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number9TextView.text.toString().toInt() < Number10TextView.text.toString().toInt() || (Number9TextView.text.toString().toInt().toDouble() % Number10TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number11TextView.text.toString().toInt() < Number12TextView.text.toString().toInt() || (Number11TextView.text.toString().toInt().toDouble() % Number12TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number13TextView.text.toString().toInt() < Number14TextView.text.toString().toInt() || (Number13TextView.text.toString().toInt().toDouble() % Number14TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number15TextView.text.toString().toInt() < Number16TextView.text.toString().toInt() || (Number15TextView.text.toString().toInt().toDouble() % Number16TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number17TextView.text.toString().toInt() < Number18TextView.text.toString().toInt() || (Number17TextView.text.toString().toInt().toDouble() % Number18TextView.text.toString().toInt().toDouble() !=  0.0)))
+                    || ((Number19TextView.text.toString().toInt() < Number20TextView.text.toString().toInt() || (Number19TextView.text.toString().toInt().toDouble() % Number20TextView.text.toString().toInt().toDouble() !=  0.0)))
             ) {
                 Number1TextView.text = generaNumeros().toString()
                 Number2TextView.text = generaNumeros().toString()
@@ -713,7 +713,7 @@ class Pruebate : AppCompatActivity() {
                 pasaNivelTextView.text = "Pasando al nivel.."
                 pasaNivelTextView.visibility = View.VISIBLE
                 AnimacionNext.visibility = View.VISIBLE
-                AnimalAnimation.speed = 2.50F
+                AnimacionNext.speed = 2.50F
                 Handler(Looper.getMainLooper()).postDelayed({
                     val mainIntent = Intent(this, Nivel::class.java)
                     startActivity(mainIntent)

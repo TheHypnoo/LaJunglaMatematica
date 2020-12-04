@@ -3,64 +3,40 @@ package com.sergigonzalez.lajunglamatematica
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthActivity : AppCompatActivity() {
-    private lateinit var nomUsuari: TextView
+    private lateinit var animation: LottieAnimationView
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
-    private lateinit var Registrar: TextView
+    private lateinit var register: TextView
     private lateinit var logInButton: Button
-    // Access a Cloud Firestore instance from your Activity
-     val db = FirebaseFirestore.getInstance()
     private var mLastClickTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_auth)
         setup()
-
     }
 
     private fun setup(){
-        title = "Autenticación"
-        Registrar = findViewById(R.id.SignUp)
+        //title = "Autenticación"
+        register = findViewById(R.id.SignUp)
         logInButton = findViewById(R.id.RegisterButton)
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
+        animation = findViewById(R.id.AnimalAnimation)
+        animation.speed = 0.80F
 
-        Registrar.setOnClickListener {
-            if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
-                return@setOnClickListener
-            } else {
-                val Registrarse: Intent = Intent(applicationContext, RegisterActivity::class.java)
-                startActivity(Registrarse)
-            }
-            mLastClickTime = SystemClock.elapsedRealtime();
 
-            /*
-            if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    emailEditText.text.toString(),
-                    passwordEditText.text.toString()
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showHome(it.result?.user?.email ?: "")
-                    } else {
-                        showAlert()
-                    }
-                }
-            }
-            */
-
-        }
 
         logInButton.setOnClickListener {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
@@ -68,64 +44,36 @@ class AuthActivity : AppCompatActivity() {
                         emailEditText.text.toString(),
                         passwordEditText.text.toString()
                 ).addOnCompleteListener {
-                    if (it.isSuccessful) {
+                    mLastClickTime = if (it.isSuccessful) {
                         if (SystemClock.elapsedRealtime() - mLastClickTime < 5000) {
-                            return@addOnCompleteListener;
+                            return@addOnCompleteListener
                         } else {
                             showHome()
                         }
-                        mLastClickTime = SystemClock.elapsedRealtime();
+                        SystemClock.elapsedRealtime()
                     } else {
                         if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
-                            return@addOnCompleteListener;
+                            return@addOnCompleteListener
                         } else {
                             showAlert()
                         }
-                        mLastClickTime = SystemClock.elapsedRealtime();
+                        SystemClock.elapsedRealtime()
                     }
                 }
             }
+        }
 
+        register.setOnClickListener {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                return@setOnClickListener
+            } else {
+                startActivity(Intent(applicationContext, RegisterActivity::class.java))
+            }
+            mLastClickTime = SystemClock.elapsedRealtime()
         }
 
     }
 
-    private fun CrearUsuari(){
-        // Create a new user with a first and last name
-        val user = hashMapOf(
-                "Nombre" to "Sergi",
-                "Apellido" to "Gonzalez",
-                "Nombre de Usuario" to "TheHypnoo",
-                "Fecha de nacimiento" to 2000
-        )
-
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d("DB: Users", "Añadido con el ID => ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w("DB: Users", "Error al añadir el usuario", e)
-            }
-    }
-
-    private fun saberUsuari(){
-        val users = db.collection("users")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("", "${document.id} => ${document.data}").toString()
-                    if(document.data.equals("Nombre de Usuario")) {
-                        val usuario = document.data
-                        nomUsuari.setText("$usuario").toString()
-                    }
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("DB: Users", "Error al intentar obtener la información", exception)
-            }
-    }
 
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)

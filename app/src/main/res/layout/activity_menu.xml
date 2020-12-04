@@ -4,145 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".menuPrincipal">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_ArribaIzquierda"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_ArribaDerecha"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8" />
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO"
+            app:srcCompat="@mipmap/insignia" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_BotonPrimario"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_BotonSecundario"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        <Button
+            android:id="@+id/startGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/startGame" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_BotonTercero"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_BotonCuarto"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        <Button
+            android:id="@+id/ranking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/ranking" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_BotonQuinto"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.68" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GL_Arriba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/credits" />
 
-    <Button
-        android:id="@+id/BT_EmpezarJuego"
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:background="@drawable/bordes_redondos"
-        android:text="@string/BT_empezarJuego"
+        <Button
+            android:id="@+id/leave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/leave" />
 
-        app:layout_constraintBottom_toTopOf="@+id/guideline9"
-        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_BotonPrimario" />
-
-    <Button
-        android:id="@+id/BT_PartidasGuardadas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/bordes_redondos"
-        android:text="@string/BT_partidasGuardadas"
-        app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_BotonSecundario" />
-
-    <Button
-        android:id="@+id/BT_Ranking"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/bordes_redondos"
-        android:text="@string/BT_Ranking"
-        app:layout_constraintBottom_toTopOf="@+id/guideline12"
-        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_BotonTercero" />
-
-    <Button
-        android:id="@+id/BT_Salir"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/BT_Salir"
-        android:background="@drawable/bordes_redondos"
-        app:layout_constraintBottom_toTopOf="@+id/GL_BotonQuinto"
-        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_BotonCuarto" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/AnimalAnimation"
-        android:layout_width="244dp"
-        android:layout_height="181dp"
-        app:layout_constraintBottom_toTopOf="@+id/GL_BotonPrimario"
-        app:layout_constraintEnd_toStartOf="@+id/GL_ArribaDerecha"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/GL_ArribaIzquierda"
-        app:layout_constraintTop_toTopOf="@+id/GL_Arriba"
-        app:layout_constraintVertical_bias="1.0"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/logo"
-        tools:ignore="MissingConstraints" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.58" />
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
