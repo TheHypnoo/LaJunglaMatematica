@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@mipmap/fondo"
     android:scaleType="fitXY"
     tools:context=".AuthActivity">
 
@@ -13,10 +13,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,30 +25,33 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
             android:fontFamily="@font/atomic_age"
             android:gravity="center"
+            android:rotationX="-20"
             android:text="La Jungla Matematica"
             android:textColor="#FFFFFF"
-            android:textSize="36sp"
+            android:textSize="48sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="154dp"
+            android:layout_height="175dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_email"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textStyle="bold" />
+                android:textColorHint="#534747"
+                android:textSize="18sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -58,35 +59,28 @@
 
             <EditText
                 android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_lock"
                 android:ems="10"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textStyle="bold" />
+                android:textColor="#FBF8F8"
+                android:textColorHint="#534747"
+                android:textSize="18sp" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/RegisterButton"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@drawable/bordes_redondos"
+                android:text="Login"
+                android:textColor="@android:color/white" />
 
-                <Button
-                    android:id="@+id/RegisterButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/colorSecondary"
-                    android:text="Login"
-                    android:textColor="@android:color/white" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -97,28 +91,25 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="95dp"
-                android:layout_weight="0" />
+                android:layout_height="60dp" />
 
             <TextView
                 android:id="@+id/SignUp"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_weight="0"
                 android:clickable="true"
                 android:fontFamily="@font/aclonica"
                 android:gravity="center"
                 android:text="No estas registrado? Registrate"
                 android:textAlignment="center"
-                android:textColor="#FFFC67"
+                android:textColor="#565755"
                 android:textSize="18sp"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
-                android:layout_weight="0" />
+                android:layout_height="150dp" />
 
             <TextView
                 android:id="@+id/credits"

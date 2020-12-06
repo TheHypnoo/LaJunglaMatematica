@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2"
+    android:background="@mipmap/fondo2"
     android:scaleType="fitXY"
     tools:context=".AuthActivity">
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,20 +21,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="175dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="254dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/UsuarioEditText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_user"
                 android:ems="10"
                 android:hint="Nombre de Usuario"
                 android:inputType="textEmailAddress"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#403B3B" />
 
             <Space
                 android:layout_width="match_parent"
@@ -44,13 +48,13 @@
 
             <EditText
                 android:id="@+id/FechaNacimientoEditText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_date"
                 android:ems="10"
                 android:hint="Fecha de Nacimiento"
                 android:inputType="date"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#403B3B" />
 
             <Space
                 android:layout_width="match_parent"
@@ -58,13 +62,13 @@
 
             <EditText
                 android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_email"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#403B3B" />
 
             <Space
                 android:layout_width="match_parent"
@@ -72,45 +76,38 @@
 
             <EditText
                 android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_action_lock"
                 android:ems="10"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#403B3B" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/colorSecondary"
+                android:gravity="center"
+                android:text="Registrar"
+                android:textColor="@android:color/white" />
 
-                <Button
-                    android:id="@+id/loginButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/colorSecondary"
-                    android:text="Registrar"
-                    android:textColor="@android:color/white" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:orientation="vertical">
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="284dp"
-                android:layout_weight="1" />
+                android:layout_height="370dp" />
 
             <TextView
                 android:id="@+id/credits"

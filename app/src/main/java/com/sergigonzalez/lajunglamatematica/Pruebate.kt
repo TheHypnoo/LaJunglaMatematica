@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -55,8 +56,6 @@ class Pruebate : AppCompatActivity() {
     private lateinit var Number20TextView: TextView
     //Boton
     private lateinit var BT_Corregir: Button
-    private lateinit var pasaNivelTextView: TextView
-    private lateinit var AnimacionNext: LottieAnimationView
     //Resultados
     private lateinit var Resultado1: EditText
     private lateinit var Resultado2: EditText
@@ -109,6 +108,7 @@ class Pruebate : AppCompatActivity() {
     private var pruebateResta = false
     private var pruebateMultiplica = false
     private var pruebateDivision = false
+    private var mLastClickTime: Long = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +117,7 @@ class Pruebate : AppCompatActivity() {
         setContentView(R.layout.activity_pruebate)
         val Signos = arrayOf("+","-","x","/")
         FindID()
-        loadingAnimation.speed = 4.50F
+        //loadingAnimation.speed = 4.50F
         buscaPruebate()
         CargaPruebate.visibility = View.VISIBLE
         Handler(Looper.getMainLooper()).postDelayed({
@@ -214,8 +214,7 @@ class Pruebate : AppCompatActivity() {
         Number20TextView = findViewById(R.id.Number20TextView)
         //Bottom
         BT_Corregir = findViewById(R.id.BT_Corregir)
-        pasaNivelTextView = findViewById(R.id.cargaNivel)
-        AnimacionNext = findViewById(R.id.AnimalAnimation)
+
         //Resultado
         Resultado1 = findViewById(R.id.Resultado1)
         Resultado2 = findViewById(R.id.Resultado2)
@@ -309,20 +308,20 @@ class Pruebate : AppCompatActivity() {
             Number20TextView.text = generaNumeros().toString()
 
             //Botton
-            BT_Corregir.setOnClickListener {
-                pruebateSuma = true
-                SumaResultado()
-                BT_Corregir.visibility = View.GONE
-                pasaNivelTextView.text = "Pasando al nivel.."
-                pasaNivelTextView.visibility = View.VISIBLE
-                AnimacionNext.visibility = View.VISIBLE
-                AnimacionNext.speed = 2.50F
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val mainIntent = Intent(this, Nivel::class.java)
-                    startActivity(mainIntent)
-                    finish()
-                }, 4000)
-
+            BT_Corregir.setOnClickListener addOnSuccessListener@{
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                    return@addOnSuccessListener
+                } else {
+                    pruebateSuma = true
+                    SumaResultado()
+                    BT_Corregir.visibility = View.GONE
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val mainIntent = Intent(this, Nivel::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    }, 4000)
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
             }
         }
     }
@@ -446,20 +445,20 @@ class Pruebate : AppCompatActivity() {
             }
 
             //Botton
-            BT_Corregir.setOnClickListener {
-                pruebateResta = true
-                RestaResultado()
-                BT_Corregir.visibility = View.GONE
-                pasaNivelTextView.text = "Pasando al nivel.."
-                pasaNivelTextView.visibility = View.VISIBLE
-                AnimacionNext.visibility = View.VISIBLE
-                AnimacionNext.speed = 2.50F
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val mainIntent = Intent(this, Nivel::class.java)
-                    startActivity(mainIntent)
-                    finish()
-                }, 4000)
-
+            BT_Corregir.setOnClickListener addOnSuccessListener@{
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                    return@addOnSuccessListener
+                } else {
+                    pruebateResta = true
+                    RestaResultado()
+                    BT_Corregir.visibility = View.GONE
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val mainIntent = Intent(this, Nivel::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    }, 4000)
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
             }
         }
     }
@@ -559,20 +558,20 @@ class Pruebate : AppCompatActivity() {
             Number20TextView.text = generaNumeros().toString()
 
             //Botton
-            BT_Corregir.setOnClickListener {
-                pruebateMultiplica = true
-                MultiplicaResultado()
-                BT_Corregir.visibility = View.GONE
-                pasaNivelTextView.text = "Pasando al nivel.."
-                pasaNivelTextView.visibility = View.VISIBLE
-                AnimacionNext.visibility = View.VISIBLE
-                AnimacionNext.speed = 2.50F
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val mainIntent = Intent(this, Nivel::class.java)
-                    startActivity(mainIntent)
-                    finish()
-                }, 4000)
-
+            BT_Corregir.setOnClickListener addOnSuccessListener@{
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                    return@addOnSuccessListener
+                } else {
+                    pruebateMultiplica = true
+                    MultiplicaResultado()
+                    BT_Corregir.visibility = View.GONE
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val mainIntent = Intent(this, Nivel::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    }, 4000)
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
             }
         }
     }
@@ -706,20 +705,20 @@ class Pruebate : AppCompatActivity() {
             }
 
             //Botton
-            BT_Corregir.setOnClickListener {
-                pruebateDivision = true
-                DivisionResultado()
-                BT_Corregir.visibility = View.GONE
-                pasaNivelTextView.text = "Pasando al nivel.."
-                pasaNivelTextView.visibility = View.VISIBLE
-                AnimacionNext.visibility = View.VISIBLE
-                AnimacionNext.speed = 2.50F
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val mainIntent = Intent(this, Nivel::class.java)
-                    startActivity(mainIntent)
-                    finish()
-                }, 4000)
-
+            BT_Corregir.setOnClickListener addOnSuccessListener@{
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                    return@addOnSuccessListener
+                } else {
+                    pruebateDivision = true
+                    DivisionResultado()
+                    BT_Corregir.visibility = View.GONE
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val mainIntent = Intent(this, Nivel::class.java)
+                        startActivity(mainIntent)
+                        finish()
+                    }, 3000)
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
             }
         }
     }

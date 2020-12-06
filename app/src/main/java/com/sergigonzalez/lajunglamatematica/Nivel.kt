@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
@@ -22,11 +24,13 @@ class Nivel : AppCompatActivity() {
     private lateinit var ResultadoEditText: EditText
     private lateinit var bt_corregir: Button
     private lateinit var loadingAnimation: LottieAnimationView
+    private lateinit var AnimalAnimation: LottieAnimationView
     private lateinit var cargaNivel: TextView
     private lateinit var todoNivel: LinearLayout
     private lateinit var lvlUP: LottieAnimationView
     private lateinit var lvlDown: LottieAnimationView
     private lateinit var lvlPuntua: TextView
+    private lateinit var iconLevel: ImageView
     private val db = FirebaseFirestore.getInstance()
     private val user = FirebaseAuth.getInstance().currentUser
     private val email = user?.email
@@ -56,34 +60,22 @@ class Nivel : AppCompatActivity() {
     private var lvlResta = 0
     private var lvlMultiplica = 0
     private var lvlDivision = 0
+    private var mLastClickTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_nivel)
         findID()
-        loadingAnimation.speed = 4.50F
         buscaNivel()
          Handler(Looper.getMainLooper()).postDelayed({
              loadingAnimation.visibility = View.GONE
+             AnimalAnimation.visibility = View.VISIBLE
              cargaNivel.visibility = View.GONE
              todoNivel.visibility = View.VISIBLE
              compruebaEjecuta()
-         }, 2500)
+         }, 2000)
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        findID()
-        loadingAnimation.speed = 4.50F
-        buscaNivel()
-        Handler(Looper.getMainLooper()).postDelayed({
-            loadingAnimation.visibility = View.GONE
-            cargaNivel.visibility = View.GONE
-            todoNivel.visibility = View.VISIBLE
-            compruebaEjecuta()
-        }, 2500)
     }
 
     private fun findID(){
@@ -94,35 +86,43 @@ class Nivel : AppCompatActivity() {
         ResultadoEditText = findViewById(R.id.ResultadoEditText)
         bt_corregir = findViewById(R.id.bt_corregir)
         loadingAnimation = findViewById(R.id.loadingAnimation)
+        AnimalAnimation = findViewById(R.id.AnimalAnimation)
         cargaNivel = findViewById(R.id.cargaNivel)
         todoNivel = findViewById(R.id.todoNivel)
         lvlUP = findViewById(R.id.lvlUP)
         lvlDown = findViewById(R.id.lvlDown)
         lvlPuntua = findViewById(R.id.lvlPuntua)
+        iconLevel = findViewById(R.id.iconLevel)
     }
 
     private fun guardaNivel(){
-        if(lvlSuma >= dbSuma)
+
+        if(lvlSuma >= dbSuma) {
             db.collection("users").document(id).update("lvlSuma", lvlSuma)
+        }
 
-        if(lvlResta >= dbResta)
+        if(lvlResta >= dbResta) {
             db.collection("users").document(id).update("lvlResta", lvlResta)
+        }
 
-        if(lvlMultiplica >= dbMultiplica)
+        if(lvlMultiplica >= dbMultiplica) {
             db.collection("users").document(id).update("lvlMultiplica", lvlMultiplica)
+        }
 
-        if(lvlDivision >= dbDivision)
+        if(lvlDivision >= dbDivision) {
             db.collection("users").document(id).update("lvlDivision", lvlDivision)
+        }
 
-        if(puntuacion >= dbPuntuacion)
+        if(puntuacion >= dbPuntuacion) {
             db.collection("users").document(id).update("puntuacion", puntuacion)
+        }
 
     }
 
     private fun buscaNivel() {
         db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener { documents ->
                     for (document in documents) {
-                        Log.d("TAG", "${document.id} => ${document.data}")
+                        Log.d("DB: Users", "${document.id} => ${document.data}")
                         id = document.id
                         dbSuma = document.data["lvlSuma"].toString().toLong().toInt()
                         dbResta = document.data["lvlResta"].toString().toLong().toInt()
@@ -138,7 +138,7 @@ class Nivel : AppCompatActivity() {
                     }
                 }
                 .addOnFailureListener { exception ->
-                    Log.w("TAG", "Error getting documents: ", exception)
+                    Log.w("DB: Users", "Error al obtener la información: ", exception)
                 }
     }
 
@@ -156,11 +156,36 @@ class Nivel : AppCompatActivity() {
         if(lvlSuma >= 10) {
             finalSuma = true
             if (!pruebateResta) {
-                val mainIntent = Intent(this, Pruebate::class.java)
-                startActivity(mainIntent)
-                finish()
+                val view = View.inflate(this, R.layout.dialog_level, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                btn_confirm.setOnClickListener{
+                    val mainIntent = Intent(this, Pruebate::class.java)
+                    startActivity(mainIntent)
+                    finish()
+                }
+
             } else {
-                nivelResta()
+                val view = View.inflate(this, R.layout.dialog_level, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                btn_confirm.setOnClickListener{
+                    nivelResta()
+                }
             }
             dondeEstoy = 1
             db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -282,10 +307,8 @@ class Nivel : AppCompatActivity() {
 
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlSuma
+                    guardaNivel()
 
-                    if (lvlSuma >= dbSuma || puntuacion >= dbPuntuacion) {
-                        guardaNivel()
-                    }
 
                     desmarcar()
 
@@ -325,11 +348,37 @@ class Nivel : AppCompatActivity() {
         if(lvlResta == 10) {
             finalResta = true
             if (!pruebateMultiplica) {
-                val mainIntent = Intent(this, Pruebate::class.java)
-                startActivity(mainIntent)
-                finish()
+                val view = View.inflate(this, R.layout.dialog_level, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                btn_confirm.setOnClickListener{
+                    val mainIntent = Intent(this, Pruebate::class.java)
+                    startActivity(mainIntent)
+                    finish()
+                }
+
             } else {
-                nivelMultiplica()
+                val view = View.inflate(this, R.layout.dialog_level, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                btn_confirm.setOnClickListener{
+                    nivelMultiplica()
+                }
+
             }
             dondeEstoy = 2
             db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -426,11 +475,24 @@ class Nivel : AppCompatActivity() {
                 lvlUP.visibility = View.GONE
             }
         if(lvlResta == 8 && !finalSuma) {
-            println("Debes terminar la Suma para seguir con la Resta")
-            whenSuma()
-            nivelSuma()
-            dondeEstoy = 0
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+            val view = View.inflate(this, R.layout.dialog_error, null)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setView(view)
+
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            btn_confirm.setOnClickListener{
+                whenSuma()
+                nivelSuma()
+                dondeEstoy = 0
+                db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+            }
+            val textMessage = view.findViewById<TextView>(R.id.textMessage)
+            textMessage.text = "Debes terminar la Suma para seguir con la Resta"
         } else if(!finalResta) {
                 queHacer.text = "Resta los dos numeros y escribe el resultado abajo."
                 Resultado = numero1 - numero2
@@ -447,9 +509,7 @@ class Nivel : AppCompatActivity() {
                     bt_corregir.visibility = View.GONE
                     Handler(Looper.myLooper()!!).postDelayed({
                         ++lvlResta
-                        if (lvlResta >= dbResta || puntuacion >= dbPuntuacion) {
-                            guardaNivel()
-                        }
+                        guardaNivel()
                         desmarcar()
                         if (lvlResta >= 3 && finalSuma) {
                             lvlUP.visibility = View.VISIBLE
@@ -487,11 +547,37 @@ class Nivel : AppCompatActivity() {
         if(lvlMultiplica == 10) {
             finalMultiplica = true
             if (!pruebateDivision) {
-                val mainIntent = Intent(this, Pruebate::class.java)
-                startActivity(mainIntent)
-                finish()
+                val view = View.inflate(this, R.layout.dialog_level, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                btn_confirm.setOnClickListener{
+                    val mainIntent = Intent(this, Pruebate::class.java)
+                    startActivity(mainIntent)
+                    finish()
+                }
+
             } else {
-                nivelDivision()
+                val view = View.inflate(this, R.layout.dialog_level, null)
+
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                btn_confirm.setOnClickListener{
+                    nivelDivision()
+                }
+
             }
             dondeEstoy = 3
             db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -579,11 +665,24 @@ class Nivel : AppCompatActivity() {
             lvlUP.visibility = View.GONE
         }
         if(lvlMultiplica == 8 && !finalResta) {
-            println("Debes terminar la Resta para seguir con la Multiplicación")
-            whenResta()
-            nivelResta()
-            dondeEstoy = 1
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+            val view = View.inflate(this, R.layout.dialog_error, null)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setView(view)
+
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            btn_confirm.setOnClickListener{
+                whenResta()
+                nivelResta()
+                dondeEstoy = 1
+                db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+            }
+            val textMessage = view.findViewById<TextView>(R.id.textMessage)
+            textMessage.text = "Debes terminar la Resta para seguir con la Multiplicación"
         } else if(!finalMultiplica) {
             queHacer.text = "Multiplica los dos numeros y escribe el resultado abajo."
             Resultado = numero1 * numero2
@@ -600,9 +699,7 @@ class Nivel : AppCompatActivity() {
                 bt_corregir.visibility = View.GONE
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlMultiplica
-                    if (lvlMultiplica >= dbMultiplica || puntuacion >= dbPuntuacion) {
-                        guardaNivel()
-                    }
+                    guardaNivel()
                     desmarcar()
                     if (lvlMultiplica >= 3 && finalResta) {
                         lvlUP.visibility = View.VISIBLE
@@ -639,7 +736,25 @@ class Nivel : AppCompatActivity() {
         lvlPuntua.text = "Puntuación: $puntuacion"
         if(lvlDivision == 10) {
             finalDivision = true
-            println("Finalizado game.")
+            val view = View.inflate(this, R.layout.dialog_level, null)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setView(view)
+
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            btn_confirm.setOnClickListener addOnSuccessListener@{
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                    return@addOnSuccessListener
+                } else {
+                    startActivity(Intent(this, menuPrincipal::class.java))
+                    finish()
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
+            }
             dondeEstoy = 3
             db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
             lvlUP.visibility = View.GONE
@@ -726,11 +841,25 @@ class Nivel : AppCompatActivity() {
         }
 
         if(lvlDivision == 8 && !finalMultiplica) {
-            println("Debes terminar la Multiplicación para seguir con la División")
-            whenMultiplica()
-            nivelMultiplica()
-            dondeEstoy = 2
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+            val view = View.inflate(this, R.layout.dialog_error, null)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setView(view)
+
+            val dialog = builder.create()
+            dialog.show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            btn_confirm.setOnClickListener{
+                whenMultiplica()
+                nivelMultiplica()
+                dondeEstoy = 2
+                db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+            }
+            val textMessage = view.findViewById<TextView>(R.id.textMessage)
+            textMessage.text = "Debes terminar la Multiplicación para seguir con la División"
+
         } else if(!finalDivision) {
             queHacer.text = "Divide los dos numeros y escribe el resultado abajo."
             Resultado = numero1 / numero2
@@ -747,9 +876,7 @@ class Nivel : AppCompatActivity() {
                 bt_corregir.visibility = View.GONE
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlDivision
-                    if (lvlDivision >= dbDivision || puntuacion >= dbPuntuacion) {
-                        guardaNivel()
-                    }
+                    guardaNivel()
                     Incorrecto.visibility = View.GONE
                     Correcto.visibility = View.GONE
                     bt_corregir.visibility = View.VISIBLE
@@ -787,15 +914,19 @@ class Nivel : AppCompatActivity() {
         when (dondeEstoy){
             0 -> {
                 nivelSuma()
+                iconLevel.setImageResource(R.mipmap.tortuga)
             }
             1 -> {
                 nivelResta()
+                iconLevel.setImageResource(R.mipmap.zorro)
             }
             2 -> {
                 nivelMultiplica()
+                iconLevel.setImageResource(R.mipmap.mono)
             }
             3 -> {
                 nivelDivision()
+                iconLevel.setImageResource(R.mipmap.leopardo)
             }
         }
     }

@@ -3,13 +3,13 @@ package com.sergigonzalez.lajunglamatematica
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthActivity : AppCompatActivity() {
@@ -27,13 +27,10 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setup(){
-        //title = "Autenticación"
         register = findViewById(R.id.SignUp)
         logInButton = findViewById(R.id.RegisterButton)
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
-
-
 
         logInButton.setOnClickListener {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
@@ -52,11 +49,13 @@ class AuthActivity : AppCompatActivity() {
                         if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
                             return@addOnCompleteListener
                         } else {
-                            showAlert()
+                            showAlert("No se ha encontrado al usuario")
                         }
                         SystemClock.elapsedRealtime()
                     }
                 }
+            } else {
+                showAlert("Alguno de los campos estan vacios")
             }
         }
 
@@ -72,13 +71,24 @@ class AuthActivity : AppCompatActivity() {
     }
 
 
-    private fun showAlert() {
+    private fun showAlert(Message: String) {
+
+        val view = View.inflate(this, R.layout.dialog_error, null)
+
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error autenticando al usuario")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
+        builder.setView(view)
+
+        val dialog = builder.create()
         dialog.show()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+        btn_confirm.setOnClickListener{
+            dialog.dismiss()
+        }
+        val textMessage = view.findViewById<TextView>(R.id.textMessage)
+        textMessage.text = Message
+
     }
 
     private fun showHome(){

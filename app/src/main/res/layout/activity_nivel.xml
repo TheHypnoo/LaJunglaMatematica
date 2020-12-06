@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@mipmap/animaliconmenu"
     tools:context=".Nivel">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:gravity="center"
-            android:hint="Cargando el nivel..."
+            android:text="Cargando el nivel..."
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -37,63 +35,138 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loadingAnimation"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:visibility="visible"
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
-            app:lottie_rawRes="@raw/next"
+            app:lottie_rawRes="@raw/loading2"
             tools:ignore="MissingConstraints"
             tools:visibility="gone" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/AnimalAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/animalanimation"
-            tools:ignore="MissingConstraints" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
 
         <LinearLayout
             android:id="@+id/todoNivel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/queHacer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abril_fatface"
+                android:gravity="center"
+                android:hint="Suma los dos numeros y escribe el resultado abajo."
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/enunciadoNivel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/andika"
+                android:gravity="center"
+                android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas  y 2 peras. ¿Cuantas piezas de fruta  tengo que comprar en total?"
+                android:textSize="22sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iconLevel"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="left"
+                    app:srcCompat="@mipmap/tortuga" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/Correcto"
+                    android:layout_width="190dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:gravity="left"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/correcto"
+                    tools:ignore="MissingConstraints" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/Incorrecto"
+                    android:layout_width="190dp"
+                    android:layout_height="90dp"
+                    android:gravity="right"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/incorrecto"
+                    tools:ignore="MissingConstraints"
+                    tools:visibility="gone" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/queHacer"
+                <Space
                     android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <EditText
+                    android:id="@+id/ResultadoEditText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/abril_fatface"
-                    android:gravity="center"
-                    android:hint="Suma los dos numeros y escribe el resultado abajo."
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:inputType="number" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <Button
+                    android:id="@+id/bt_corregir"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bordes_redondos"
+                    android:text="Corregir" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <TextView
-                    android:id="@+id/enunciadoNivel"
+                    android:id="@+id/lvlPuntua"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/andika"
                     android:gravity="center"
-                    android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas  y 2 peras. ¿Cuantas piezas de fruta  tengo que comprar en total?"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -102,119 +175,52 @@
                     android:orientation="horizontal">
 
                     <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/Correcto"
-                        android:layout_width="190dp"
-                        android:layout_height="90dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:gravity="left"
+                        android:id="@+id/lvlDown"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="left"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:visibility="gone"
-                        app:lottie_autoPlay="false"
-                        app:lottie_loop="false"
-                        app:lottie_rawRes="@raw/correcto"
-                        tools:ignore="MissingConstraints" />
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/lvldown"
+                        tools:ignore="MissingConstraints"
+                        tools:visibility="visible" />
 
                     <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/Incorrecto"
-                        android:layout_width="190dp"
-                        android:layout_height="90dp"
-                        android:gravity="right"
+                        android:id="@+id/lvlUP"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="right"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:visibility="gone"
-                        app:lottie_autoPlay="false"
-                        app:lottie_loop="false"
-                        app:lottie_rawRes="@raw/incorrecto"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/lvlup"
                         tools:ignore="MissingConstraints"
-                        tools:visibility="gone" />
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:visibility="gone"
-                    tools:visibility="gone" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp" />
-
-                    <EditText
-                        android:id="@+id/ResultadoEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="15dp" />
-
-                    <Button
-                        android:id="@+id/bt_corregir"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bordes_redondos"
-                        android:text="Corregir" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp" />
-
-                    <TextView
-                        android:id="@+id/lvlPuntua"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/andika"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/lvlDown"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="left"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:visibility="gone"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/lvldown"
-                            tools:ignore="MissingConstraints"
-                            tools:visibility="visible" />
-
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/lvlUP"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="right"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:visibility="gone"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/lvlup"
-                            tools:ignore="MissingConstraints"
-                            tools:visibility="visible" />
-                    </LinearLayout>
-
+                        tools:visibility="visible" />
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimalAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animalanimation"
+            tools:ignore="MissingConstraints"
+            tools:visibility="visible" />
 
     </LinearLayout>
 

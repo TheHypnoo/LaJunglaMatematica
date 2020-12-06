@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@mipmap/animaliconmenu"
     tools:context=".Ranking">
 
     <LinearLayout
@@ -19,14 +19,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
 
         <TextView
             android:id="@+id/cargaRanking"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:gravity="center"
-            android:hint="Cargando el Ranking..."
+            android:text="Cargando el Ranking..."
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -34,11 +35,11 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationCargaRanking"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             app:lottie_autoPlay="true"
-            app:lottie_loop="false"
-            app:lottie_rawRes="@raw/next"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading2"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 
@@ -55,7 +56,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/rankingAnimation"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@mipmap/animaliconmenu"
     tools:context=".menuPrincipal">
 
     <LinearLayout
@@ -26,26 +26,53 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:lottie_autoPlay="true"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/imageView11"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/insignia" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:contentDescription="TODO"
+                app:srcCompat="@mipmap/tortuga" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="90dp"
+                android:layout_height="109dp"
+                app:srcCompat="@mipmap/zorro" />
+
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="wrap_content" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/startGame"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/bordes_redondos"
+            app:icon="@drawable/ic_play"
+            app:iconGravity="end"
+            app:iconPadding="0dp"
+            style="@style/Widget.MaterialComponents.Button.Icon"
             android:text="@string/startGame" />
 
         <Space
@@ -54,24 +81,53 @@
 
         <Button
             android:id="@+id/ranking"
-            android:layout_width="wrap_content"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/bordes_redondos"
             android:text="@string/ranking" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="10dp" />
 
         <Button
             android:id="@+id/leave"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/bordes_redondos"
             android:text="@string/leave" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="86dp"
+                android:layout_height="92dp"
+                app:srcCompat="@mipmap/mono" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="72dp"
+                android:layout_height="98dp"
+                android:layout_weight="0"
+                app:srcCompat="@mipmap/leopardo" />
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

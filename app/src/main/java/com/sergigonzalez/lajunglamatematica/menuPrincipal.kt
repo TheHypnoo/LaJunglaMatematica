@@ -1,8 +1,6 @@
 package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,7 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
@@ -44,7 +42,7 @@ class menuPrincipal : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             animalAnimation.visibility = View.GONE
             initListeners()
-        },3000)
+        }, 3000)
 
     }
 
@@ -68,7 +66,7 @@ class menuPrincipal : AppCompatActivity() {
                     }
                 }
                 .addOnFailureListener { exception ->
-                    Log.w("TAG", "Error getting documents: ", exception)
+                    Log.w("TAG", "Error al obtener los documentos: ", exception)
                 }
     }
 
@@ -80,10 +78,9 @@ class menuPrincipal : AppCompatActivity() {
             haJugado = true
             Handler(Looper.getMainLooper()).postDelayed({
                 db.collection("users").document(id).update("haJugado", haJugado)
-            },2000)
+            }, 2000)
         }
         startGame.setOnClickListener {
-            buscaPruebate()
             Handler(Looper.getMainLooper()).postDelayed({
                 if (pruebateSuma) {
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
@@ -93,7 +90,7 @@ class menuPrincipal : AppCompatActivity() {
                     }
                     mLastClickTime = SystemClock.elapsedRealtime()
 
-                } else if(!pruebateSuma){
+                } else if (!pruebateSuma) {
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
                         return@postDelayed
                     } else {
@@ -101,7 +98,7 @@ class menuPrincipal : AppCompatActivity() {
                     }
                     mLastClickTime = SystemClock.elapsedRealtime()
                 }
-            },200)
+            }, 500)
             }
 
         ranking.setOnClickListener {
@@ -113,60 +110,43 @@ class menuPrincipal : AppCompatActivity() {
             mLastClickTime = SystemClock.elapsedRealtime()
         }
 
-        leave.setOnClickListener {
-            //Sin hacer :C
-            val alertDialog = AlertDialog.Builder(this).create()
-            alertDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.LTGRAY))
-            //alertDialog.setTitle("Salir")
-            alertDialog.setMessage("Si quiere salir del juego, presione el boton 'Salir'\n\nSi quiere cerrar sesión, presione el boton \n'Cerrar Sesión'")
+        leave.setOnClickListener addOnSuccessListener@{
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                return@addOnSuccessListener
+            } else {
+                val view = View.inflate(this, R.layout.dialog_leave, null)
 
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Salir"
-            ) { _, _ -> finish()  }
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
 
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cerrar Sesión"
-            ) { _, _ -> startActivity(Intent(applicationContext, AuthActivity::class.java)); finish() }
-/*
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Cancel"
-            ) { dialog, _ -> dialog.dismiss() }
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
- */
-            alertDialog.show()
+                val btnSalir = view.findViewById<Button>(R.id.btn_leave)
 
-            val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-            //val btnNeutral = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+                val btnSignOut = view.findViewById<Button>(R.id.btn_signOut)
 
-            val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-            layoutParams.weight = 5f
-            //btnNeutral.layoutParams = layoutParams
-            btnPositive.layoutParams = layoutParams
-            btnNegative.layoutParams = layoutParams
+                val closeDialog = view.findViewById<ImageView>(R.id.closeDialog)
 
+                btnSalir.setOnClickListener{
+                    finish()
+                }
 
+                btnSignOut.setOnClickListener{
+                    FirebaseAuth.getInstance().signOut()
+                    startActivity(Intent(applicationContext, AuthActivity::class.java))
+                    finish()
+                }
 
+                closeDialog.setOnClickListener{
+                    dialog.dismiss()
+                }
 
-
-
-            /*
-            val builder = AlertDialog.Builder(this)
-            //builder.setMessage("Seleccione Cerrar Sesión o Salir y Cerrar sesión")
-
-            builder.setPositiveButton("Cerrar Sesión") { dialog, which ->
-                val CerrarSesion: Intent = Intent(applicationContext, AuthActivity::class.java)
-                startActivity(CerrarSesion)
-                finish()
             }
-
-            builder.setNegativeButton("Salir y cerrar Sesión") { dialog, which ->
-                finish()
-            }
-            builder.setNeutralButton("Cancelar",null)
+            mLastClickTime = SystemClock.elapsedRealtime()
 
 
-
-            builder.show()
-
-             */
         }
     }
 }

@@ -55,13 +55,13 @@ class Ranking : AppCompatActivity() {
         setContentView(R.layout.activity_ranking)
         buscaPuntuacion()
         FindID()
-        animationCargaRanking.speed = 4.50F
+        //animationCargaRanking.speed = 4.50F
         Handler(Looper.getMainLooper()).postDelayed({
             LayoutCarga.visibility = View.GONE
             LayoutRanking.visibility = View.VISIBLE
             ordenaMejor()
             escribe()
-        },2500)
+        },2000)
     }
 
     private fun FindID(){
