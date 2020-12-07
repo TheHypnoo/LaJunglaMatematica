@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/animaliconmenu"
+    android:background="@mipmap/background"
     tools:context=".Nivel">
 
     <LinearLayout
@@ -40,7 +40,7 @@
             android:visibility="visible"
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
-            app:lottie_rawRes="@raw/loading2"
+            app:lottie_rawRes="@raw/charge"
             tools:ignore="MissingConstraints"
             tools:visibility="gone" />
 
@@ -67,7 +67,8 @@
                 android:fontFamily="@font/andika"
                 android:gravity="center"
                 android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas  y 2 peras. ¿Cuantas piezas de fruta  tengo que comprar en total?"
-                android:textSize="22sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -104,7 +105,7 @@
                     android:visibility="gone"
                     app:lottie_autoPlay="false"
                     app:lottie_loop="false"
-                    app:lottie_rawRes="@raw/correcto"
+                    app:lottie_rawRes="@raw/correct"
                     tools:ignore="MissingConstraints" />
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -115,7 +116,7 @@
                     android:visibility="gone"
                     app:lottie_autoPlay="false"
                     app:lottie_loop="false"
-                    app:lottie_rawRes="@raw/incorrecto"
+                    app:lottie_rawRes="@raw/incorrect"
                     tools:ignore="MissingConstraints"
                     tools:visibility="gone" />
             </LinearLayout>
@@ -142,6 +143,16 @@
                     android:layout_gravity="center"
                     android:ems="10"
                     android:inputType="number" />
+
+                <TextView
+                    android:id="@+id/resultadoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -184,7 +195,7 @@
                         android:visibility="gone"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/lvldown"
+                        app:lottie_rawRes="@raw/back"
                         tools:ignore="MissingConstraints"
                         tools:visibility="visible" />
 
@@ -197,8 +208,8 @@
                         android:focusable="true"
                         android:visibility="gone"
                         app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/lvlup"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/forward"
                         tools:ignore="MissingConstraints"
                         tools:visibility="visible" />
                 </LinearLayout>
@@ -209,7 +220,8 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/AnimalAnimation"
@@ -218,7 +230,7 @@
             android:visibility="gone"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/animalanimation"
+            app:lottie_rawRes="@raw/animalsanimation"
             tools:ignore="MissingConstraints"
             tools:visibility="visible" />
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/animaliconmenu"
+    android:background="@mipmap/background"
     tools:context=".Ranking">
 
     <LinearLayout
@@ -39,7 +39,7 @@
             android:layout_gravity="center"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading2"
+            app:lottie_rawRes="@raw/charge"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 

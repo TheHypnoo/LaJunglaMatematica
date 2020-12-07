@@ -108,6 +108,7 @@ class Pruebate : AppCompatActivity() {
     private var pruebateResta = false
     private var pruebateMultiplica = false
     private var pruebateDivision = false
+    private var dondeEstoy = -1
     private var mLastClickTime: Long = 0
 
 
@@ -117,7 +118,6 @@ class Pruebate : AppCompatActivity() {
         setContentView(R.layout.activity_pruebate)
         val Signos = arrayOf("+","-","x","/")
         FindID()
-        //loadingAnimation.speed = 4.50F
         buscaPruebate()
         CargaPruebate.visibility = View.VISIBLE
         Handler(Looper.getMainLooper()).postDelayed({
@@ -151,6 +151,7 @@ class Pruebate : AppCompatActivity() {
                 pruebateResta = document.data["pruebateResta"] as Boolean
                 pruebateMultiplica = document.data["pruebateMultiplica"] as Boolean
                 pruebateDivision = document.data["pruebateDivision"] as Boolean
+                dondeEstoy = document.data["dondeEstoy"].toString().toLong().toInt()
             }
         }
                 .addOnFailureListener { exception ->
@@ -159,7 +160,7 @@ class Pruebate : AppCompatActivity() {
     }
 
     private fun guardaPruebate(){
-
+        db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
         db.collection("users").document(id).update("pruebateSuma", pruebateSuma)
         db.collection("users").document(id).update("pruebateResta", pruebateResta)
         db.collection("users").document(id).update("pruebateMultiplica", pruebateMultiplica)
@@ -313,6 +314,7 @@ class Pruebate : AppCompatActivity() {
                     return@addOnSuccessListener
                 } else {
                     pruebateSuma = true
+                    dondeEstoy = 0
                     SumaResultado()
                     BT_Corregir.visibility = View.GONE
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -450,6 +452,7 @@ class Pruebate : AppCompatActivity() {
                     return@addOnSuccessListener
                 } else {
                     pruebateResta = true
+                    dondeEstoy = 1
                     RestaResultado()
                     BT_Corregir.visibility = View.GONE
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -563,6 +566,7 @@ class Pruebate : AppCompatActivity() {
                     return@addOnSuccessListener
                 } else {
                     pruebateMultiplica = true
+                    dondeEstoy = 2
                     MultiplicaResultado()
                     BT_Corregir.visibility = View.GONE
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -710,6 +714,7 @@ class Pruebate : AppCompatActivity() {
                     return@addOnSuccessListener
                 } else {
                     pruebateDivision = true
+                    dondeEstoy = 3
                     DivisionResultado()
                     BT_Corregir.visibility = View.GONE
                     Handler(Looper.getMainLooper()).postDelayed({

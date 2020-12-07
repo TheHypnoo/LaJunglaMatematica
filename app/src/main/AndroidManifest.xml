@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".AnimationLoading" />
         <activity android:name=".menuPrincipal" />
         <activity android:name=".Pruebate" />
         <activity android:name=".Nivel" />

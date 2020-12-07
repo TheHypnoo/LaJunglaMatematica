@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import org.w3c.dom.Text
 
 class Nivel : AppCompatActivity() {
     private lateinit var queHacer: TextView
@@ -42,6 +43,7 @@ class Nivel : AppCompatActivity() {
     private var puntuacion = 0
     private var dbVidas = 0
     private var vidas = 0
+    private lateinit var resultadoTextView: TextView
 
     private var dondeEstoy = -1
     private var pruebateSuma = false
@@ -93,6 +95,7 @@ class Nivel : AppCompatActivity() {
         lvlDown = findViewById(R.id.lvlDown)
         lvlPuntua = findViewById(R.id.lvlPuntua)
         iconLevel = findViewById(R.id.iconLevel)
+        resultadoTextView = findViewById(R.id.resultadoTextView)
     }
 
     private fun guardaNivel(){
@@ -184,11 +187,11 @@ class Nivel : AppCompatActivity() {
 
                 val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
                 btn_confirm.setOnClickListener{
+                    dondeEstoy = 1
+                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                     nivelResta()
                 }
             }
-            dondeEstoy = 1
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
         }
@@ -223,7 +226,7 @@ class Nivel : AppCompatActivity() {
                             "en casa y ayudé a mi mama a hacer la cena. Mientras mi mama cocinaba, yo" +
                             "tenía que poner la mesa: $numero1 tenedores, $numero2 cuchillos. ¿Entonces," +
                             "cuántos cubiertos debo poner en la mesa entre cucharas, tenedores y" +
-                            "cuchillos?"
+                            " cuchillos?"
                 }
                 5 -> {
                     enunciadoNivel.text = "Para cenar mi mama ha hecho mis cenas favoritas: crema de verdura y" +
@@ -262,13 +265,15 @@ class Nivel : AppCompatActivity() {
         numero1 = generaNumeros()
         numero2 = generaNumeros()
         whenSuma()
-        //Revisar esta parte de la visibility
+        resultadoTextView.visibility = View.GONE
+        ResultadoEditText.visibility = View.VISIBLE
+        iconLevel.setImageResource(R.mipmap.tortuga)
         when {
             lvlResta == 8 -> {
                 lvlUP.visibility = View.GONE
                 lvlDown.visibility = View.GONE
             }
-            lvlSuma >= 3 && !finalSuma -> {
+            lvlSuma >= 5 && !finalSuma -> {
                 lvlUP.visibility = View.VISIBLE
 
                 lvlUP.setOnClickListener {
@@ -277,10 +282,10 @@ class Nivel : AppCompatActivity() {
                         startActivity(mainIntent)
                         finish()
                     } else {
+                        dondeEstoy = 1
+                        db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                         nivelResta()
                     }
-                    dondeEstoy = 1
-                    db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                     lvlUP.visibility = View.GONE
                 }
             }
@@ -293,6 +298,8 @@ class Nivel : AppCompatActivity() {
             Resultado = numero1 + numero2
 
             bt_corregir.setOnClickListener {
+                bt_corregir.visibility = View.GONE
+                ResultadoEditText.visibility = View.GONE
 
                 if (ResultadoEditText.text.toString() == Resultado.toString()) {
                     Correcto.visibility = View.VISIBLE
@@ -301,18 +308,17 @@ class Nivel : AppCompatActivity() {
                 } else {
                     Incorrecto.visibility = View.VISIBLE
                     Incorrecto.playAnimation()
+                    resultadoTextView.visibility = View.VISIBLE
+                    resultadoTextView.text = "El resultado era: $Resultado"
                 }
-
-                bt_corregir.visibility = View.GONE
 
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlSuma
                     guardaNivel()
 
-
                     desmarcar()
 
-                    if (lvlSuma >= 3) {
+                    if (lvlSuma >= 5) {
                         lvlUP.visibility = View.VISIBLE
 
                         lvlUP.setOnClickListener {
@@ -321,17 +327,17 @@ class Nivel : AppCompatActivity() {
                                 startActivity(mainIntent)
                                 finish()
                             } else {
+                                dondeEstoy = 1
+                                db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                                 nivelResta()
                             }
-                            dondeEstoy = 1
-                            db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                             lvlUP.visibility = View.GONE
                         }
                         nivelSuma()
                     } else {
                         nivelSuma()
                     }
-                }, 1500)
+                }, 2300)
             }
         }
     }
@@ -376,12 +382,11 @@ class Nivel : AppCompatActivity() {
 
                 val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
                 btn_confirm.setOnClickListener{
+                    dondeEstoy = 2
+                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                     nivelMultiplica()
                 }
-
             }
-            dondeEstoy = 2
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
         } else if(!finalResta) {
@@ -446,27 +451,30 @@ class Nivel : AppCompatActivity() {
         numero1 = generaNumeros()
         numero2 = generaNumeros()
         whenResta()
+        iconLevel.setImageResource(R.mipmap.zorro)
+        ResultadoEditText.visibility = View.VISIBLE
+        resultadoTextView.visibility = View.GONE
          if (!finalSuma) {
             lvlDown.visibility = View.VISIBLE
             lvlDown.setOnClickListener {
-                nivelSuma()
                 dondeEstoy = 0
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                nivelSuma()
                 lvlDown.visibility = View.GONE
             }
         } else {
             lvlDown.visibility = View.GONE
         }
-        if (finalSuma && lvlResta >= 3) {
+        if (finalSuma && lvlResta >= 5) {
                 lvlUP.visibility = View.VISIBLE
                 lvlUP.setOnClickListener {
                     if (!pruebateMultiplica) {
                         val mainIntent = Intent(this, Pruebate::class.java)
                         startActivity(mainIntent)
                         finish()
+                    } else {
                         dondeEstoy = 2
                         db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
-                    } else {
                         nivelMultiplica()
                     }
                     lvlUP.visibility = View.GONE
@@ -486,10 +494,10 @@ class Nivel : AppCompatActivity() {
 
             val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
             btn_confirm.setOnClickListener{
-                whenSuma()
-                nivelSuma()
                 dondeEstoy = 0
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                whenSuma()
+                nivelSuma()
             }
             val textMessage = view.findViewById<TextView>(R.id.textMessage)
             textMessage.text = "Debes terminar la Suma para seguir con la Resta"
@@ -497,33 +505,37 @@ class Nivel : AppCompatActivity() {
                 queHacer.text = "Resta los dos numeros y escribe el resultado abajo."
                 Resultado = numero1 - numero2
 
-                bt_corregir.setOnClickListener {
-                    if (ResultadoEditText.text.toString() == Resultado.toString()) {
-                        Correcto.visibility = View.VISIBLE
-                        Correcto.playAnimation()
-                        ++puntuacion
-                    } else {
-                        Incorrecto.visibility = View.VISIBLE
-                        Incorrecto.playAnimation()
-                    }
-                    bt_corregir.visibility = View.GONE
+            bt_corregir.setOnClickListener {
+                bt_corregir.visibility = View.GONE
+                ResultadoEditText.visibility = View.GONE
+
+                if (ResultadoEditText.text.toString() == Resultado.toString()) {
+                    Correcto.visibility = View.VISIBLE
+                    Correcto.playAnimation()
+                    ++puntuacion
+                } else {
+                    Incorrecto.visibility = View.VISIBLE
+                    Incorrecto.playAnimation()
+                    resultadoTextView.visibility = View.VISIBLE
+                    resultadoTextView.text = "El resultado era: $Resultado"
+                }
                     Handler(Looper.myLooper()!!).postDelayed({
                         ++lvlResta
                         guardaNivel()
                         desmarcar()
-                        if (lvlResta >= 3 && finalSuma) {
+                        if (lvlResta >= 5 && finalSuma) {
                             lvlUP.visibility = View.VISIBLE
                             lvlUP.setOnClickListener {
                                 if (!pruebateMultiplica) {
                                     val mainIntent = Intent(this, Pruebate::class.java)
                                     startActivity(mainIntent)
                                     finish()
-                                    dondeEstoy = 2
                                 } else {
                                     dondeEstoy = 2
+                                    db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                                     nivelMultiplica()
                                 }
-                                db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
+
                                 lvlUP.visibility = View.GONE
                             }
                             nivelResta()
@@ -575,12 +587,11 @@ class Nivel : AppCompatActivity() {
 
                 val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
                 btn_confirm.setOnClickListener{
+                    dondeEstoy = 3
+                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                     nivelDivision()
                 }
-
             }
-            dondeEstoy = 3
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
         } else if(!finalMultiplica) {
@@ -636,27 +647,30 @@ class Nivel : AppCompatActivity() {
         numero1 = generaNumeros()
         numero2 = generaNumeros()
         whenMultiplica()
+        iconLevel.setImageResource(R.mipmap.mono)
+        ResultadoEditText.visibility = View.VISIBLE
+        resultadoTextView.visibility = View.GONE
         if (!finalResta) {
             lvlDown.visibility = View.VISIBLE
             lvlDown.setOnClickListener {
-                nivelResta()
                 dondeEstoy = 1
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                nivelResta()
                 lvlDown.visibility = View.GONE
             }
         } else {
             lvlDown.visibility = View.GONE
         }
-        if (finalResta && !finalDivision && lvlMultiplica >= 3) {
+        if (finalResta && !finalDivision && lvlMultiplica >= 5) {
             lvlUP.visibility = View.VISIBLE
             lvlUP.setOnClickListener {
                 if (!pruebateDivision) {
                     val mainIntent = Intent(this, Pruebate::class.java)
                     startActivity(mainIntent)
                     finish()
+                } else {
                     dondeEstoy = 3
                     db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
-                } else {
                     nivelDivision()
                 }
                 lvlUP.visibility = View.GONE
@@ -676,10 +690,10 @@ class Nivel : AppCompatActivity() {
 
             val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
             btn_confirm.setOnClickListener{
-                whenResta()
-                nivelResta()
                 dondeEstoy = 1
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                whenResta()
+                nivelResta()
             }
             val textMessage = view.findViewById<TextView>(R.id.textMessage)
             textMessage.text = "Debes terminar la Resta para seguir con la Multiplicación"
@@ -688,6 +702,9 @@ class Nivel : AppCompatActivity() {
             Resultado = numero1 * numero2
 
             bt_corregir.setOnClickListener {
+                bt_corregir.visibility = View.GONE
+                ResultadoEditText.visibility = View.GONE
+
                 if (ResultadoEditText.text.toString() == Resultado.toString()) {
                     Correcto.visibility = View.VISIBLE
                     Correcto.playAnimation()
@@ -695,25 +712,25 @@ class Nivel : AppCompatActivity() {
                 } else {
                     Incorrecto.visibility = View.VISIBLE
                     Incorrecto.playAnimation()
+                    resultadoTextView.visibility = View.VISIBLE
+                    resultadoTextView.text = "El resultado era: $Resultado"
                 }
-                bt_corregir.visibility = View.GONE
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlMultiplica
                     guardaNivel()
                     desmarcar()
-                    if (lvlMultiplica >= 3 && finalResta) {
+                    if (lvlMultiplica >= 5 && finalResta) {
                         lvlUP.visibility = View.VISIBLE
                         lvlUP.setOnClickListener {
                             if (!pruebateDivision) {
                                 val mainIntent = Intent(this, Pruebate::class.java)
                                 startActivity(mainIntent)
                                 finish()
-                                dondeEstoy = 3
                             } else {
                                 dondeEstoy = 3
+                                db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                                 nivelDivision()
                             }
-                            db.collection("users").document(id).update("dondeEstoy", dondeEstoy)
                             lvlUP.visibility = View.GONE
                         }
                         nivelMultiplica()
@@ -750,13 +767,14 @@ class Nivel : AppCompatActivity() {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
                     return@addOnSuccessListener
                 } else {
+                    dondeEstoy = 0
+                    db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
                     startActivity(Intent(this, menuPrincipal::class.java))
                     finish()
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
-            dondeEstoy = 3
-            db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+
             lvlUP.visibility = View.GONE
             lvlDown.visibility = View.GONE
 
@@ -828,12 +846,15 @@ class Nivel : AppCompatActivity() {
         numero1 = generaNumeros()
         numero2 = generaNumeros()
         whenDivision()
+        iconLevel.setImageResource(R.mipmap.leopardo)
+        ResultadoEditText.visibility = View.VISIBLE
+        resultadoTextView.visibility = View.GONE
         if (!finalMultiplica) {
             lvlDown.visibility = View.VISIBLE
             lvlDown.setOnClickListener {
-                nivelMultiplica()
                 dondeEstoy = 2
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                nivelMultiplica()
                 lvlDown.visibility = View.GONE
             }
         } else {
@@ -852,10 +873,10 @@ class Nivel : AppCompatActivity() {
 
             val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
             btn_confirm.setOnClickListener{
-                whenMultiplica()
-                nivelMultiplica()
                 dondeEstoy = 2
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
+                whenMultiplica()
+                nivelMultiplica()
             }
             val textMessage = view.findViewById<TextView>(R.id.textMessage)
             textMessage.text = "Debes terminar la Multiplicación para seguir con la División"
@@ -865,6 +886,9 @@ class Nivel : AppCompatActivity() {
             Resultado = numero1 / numero2
 
             bt_corregir.setOnClickListener {
+                bt_corregir.visibility = View.GONE
+                ResultadoEditText.visibility = View.GONE
+
                 if (ResultadoEditText.text.toString() == Resultado.toString()) {
                     Correcto.visibility = View.VISIBLE
                     Correcto.playAnimation()
@@ -872,8 +896,9 @@ class Nivel : AppCompatActivity() {
                 } else {
                     Incorrecto.visibility = View.VISIBLE
                     Incorrecto.playAnimation()
+                    resultadoTextView.visibility = View.VISIBLE
+                    resultadoTextView.text = "El resultado era: $Resultado"
                 }
-                bt_corregir.visibility = View.GONE
                 Handler(Looper.myLooper()!!).postDelayed({
                     ++lvlDivision
                     guardaNivel()
