@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -25,8 +25,9 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="0dp"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:fontFamily="@font/atomic_age"
             android:gravity="center"
             android:rotationX="-20"
@@ -37,8 +38,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|top"
             android:orientation="vertical">
 
             <EditText
@@ -86,36 +88,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:orientation="vertical">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="60dp" />
 
             <TextView
                 android:id="@+id/SignUp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:fontFamily="@font/aclonica"
-                android:gravity="center"
+                android:gravity="center|top"
                 android:text="No estas registrado? Registrate"
                 android:textAlignment="center"
-                android:textColor="#565755"
+                android:textColor="#18232E"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/credits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:text="Created by TheHypnoo"
                 android:textAllCaps="true"
