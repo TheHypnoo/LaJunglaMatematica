@@ -18,10 +18,8 @@ class Ranking : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val user = FirebaseAuth.getInstance().currentUser
     private val email = user?.email
-    private var id = ""
     private lateinit var Jugadores: ArrayList<String>
     private lateinit var Puntuacion: ArrayList<Int>
-    private var x = 0
     private var puntuacion = 0
     private lateinit var top1: TextView
     private lateinit var puntuaTop1: TextView
@@ -55,7 +53,6 @@ class Ranking : AppCompatActivity() {
         setContentView(R.layout.activity_ranking)
         buscaPuntuacion()
         FindID()
-        //animationCargaRanking.speed = 4.50F
         Handler(Looper.getMainLooper()).postDelayed({
             LayoutCarga.visibility = View.GONE
             LayoutRanking.visibility = View.VISIBLE
@@ -98,13 +95,12 @@ class Ranking : AppCompatActivity() {
         db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener { documents ->
             for (document in documents) {
                 Log.d("DB: Users", "${document.id} => ${document.data}")
-                id = document.id
-                Jugadores.add(x,document.data["Nombre de Usuario"].toString()).toString()
-                Puntuacion.add(x,document.data["puntuacion"].toString().toLong().toInt()).toString()
-                x++
+                Jugadores.add(document.data["Nombre de Usuario"].toString()).toString()
+                Puntuacion.add(document.data["puntuacion"].toString().toLong().toInt()).toString()
+
             }
         }.addOnFailureListener { exception ->
-                Log.w("TAG", "Error al obtener la información: ", exception)
+                Log.w("DB: Users", "Error al obtener la información: ", exception)
             }
 
 
@@ -112,13 +108,12 @@ class Ranking : AppCompatActivity() {
         db.collection("users").whereNotEqualTo("Email", email).get().addOnSuccessListener { documents ->
             for (document in documents) {
                 Log.d("DB: Users", "${document.id} => ${document.data}")
-                id = document.id
-                Jugadores.add(x,document.data["Nombre de Usuario"].toString()).toString()
-                Puntuacion.add(x,document.data["puntuacion"].toString().toLong().toInt()).toString()
-                x++
+                Jugadores.add(document.data["Nombre de Usuario"].toString()).toString()
+                Puntuacion.add(document.data["puntuacion"].toString().toLong().toInt()).toString()
+
             }
         }.addOnFailureListener { exception ->
-                Log.w("TAG", "Error al obtener la información: ", exception)
+                Log.w("DB: Users", "Error al obtener la información: ", exception)
             }
     }
 
@@ -140,153 +135,191 @@ class Ranking : AppCompatActivity() {
     }
 
     private fun escribe(){
-        if(Jugadores.size == 1) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 2) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 3) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        }else if(Jugadores.size == 4) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top4.text = Jugadores[puntuacion]
-            puntuaTop4.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 5) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top4.text = Jugadores[puntuacion]
-            puntuaTop4.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top5.text = Jugadores[puntuacion]
-            puntuaTop5.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 6) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top4.text = Jugadores[puntuacion]
-            puntuaTop4.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top5.text = Jugadores[puntuacion]
-            puntuaTop5.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top6.text = Jugadores[puntuacion]
-            puntuaTop6.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 7) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top4.text = Jugadores[puntuacion]
-            puntuaTop4.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top5.text = Jugadores[puntuacion]
-            puntuaTop5.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top6.text = Jugadores[puntuacion]
-            puntuaTop6.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top7.text = Jugadores[puntuacion]
-            puntuaTop7.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 8) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top4.text = Jugadores[puntuacion]
-            puntuaTop4.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top5.text = Jugadores[puntuacion]
-            puntuaTop5.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top6.text = Jugadores[puntuacion]
-            puntuaTop6.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top7.text = Jugadores[puntuacion]
-            puntuaTop7.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top8.text = Jugadores[puntuacion]
-            puntuaTop8.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 9) {
-            top1.text = Jugadores[puntuacion]
-            puntuaTop1.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top2.text = Jugadores[puntuacion]
-            puntuaTop2.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top3.text = Jugadores[puntuacion]
-            puntuaTop3.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top4.text = Jugadores[puntuacion]
-            puntuaTop4.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top5.text = Jugadores[puntuacion]
-            puntuaTop5.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top6.text = Jugadores[puntuacion]
-            puntuaTop6.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top7.text = Jugadores[puntuacion]
-            puntuaTop7.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top8.text = Jugadores[puntuacion]
-            puntuaTop8.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-            top9.text = Jugadores[puntuacion]
-            puntuaTop9.text = Puntuacion[puntuacion].toString()
-            puntuacion++
-        } else if(Jugadores.size == 10) {
-            top10.text = Jugadores[puntuacion]
-            puntuaTop10.text = Puntuacion[puntuacion].toString()
+        when {
+            Jugadores.size == 1 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 2 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 3 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 4 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 5 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top5.text = Jugadores[puntuacion]
+                puntuaTop5.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 6 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top5.text = Jugadores[puntuacion]
+                puntuaTop5.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top6.text = Jugadores[puntuacion]
+                puntuaTop6.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 7 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top5.text = Jugadores[puntuacion]
+                puntuaTop5.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top6.text = Jugadores[puntuacion]
+                puntuaTop6.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top7.text = Jugadores[puntuacion]
+                puntuaTop7.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 8 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top5.text = Jugadores[puntuacion]
+                puntuaTop5.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top6.text = Jugadores[puntuacion]
+                puntuaTop6.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top7.text = Jugadores[puntuacion]
+                puntuaTop7.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top8.text = Jugadores[puntuacion]
+                puntuaTop8.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size == 9 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top5.text = Jugadores[puntuacion]
+                puntuaTop5.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top6.text = Jugadores[puntuacion]
+                puntuaTop6.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top7.text = Jugadores[puntuacion]
+                puntuaTop7.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top8.text = Jugadores[puntuacion]
+                puntuaTop8.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top9.text = Jugadores[puntuacion]
+                puntuaTop9.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+            }
+            Jugadores.size >= 10 -> {
+                top1.text = Jugadores[puntuacion]
+                puntuaTop1.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top2.text = Jugadores[puntuacion]
+                puntuaTop2.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top3.text = Jugadores[puntuacion]
+                puntuaTop3.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top4.text = Jugadores[puntuacion]
+                puntuaTop4.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top5.text = Jugadores[puntuacion]
+                puntuaTop5.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top6.text = Jugadores[puntuacion]
+                puntuaTop6.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top7.text = Jugadores[puntuacion]
+                puntuaTop7.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top8.text = Jugadores[puntuacion]
+                puntuaTop8.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top9.text = Jugadores[puntuacion]
+                puntuaTop9.text = Puntuacion[puntuacion].toString()
+                puntuacion++
+                top10.text = Jugadores[puntuacion]
+                puntuaTop10.text = Puntuacion[puntuacion].toString()
+            }
         }
     }
 }

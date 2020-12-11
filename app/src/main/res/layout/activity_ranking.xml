@@ -59,10 +59,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/rankingAnimation"
             android:layout_width="match_parent"
@@ -126,26 +122,29 @@
 
             <TextView
                 android:id="@+id/top1"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="1000"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -171,26 +170,29 @@
 
             <TextView
                 android:id="@+id/top2"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop2"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="100"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -215,26 +217,29 @@
 
             <TextView
                 android:id="@+id/top3"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#00000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop3"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#00000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -269,26 +274,29 @@
 
             <TextView
                 android:id="@+id/top4"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop4"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#00000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -323,26 +331,29 @@
 
             <TextView
                 android:id="@+id/top5"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop5"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#00000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -377,26 +388,29 @@
 
             <TextView
                 android:id="@+id/top6"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#232323"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop6"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#00020202"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -431,26 +445,29 @@
 
             <TextView
                 android:id="@+id/top7"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop7"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -485,26 +502,29 @@
 
             <TextView
                 android:id="@+id/top8"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop8"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -539,26 +559,29 @@
 
             <TextView
                 android:id="@+id/top9"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop9"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -593,26 +616,29 @@
 
             <TextView
                 android:id="@+id/top10"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:fontFamily="@font/aclonica"
-                android:hint="Jugador" />
+                android:hint="Jugador"
+                android:textColor="#00000000"
+                android:textSize="16sp" />
 
             <Space
-                android:layout_width="175dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop10"
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>

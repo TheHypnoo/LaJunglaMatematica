@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.w3c.dom.Text
 
 class Nivel : AppCompatActivity() {
     private lateinit var queHacer: TextView
@@ -41,8 +40,6 @@ class Nivel : AppCompatActivity() {
     private var Resultado = 0
     private var dbPuntuacion = -1
     private var puntuacion = 0
-    private var dbVidas = 0
-    private var vidas = 0
     private lateinit var resultadoTextView: TextView
 
     private var dondeEstoy = -1
@@ -137,7 +134,6 @@ class Nivel : AppCompatActivity() {
                         pruebateMultiplica = document.data["pruebateMultiplica"] as Boolean
                         pruebateDivision = document.data["pruebateDivision"] as Boolean
                         dondeEstoy = document.data["dondeEstoy"] .toString().toLong().toInt()
-                        dbVidas = document.data["vidas"].toString().toLong().toInt()
                     }
                 }
                 .addOnFailureListener { exception ->

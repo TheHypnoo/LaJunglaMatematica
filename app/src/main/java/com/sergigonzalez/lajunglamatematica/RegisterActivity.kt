@@ -48,7 +48,6 @@ class RegisterActivity : AppCompatActivity() {
                             "lvlDivision" to 0,
                             "puntuacion" to 0,
                             "dondeEstoy" to 0,
-                            "vidas" to 0,
                             "pruebateSuma" to false,
                             "pruebateResta" to false,
                             "pruebateMultiplica" to false,
