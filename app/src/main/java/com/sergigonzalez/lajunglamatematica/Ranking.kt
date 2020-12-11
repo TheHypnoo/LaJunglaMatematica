@@ -66,6 +66,7 @@ class Ranking : AppCompatActivity() {
         LayoutRanking = findViewById(R.id.LayoutRanking)
         animationCargaRanking = findViewById(R.id.animationCargaRanking)
         cargaRanking = findViewById(R.id.cargaRanking)
+
         top1 = findViewById(R.id.top1)
         puntuaTop1 = findViewById(R.id.puntuaTop1)
         top2 = findViewById(R.id.top2)
