@@ -321,7 +321,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 4000)
+                    }, 5000)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -459,7 +459,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 4000)
+                    }, 5000)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -573,7 +573,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 4000)
+                    }, 5000)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -721,7 +721,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 3000)
+                    }, 5000)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }

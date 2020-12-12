@@ -43,7 +43,17 @@ class menuPrincipal : AppCompatActivity() {
             animalAnimation.visibility = View.GONE
             initListeners()
         }, 3000)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        buscaPruebate()
+        findID()
+        animalAnimation.speed = 0.40F
+        Handler(Looper.getMainLooper()).postDelayed({
+            animalAnimation.visibility = View.GONE
+            initListeners()
+        }, 3000)
     }
 
     private fun findID() {

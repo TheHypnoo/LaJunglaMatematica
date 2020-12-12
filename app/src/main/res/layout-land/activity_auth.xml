@@ -51,7 +51,7 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#534747"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:inputType="textPassword"
                 android:textColor="#FBF8F8"
                 android:textColorHint="#534747"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="match_parent"

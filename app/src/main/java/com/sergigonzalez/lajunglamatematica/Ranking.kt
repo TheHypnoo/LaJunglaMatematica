@@ -1,5 +1,6 @@
 package com.sergigonzalez.lajunglamatematica
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,6 +20,7 @@ class Ranking : AppCompatActivity() {
     private val user = FirebaseAuth.getInstance().currentUser
     private val email = user?.email
     private lateinit var Jugadores: ArrayList<String>
+    private lateinit var yo: String
     private lateinit var Puntuacion: ArrayList<Int>
     private var puntuacion = 0
     private lateinit var top1: TextView
@@ -96,6 +98,7 @@ class Ranking : AppCompatActivity() {
         db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener { documents ->
             for (document in documents) {
                 Log.d("DB: Users", "${document.id} => ${document.data}")
+                yo = document.data["Nombre de Usuario"].toString()
                 Jugadores.add(document.data["Nombre de Usuario"].toString()).toString()
                 Puntuacion.add(document.data["puntuacion"].toString().toLong().toInt()).toString()
 
@@ -138,188 +141,573 @@ class Ranking : AppCompatActivity() {
     private fun escribe(){
         when {
             Jugadores.size == 1 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 2 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 3 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 4 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 5 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top5.text = Jugadores[puntuacion]
-                puntuaTop5.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top5.text = Jugadores[puntuacion]
+                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top5.text = Jugadores[puntuacion]
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+
             }
             Jugadores.size == 6 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top5.text = Jugadores[puntuacion]
-                puntuaTop5.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top6.text = Jugadores[puntuacion]
-                puntuaTop6.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top5.text = Jugadores[puntuacion]
+                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top5.text = Jugadores[puntuacion]
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top6.text = Jugadores[puntuacion]
+                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top6.text = Jugadores[puntuacion]
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 7 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top5.text = Jugadores[puntuacion]
-                puntuaTop5.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top6.text = Jugadores[puntuacion]
-                puntuaTop6.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top7.text = Jugadores[puntuacion]
-                puntuaTop7.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top5.text = Jugadores[puntuacion]
+                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top5.text = Jugadores[puntuacion]
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top6.text = Jugadores[puntuacion]
+                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top6.text = Jugadores[puntuacion]
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top7.text = Jugadores[puntuacion]
+                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top7.text = Jugadores[puntuacion]
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 8 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top5.text = Jugadores[puntuacion]
-                puntuaTop5.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top6.text = Jugadores[puntuacion]
-                puntuaTop6.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top7.text = Jugadores[puntuacion]
-                puntuaTop7.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top8.text = Jugadores[puntuacion]
-                puntuaTop8.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top5.text = Jugadores[puntuacion]
+                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top5.text = Jugadores[puntuacion]
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top6.text = Jugadores[puntuacion]
+                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top6.text = Jugadores[puntuacion]
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top7.text = Jugadores[puntuacion]
+                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top7.text = Jugadores[puntuacion]
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top8.text = Jugadores[puntuacion]
+                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top8.text = Jugadores[puntuacion]
+                    puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size == 9 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top5.text = Jugadores[puntuacion]
-                puntuaTop5.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top6.text = Jugadores[puntuacion]
-                puntuaTop6.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top7.text = Jugadores[puntuacion]
-                puntuaTop7.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top8.text = Jugadores[puntuacion]
-                puntuaTop8.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top9.text = Jugadores[puntuacion]
-                puntuaTop9.text = Puntuacion[puntuacion].toString()
-                puntuacion++
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top5.text = Jugadores[puntuacion]
+                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top5.text = Jugadores[puntuacion]
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top6.text = Jugadores[puntuacion]
+                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top6.text = Jugadores[puntuacion]
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top7.text = Jugadores[puntuacion]
+                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top7.text = Jugadores[puntuacion]
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top8.text = Jugadores[puntuacion]
+                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top8.text = Jugadores[puntuacion]
+                    puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top9.text = Jugadores[puntuacion]
+                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop9.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top9.text = Jugadores[puntuacion]
+                    puntuaTop9.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
             }
             Jugadores.size >= 10 -> {
-                top1.text = Jugadores[puntuacion]
-                puntuaTop1.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top2.text = Jugadores[puntuacion]
-                puntuaTop2.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top3.text = Jugadores[puntuacion]
-                puntuaTop3.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top4.text = Jugadores[puntuacion]
-                puntuaTop4.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top5.text = Jugadores[puntuacion]
-                puntuaTop5.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top6.text = Jugadores[puntuacion]
-                puntuaTop6.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top7.text = Jugadores[puntuacion]
-                puntuaTop7.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top8.text = Jugadores[puntuacion]
-                puntuaTop8.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top9.text = Jugadores[puntuacion]
-                puntuaTop9.text = Puntuacion[puntuacion].toString()
-                puntuacion++
-                top10.text = Jugadores[puntuacion]
-                puntuaTop10.text = Puntuacion[puntuacion].toString()
+                if(Jugadores[puntuacion] == yo) {
+                    top1.text = Jugadores[puntuacion]
+                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top1.text = Jugadores[puntuacion]
+                    puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top2.text = Jugadores[puntuacion]
+                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top2.text = Jugadores[puntuacion]
+                    puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top3.text = Jugadores[puntuacion]
+                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top3.text = Jugadores[puntuacion]
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top4.text = Jugadores[puntuacion]
+                    top4.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top4.text = Jugadores[puntuacion]
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top5.text = Jugadores[puntuacion]
+                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top5.text = Jugadores[puntuacion]
+                    puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top6.text = Jugadores[puntuacion]
+                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top6.text = Jugadores[puntuacion]
+                    puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top7.text = Jugadores[puntuacion]
+                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top7.text = Jugadores[puntuacion]
+                    puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top8.text = Jugadores[puntuacion]
+                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top8.text = Jugadores[puntuacion]
+                    puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top9.text = Jugadores[puntuacion]
+                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop9.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                } else {
+                    top9.text = Jugadores[puntuacion]
+                    puntuaTop9.text = Puntuacion[puntuacion].toString()
+                    puntuacion++
+                }
+                if(Jugadores[puntuacion] == yo) {
+                    top10.text = Jugadores[puntuacion]
+                    top10.setTextColor(Color.parseColor("#FF8D33"))
+                    puntuaTop10.text = Puntuacion[puntuacion].toString()
+                } else {
+                    top10.text = Jugadores[puntuacion]
+                    puntuaTop10.text = Puntuacion[puntuacion].toString()
+                }
             }
         }
     }

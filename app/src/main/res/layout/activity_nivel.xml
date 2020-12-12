@@ -196,7 +196,7 @@
                         android:focusable="true"
                         android:visibility="gone"
                         app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
+                        app:lottie_loop="false"
                         app:lottie_rawRes="@raw/back"
                         tools:ignore="MissingConstraints"
                         tools:visibility="visible" />
