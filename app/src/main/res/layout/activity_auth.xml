@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:fontFamily="@font/atomic_age"
             android:gravity="center"
             android:rotationX="-20"
@@ -39,7 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.73"
             android:gravity="center|top"
             android:orientation="vertical">
 
@@ -96,15 +96,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:clickable="true"
                 android:fontFamily="@font/aclonica"
                 android:gravity="center|top"
-                android:text="No estas registrado? Registrate"
+                android:text="No estas registrado? \nRegistrate"
                 android:textAlignment="center"
-                android:textColor="#18232E"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="#FAF8F1"
+                android:textSize="18sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -115,11 +114,11 @@
                 android:id="@+id/credits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:gravity="right"
                 android:text="Created by TheHypnoo"
                 android:textAllCaps="true"
-                android:textColor="#8F8F8F"
+                android:textColor="#000000"
                 android:textSize="8sp"
                 android:textStyle="bold|italic" />
         </LinearLayout>

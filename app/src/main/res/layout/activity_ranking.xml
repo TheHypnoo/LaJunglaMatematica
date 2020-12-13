@@ -128,9 +128,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="TheHypnoo"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -147,6 +148,7 @@
                 android:gravity="center"
                 android:hint="1000"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -176,9 +178,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Dedhon"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -195,6 +198,7 @@
                 android:gravity="center"
                 android:hint="100"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -223,9 +227,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Corba"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -240,8 +245,9 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:gravity="center"
-                android:hint="0"
+                android:hint="50"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -280,9 +286,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Firulais"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -299,6 +306,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -337,9 +345,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="xProXX"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -356,6 +365,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -394,9 +404,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="JoseMaria"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -413,6 +424,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -451,9 +463,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Ernesto"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -470,6 +483,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -508,9 +522,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Broncano"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -527,6 +542,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -565,9 +581,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Scarlet"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -584,6 +601,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -622,9 +640,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:fontFamily="@font/aclonica"
-                android:hint="Jugador"
+                android:fontFamily="@font/andika"
+                android:hint="Odin"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp" />
 
             <Space
@@ -641,6 +660,7 @@
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>

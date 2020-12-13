@@ -107,7 +107,7 @@
                 android:gravity="center"
                 android:text="No estas registrado? Registrate"
                 android:textAlignment="center"
-                android:textColor="#565755"
+                android:textColor="#FAF8F1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -119,7 +119,7 @@
                 android:gravity="right"
                 android:text="Created by TheHypnoo"
                 android:textAllCaps="true"
-                android:textColor="#8F8F8F"
+                android:textColor="#000000"
                 android:textSize="8sp"
                 android:textStyle="bold|italic" />
         </LinearLayout>

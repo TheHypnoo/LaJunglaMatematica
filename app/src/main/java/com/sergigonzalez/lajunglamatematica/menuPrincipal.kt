@@ -1,6 +1,7 @@
 package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,9 +11,14 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -23,6 +29,7 @@ class menuPrincipal : AppCompatActivity() {
     private lateinit var startGame: Button
     private lateinit var ranking: Button
     private lateinit var leave: Button
+    private lateinit var LayoutMenu: ConstraintLayout
     private val db = FirebaseFirestore.getInstance()
     private var id = ""
     private var pruebateSuma = false
@@ -31,6 +38,7 @@ class menuPrincipal : AppCompatActivity() {
     private var mLastClickTime: Long = 0
     private var haJugado: Boolean = false
     private lateinit var animalAnimation: LottieAnimationView
+    private var yo: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +69,7 @@ class menuPrincipal : AppCompatActivity() {
         ranking = findViewById(R.id.ranking)
         leave = findViewById(R.id.leave)
         animalAnimation = findViewById(R.id.AnimalAnimation)
+        LayoutMenu = findViewById(R.id.LayoutMenu)
     }
 
     private fun buscaPruebate(){
@@ -73,6 +82,7 @@ class menuPrincipal : AppCompatActivity() {
                         id = document.id
                         pruebateSuma = document.data["pruebateSuma"].toString().toBoolean()
                         haJugado = document.data["haJugado"].toString().toBoolean()
+                        yo = document.data["Nombre de Usuario"].toString()
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -81,9 +91,12 @@ class menuPrincipal : AppCompatActivity() {
     }
 
     private fun initListeners() {
+
         if(haJugado) {
+            Snackbar.make(LayoutMenu, "Bienvenido de nuevo! $yo", Snackbar.LENGTH_LONG).show()
             startGame.text = getString((R.string.Continue))
         } else {
+            Snackbar.make(LayoutMenu, "Bienvenido! $yo", Snackbar.LENGTH_LONG).show()
             startGame.text = getString((R.string.startGame))
             haJugado = true
             Handler(Looper.getMainLooper()).postDelayed({
