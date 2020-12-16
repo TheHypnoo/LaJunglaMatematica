@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/background"
     tools:context=".countDown">
 
     <LinearLayout
@@ -20,12 +22,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/timer"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:text="0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+            android:fontFamily="@font/alegreya_sc"
+            android:gravity="center"
+            android:text="Contrareloj Matematico"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#FF7509" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,73 +44,127 @@
             <TextView
                 android:id="@+id/number1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:fontFamily="@font/belgrano"
+                android:gravity="center"
                 android:text="25"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/symbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/alegreya_sc"
+                android:gravity="center"
                 android:text="+"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/number2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:fontFamily="@font/belgrano"
+                android:gravity="center"
                 android:text="25"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/symbolSame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center"
                 android:text="="
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="#000000" />
+
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Button" />
-
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button2"
+            <Button
+                android:id="@+id/resultado1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.01"
+                android:background="@drawable/bordes_redondos"
+                android:text="69"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="50dp" />
+
+            <Button
+                android:id="@+id/resultado2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.01"
+                android:background="@drawable/bordes_redondos"
+                android:text="15"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="50dp" />
+
+            <Button
+                android:id="@+id/resultado3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.01"
+                android:background="@drawable/bordes_redondos"
+                android:text="50"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Button" />
+            android:text="0:0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#000000" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <Button
-            android:id="@+id/button3"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Button" />
+            android:text="Puntuación Maxima: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     </LinearLayout>
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/viewKonfetti"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
