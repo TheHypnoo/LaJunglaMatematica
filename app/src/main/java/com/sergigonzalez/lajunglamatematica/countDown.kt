@@ -1,22 +1,21 @@
 package com.sergigonzalez.lajunglamatematica
 
-import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.Window
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import com.google.common.base.Strings
+import com.airbnb.lottie.LottieAnimationView
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
-import java.util.*
-import kotlin.random.Random.Default.nextInt
+
 
 class countDown : AppCompatActivity() {
     var START_MILLI_SECONDS = 16000L
@@ -29,9 +28,12 @@ class countDown : AppCompatActivity() {
     private lateinit var resultado3: Button
     private lateinit var viewKonfetti: KonfettiView
     private lateinit var countdown_timer: CountDownTimer
+    private lateinit var correctAnimation: LottieAnimationView
+    private lateinit var incorrectAnimation: LottieAnimationView
     private var isRunning: Boolean = false;
     private var list = arrayOf("+","-","*","/")
     var time_in_milli_seconds = 0L
+    var correct = true
     private var resultado = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,8 @@ class countDown : AppCompatActivity() {
         number1 = findViewById(R.id.number1)
         number2 = findViewById(R.id.number2)
         symbol = findViewById(R.id.symbol)
+        correctAnimation = findViewById(R.id.correct)
+        incorrectAnimation = findViewById(R.id.incorrect)
         resultado1 = findViewById(R.id.resultado1)
         resultado2 = findViewById(R.id.resultado2)
         resultado3 = findViewById(R.id.resultado3)
@@ -60,9 +64,15 @@ class countDown : AppCompatActivity() {
     }
 
     private fun startTimer(time_in_seconds: Long) {
-        countdown_timer = object : CountDownTimer(time_in_seconds,10) {
+        countdown_timer = object : CountDownTimer(time_in_seconds,750) {
             override fun onFinish() {
+                timer.text = "0:0"
                 loadConfeti()
+                resultado1.isClickable = false
+                resultado2.isClickable = false
+                resultado3.isClickable = false
+                correctAnimation.visibility = View.GONE
+                incorrectAnimation.visibility = View.GONE
             }
 
             override fun onTick(p0: Long) {
@@ -84,8 +94,25 @@ class countDown : AppCompatActivity() {
     private fun updateTextUI() {
         val minute = (time_in_milli_seconds / 1000) / 60
         val seconds = (time_in_milli_seconds / 1000) % 60
-
+        println("Seconds: $seconds")
+        if(seconds <= 10L) {
+            timer.setTextColor(Color.RED)
+            if(!correct) {
+                timer.setTextColor(Color.RED)
+            }
+        } else if(seconds <= 20){
+            timer.setTextColor(Color.YELLOW)
+            if(!correct) {
+                timer.setTextColor(Color.RED)
+            }
+        } else {
+            timer.setTextColor(Color.GREEN)
+            if(!correct) {
+                timer.setTextColor(Color.RED)
+            }
+        }
         timer.text = "$minute:$seconds"
+        correct = true
     }
 
     private fun level(){
@@ -111,49 +138,66 @@ class countDown : AppCompatActivity() {
             }
         resultado1.setOnClickListener{
             if(resultado1.text == resultado.toString()) {
-                println("correcto1")
+                correct = true
+                incorrectAnimation.visibility = View.GONE
+                correctAnimation.visibility = View.VISIBLE
+                correctAnimation.playAnimation()
                 time_in_milli_seconds += 3000L
                 countdown_timer.cancel()
                 startTimer(time_in_milli_seconds)
                 level()
             } else {
+                correct = false
+                correctAnimation.visibility = View.GONE
+                incorrectAnimation.visibility = View.VISIBLE
+                incorrectAnimation.playAnimation()
                 time_in_milli_seconds -= 2000L
                 countdown_timer.cancel()
                 startTimer(time_in_milli_seconds)
-                println("Incorrecto1")
             }
         }
 
         resultado2.setOnClickListener{
             if(resultado2.text == resultado.toString()) {
-                println("correcto2")
+                correct = true
+                incorrectAnimation.visibility = View.GONE
+                correctAnimation.visibility = View.VISIBLE
+                correctAnimation.playAnimation()
                 time_in_milli_seconds += 3000L
                 countdown_timer.cancel()
                 startTimer(time_in_milli_seconds)
                 level()
             } else {
+                correct = false
+                correctAnimation.visibility = View.GONE
+                incorrectAnimation.visibility = View.VISIBLE
+                incorrectAnimation.playAnimation()
                 time_in_milli_seconds -= 2000L
                 countdown_timer.cancel()
                 startTimer(time_in_milli_seconds)
-                println("Incorrecto2")
             }
         }
 
         resultado3.setOnClickListener{
             if(resultado3.text == resultado.toString()) {
-                println("correcto3")
+                correct = true
+                incorrectAnimation.visibility = View.GONE
+                correctAnimation.visibility = View.VISIBLE
+                correctAnimation.playAnimation()
                 time_in_milli_seconds += 3000L
                 countdown_timer.cancel()
                 startTimer(time_in_milli_seconds)
                 level()
             } else {
+                correct = false
+                correctAnimation.visibility = View.GONE
+                incorrectAnimation.visibility = View.VISIBLE
+                incorrectAnimation.playAnimation()
                 time_in_milli_seconds -= 2000L
                 countdown_timer.cancel()
                 startTimer(time_in_milli_seconds)
-                println("Incorrecto3")
             }
         }
-
     }
 
     private fun generaNumeros(): Int {
@@ -183,11 +227,17 @@ class countDown : AppCompatActivity() {
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
+        val textContraReloj = view.findViewById<TextView>(R.id.textContraReloj)
+        textContraReloj.text = "Bienvenido al Contra Reloj Matematico,\n para empezar a jugar apriete JUGAR!"
+
         val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
         btn_confirm.setOnClickListener{
             time_in_milli_seconds = START_MILLI_SECONDS
             startTimer(time_in_milli_seconds)
             level()
+            resultado1.isClickable = true
+            resultado2.isClickable = true
+            resultado3.isClickable = true
             dialog.dismiss()
         }
     }

@@ -75,12 +75,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/RegisterButton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bordes_redondos"
                 android:text="Login"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                app:icon="@drawable/ic_close"
+                app:iconGravity="end"
+                app:iconPadding="0dp"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

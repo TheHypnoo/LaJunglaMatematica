@@ -686,7 +686,7 @@ class Nivel : AppCompatActivity() {
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            val text = view.findViewById<TextView>(R.id.textLevel)
+            val text = view.findViewById<TextView>(R.id.textContraReloj)
             text.text = "Has conseguido superar todos los niveles, se te reniciara todo menos la puntuación para que puedas seguir jugando. ¡Saludos! by TheHypnoo"
 
             val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)

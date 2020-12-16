@@ -29,7 +29,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textLevel"
+            android:id="@+id/textContraReloj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -48,7 +48,7 @@
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@mipmap/insignia"
+        android:background="@mipmap/chronometer"
         android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@id/ll"
         app:layout_constraintEnd_toEndOf="@id/ll"
@@ -59,17 +59,17 @@
         android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:text="Confirmar"
-        android:background="@color/colorGreen"
-        android:textColor="@color/colorWhite"
-        android:textAllCaps="false"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/colorGreen"
+        android:text="Jugar"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/ll"
+        app:layout_constraintBottom_toBottomOf="@id/ll"
         app:layout_constraintEnd_toEndOf="@id/ll"
-        app:layout_constraintTop_toBottomOf="@id/ll"
-        app:layout_constraintBottom_toBottomOf="@id/ll"/>
+        app:layout_constraintStart_toStartOf="@id/ll"
+        app:layout_constraintTop_toBottomOf="@id/ll" />
 
 
 

@@ -66,15 +66,32 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startGame"
+            style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bordes_redondos"
+            android:text="@string/startGame"
+            android:textSize="16sp"
             app:icon="@drawable/ic_play"
             app:iconGravity="end"
-            app:iconPadding="0dp"
+            app:iconPadding="0dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/timeTrial"
             style="@style/Widget.MaterialComponents.Button.Icon"
-            android:text="@string/startGame" />
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordes_redondos"
+            android:text="Contrareloj"
+            android:textSize="16sp"
+            app:icon="@drawable/ic_baseline_timer_24"
+            app:iconGravity="end"
+            app:iconPadding="0dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -82,11 +99,12 @@
 
         <Button
             android:id="@+id/ranking"
-            android:layout_width="175dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bordes_redondos"
-            android:text="@string/ranking" />
+            android:text="@string/ranking"
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -94,11 +112,12 @@
 
         <Button
             android:id="@+id/leave"
-            android:layout_width="150dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bordes_redondos"
-            android:text="@string/leave" />
+            android:text="@string/leave"
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="match_parent"
