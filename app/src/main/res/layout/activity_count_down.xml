@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="0:0"
+            android:text="0:00"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="#DF3E3E" />
 
@@ -171,7 +171,7 @@
             android:layout_height="15dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/puntuacionMaximaCountDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -184,8 +184,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/correct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:visibility="gone"
             app:lottie_autoPlay="false"
@@ -194,8 +194,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/incorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:visibility="gone"
             app:lottie_autoPlay="false"

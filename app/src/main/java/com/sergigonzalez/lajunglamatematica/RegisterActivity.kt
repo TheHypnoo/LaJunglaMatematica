@@ -104,7 +104,7 @@ class RegisterActivity : AppCompatActivity() {
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+        val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
         btn_confirm.setOnClickListener{
             dialog.dismiss()
         }

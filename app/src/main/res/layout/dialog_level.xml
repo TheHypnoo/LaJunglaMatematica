@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@id/ll" />
 
     <Button
-        android:id="@+id/btn_confirm"
+        android:id="@+id/btn_leaveCountDown"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="Confirmar"

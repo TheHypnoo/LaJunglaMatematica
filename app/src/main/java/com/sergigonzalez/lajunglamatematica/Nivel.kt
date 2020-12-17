@@ -171,12 +171,12 @@ class Nivel : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setView(view)
-
+                builder.setCancelable(false);
                 val dialog = builder.create()
                 dialog.show()
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
                 btn_confirm.setOnClickListener{
                     val mainIntent = Intent(this, Pruebate::class.java)
                     startActivity(mainIntent)
@@ -188,12 +188,12 @@ class Nivel : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setView(view)
-
+                builder.setCancelable(false);
                 val dialog = builder.create()
                 dialog.show()
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
                 btn_confirm.setOnClickListener{
                     dondeEstoy = 1
                     db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -329,12 +329,12 @@ class Nivel : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setView(view)
-
+                builder.setCancelable(false);
                 val dialog = builder.create()
                 dialog.show()
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
                 btn_confirm.setOnClickListener{
                     val mainIntent = Intent(this, Pruebate::class.java)
                     startActivity(mainIntent)
@@ -346,12 +346,12 @@ class Nivel : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setView(view)
-
+                builder.setCancelable(false);
                 val dialog = builder.create()
                 dialog.show()
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
                 btn_confirm.setOnClickListener{
                     dondeEstoy = 2
                     db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -431,12 +431,12 @@ class Nivel : AppCompatActivity() {
 
             val builder = AlertDialog.Builder(this)
             builder.setView(view)
-
+            builder.setCancelable(false);
             val dialog = builder.create()
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
             btn_confirm.setOnClickListener{
                 dondeEstoy = 0
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -507,12 +507,12 @@ class Nivel : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setView(view)
-
+                builder.setCancelable(false);
                 val dialog = builder.create()
                 dialog.show()
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
                 btn_confirm.setOnClickListener{
                     val mainIntent = Intent(this, Pruebate::class.java)
                     startActivity(mainIntent)
@@ -524,12 +524,12 @@ class Nivel : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this)
                 builder.setView(view)
-
+                builder.setCancelable(false);
                 val dialog = builder.create()
                 dialog.show()
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+                val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
                 btn_confirm.setOnClickListener{
                     dondeEstoy = 3
                     db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -606,12 +606,12 @@ class Nivel : AppCompatActivity() {
 
             val builder = AlertDialog.Builder(this)
             builder.setView(view)
-
+            builder.setCancelable(false);
             val dialog = builder.create()
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
             btn_confirm.setOnClickListener{
                 dondeEstoy = 1
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
@@ -681,7 +681,7 @@ class Nivel : AppCompatActivity() {
 
             val builder = AlertDialog.Builder(this)
             builder.setView(view)
-
+            builder.setCancelable(false);
             val dialog = builder.create()
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -689,7 +689,7 @@ class Nivel : AppCompatActivity() {
             val text = view.findViewById<TextView>(R.id.textContraReloj)
             text.text = "Has conseguido superar todos los niveles, se te reniciara todo menos la puntuación para que puedas seguir jugando. ¡Saludos! by TheHypnoo"
 
-            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
             btn_confirm.setOnClickListener addOnSuccessListener@{
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
                     return@addOnSuccessListener
@@ -763,12 +763,12 @@ class Nivel : AppCompatActivity() {
 
             val builder = AlertDialog.Builder(this)
             builder.setView(view)
-
+            builder.setCancelable(false);
             val dialog = builder.create()
             dialog.show()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
+            val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
             btn_confirm.setOnClickListener{
                 dondeEstoy = 2
                 db.collection("users").document(id).update("dondeEstoy",dondeEstoy)
