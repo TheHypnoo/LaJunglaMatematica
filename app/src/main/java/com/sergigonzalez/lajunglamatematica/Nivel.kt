@@ -12,9 +12,14 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Nivel : AppCompatActivity() {
     private lateinit var queHacer: TextView
@@ -66,15 +71,15 @@ class Nivel : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_nivel)
         findID()
-        buscaNivel()
-         Handler(Looper.getMainLooper()).postDelayed({
-             loadingAnimation.visibility = View.GONE
-             AnimalAnimation.visibility = View.VISIBLE
-             cargaNivel.visibility = View.GONE
-             todoNivel.visibility = View.VISIBLE
-             compruebaEjecuta()
-         }, 2000)
 
+        lifecycleScope.launch { withContext(Dispatchers.IO){buscaNivel()}
+            loadingAnimation.visibility = View.GONE
+            AnimalAnimation.visibility = View.VISIBLE
+            cargaNivel.visibility = View.GONE
+            todoNivel.visibility = View.VISIBLE
+            delay(200)
+            compruebaEjecuta()
+        }
     }
 
     private fun findID(){

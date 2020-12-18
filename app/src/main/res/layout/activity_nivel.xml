@@ -64,10 +64,17 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <TextView
                 android:id="@+id/enunciadoNivel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/colorBackgroundEnunciado"
                 android:fontFamily="@font/belgrano"
                 android:gravity="center"
                 android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas y 2 peras. ¿Cuantas piezas de fruta tengo que comprar en total?"

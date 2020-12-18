@@ -64,7 +64,7 @@ class Ranking : AppCompatActivity() {
         lifecycleScope.launch {
             withContext(Dispatchers.IO){ buscaPuntuacion() }
             LayoutRanking.visibility = View.VISIBLE
-            delay(145)
+            delay(200)
             ordenaMejor()
             escribe()
         }
