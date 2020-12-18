@@ -723,8 +723,6 @@ class Nivel : AppCompatActivity() {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
                     return@addOnSuccessListener
                 } else {
-
-                    startActivity(Intent(this, menuPrincipal::class.java))
                     finish()
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
