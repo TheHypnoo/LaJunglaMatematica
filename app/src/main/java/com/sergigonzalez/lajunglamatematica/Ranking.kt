@@ -58,13 +58,12 @@ class Ranking : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_ranking)
-
         FindID()
         LayoutCarga.visibility = View.GONE
+        LayoutRanking.visibility = View.VISIBLE
         lifecycleScope.launch {
             withContext(Dispatchers.IO){ buscaPuntuacion() }
-            LayoutRanking.visibility = View.VISIBLE
-            delay(200)
+            delay(300)
             ordenaMejor()
             escribe()
         }

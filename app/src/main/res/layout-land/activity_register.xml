@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/hregisterbackground"
-    android:scaleType="fitXY"
     tools:context=".AuthActivity">
 
     <LinearLayout
@@ -15,114 +14,107 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationCargaRanking"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/registeranimation"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/UsuarioEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_action_user"
+            android:ems="10"
+            android:hint="Nombre de Usuario"
+            android:inputType="textEmailAddress"
+            android:textColorHint="#403B3B" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0.01" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/FechaNacimientoEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_action_date"
+            android:ems="10"
+            android:hint="Fecha de Nacimiento"
+            android:inputType="date"
+            android:textColorHint="#403B3B" />
+
+        <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.01" />
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_action_email"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="#403B3B" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.01" />
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_action_lock"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColorHint="#403B3B" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.01" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordes_redondos"
             android:gravity="center"
-            android:orientation="vertical">
+            android:text="Registrarse"
+            android:textColor="@android:color/white" />
 
-            <EditText
-                android:id="@+id/UsuarioEditText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_user"
-                android:ems="10"
-                android:hint="Nombre de Usuario"
-                android:inputType="textEmailAddress"
-                android:textColorHint="#403B3B" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.01" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <EditText
-                android:id="@+id/FechaNacimientoEditText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_date"
-                android:ems="10"
-                android:hint="Fecha de Nacimiento"
-                android:inputType="date"
-                android:textColorHint="#403B3B" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <EditText
-                android:id="@+id/emailEditText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_email"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textColorHint="#403B3B" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_action_lock"
-                android:ems="10"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:textColorHint="#403B3B" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bordes_redondos"
-                android:gravity="center"
-                android:text="Registrar"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/credits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:orientation="vertical">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/credits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="right"
-                android:text="Created by TheHypnoo"
-                android:textAllCaps="true"
-                android:textSize="8sp"
-                android:textStyle="bold|italic" />
-        </LinearLayout>
+            android:gravity="right"
+            android:text="Created by TheHypnoo"
+            android:textAllCaps="true"
+            android:textSize="8sp"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
 

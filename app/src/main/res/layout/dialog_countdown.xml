@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
-            android:text="Contra Reloj Matematico"
+            android:text="Contra Reloj Matemático"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"

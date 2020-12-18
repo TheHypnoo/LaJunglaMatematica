@@ -36,6 +36,7 @@ class menuPrincipal : AppCompatActivity() {
     private var haJugado: Boolean = false
     private lateinit var animalAnimation: LottieAnimationView
     private var yo: String = ""
+    private var quiero = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +48,14 @@ class menuPrincipal : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             animalAnimation.visibility = View.GONE
             initListeners()
+            quiero = false
         }, 3000)
     }
 
     override fun onResume() {
         super.onResume()
-        buscaPruebate()
         findID()
-        animalAnimation.speed = 0.40F
-        Handler(Looper.getMainLooper()).postDelayed({
-            animalAnimation.visibility = View.GONE
-            initListeners()
-        }, 3000)
+        buscaPruebate()
     }
 
     private fun findID() {
@@ -89,17 +86,17 @@ class menuPrincipal : AppCompatActivity() {
     }
 
     private fun initListeners() {
-
-        if(haJugado) {
-            Snackbar.make(LayoutMenu, "Bienvenido de nuevo! $yo", Snackbar.LENGTH_LONG).show()
-            startGame.text = getString((R.string.Continue))
-        } else {
-            Snackbar.make(LayoutMenu, "Bienvenido! $yo", Snackbar.LENGTH_LONG).show()
-            startGame.text = getString((R.string.startGame))
-            haJugado = true
-            Handler(Looper.getMainLooper()).postDelayed({
+        if(quiero) {
+            if (haJugado) {
+                Snackbar.make(LayoutMenu, "Bienvenido de nuevo! $yo", Snackbar.LENGTH_LONG).show()
+                startGame.text = getString((R.string.Continue))
+            } else {
+                Snackbar.make(LayoutMenu, "Bienvenido! $yo", Snackbar.LENGTH_LONG).show()
+                startGame.text = getString((R.string.startGame))
+                haJugado = true
                 db.collection("users").document(id).update("haJugado", haJugado)
-            }, 2000)
+
+            }
         }
         startGame.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed({

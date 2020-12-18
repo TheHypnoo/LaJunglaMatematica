@@ -11,10 +11,13 @@
         android:id="@+id/LayoutCarga"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="gone">
@@ -22,8 +25,7 @@
         <TextView
             android:id="@+id/cargaRanking"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="150dp"
             android:gravity="center"
             android:text="Cargando el Ranking..."
             android:textColor="#000000"
@@ -32,10 +34,9 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationCargaRanking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="10"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/charge"
@@ -58,36 +59,30 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/rankingAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/ranking"
-            tools:ignore="MissingConstraints" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.35" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jugadores"
-                android:textColor="#423939"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1" />
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -95,17 +90,18 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Puntuación Total"
-                android:textColor="#473939"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking"
             android:orientation="horizontal">
 
             <ImageView
@@ -117,40 +113,43 @@
 
             <TextView
                 android:id="@+id/top1"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="TheHypnoo"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_width="400dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/puntuaTop1"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="1000"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking"
             android:orientation="horizontal">
 
             <ImageView
@@ -162,39 +161,43 @@
 
             <TextView
                 android:id="@+id/top2"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Dedhon"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop2"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="100"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking"
             android:orientation="horizontal">
 
             <ImageView
@@ -206,39 +209,43 @@
 
             <TextView
                 android:id="@+id/top3"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Corba"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop3"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="50"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -249,7 +256,7 @@
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -260,39 +267,43 @@
 
             <TextView
                 android:id="@+id/top4"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Firulais"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop4"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#090909"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -303,7 +314,7 @@
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -314,39 +325,44 @@
 
             <TextView
                 android:id="@+id/top5"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="xProXX"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop5"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -357,7 +373,7 @@
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -368,39 +384,43 @@
 
             <TextView
                 android:id="@+id/top6"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="JoseMaria"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop6"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -411,7 +431,7 @@
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -422,39 +442,43 @@
 
             <TextView
                 android:id="@+id/top7"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Ernesto"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop7"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -465,7 +489,7 @@
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -476,39 +500,43 @@
 
             <TextView
                 android:id="@+id/top8"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Broncano"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop8"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -519,7 +547,7 @@
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -530,39 +558,43 @@
 
             <TextView
                 android:id="@+id/top9"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Scarlet"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop9"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#FD0B0B0B"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:alpha="0.800"
+            android:background="@mipmap/backgroundranking2"
             android:orientation="horizontal">
 
             <Space
@@ -573,7 +605,7 @@
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
                 app:srcCompat="@mipmap/insignia" />
 
@@ -584,33 +616,47 @@
 
             <TextView
                 android:id="@+id/top10"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.1"
+                android:layout_weight="0"
                 android:fontFamily="@font/andika"
                 android:hint="Odin"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0" />
 
             <TextView
                 android:id="@+id/puntuaTop10"
-                android:layout_width="75dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:hint="0"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/rankingAnimation"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.01"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ranking"
+            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 

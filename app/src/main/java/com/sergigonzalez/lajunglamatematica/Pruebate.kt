@@ -124,8 +124,7 @@ class Pruebate : AppCompatActivity() {
         val Signos = arrayOf("+","-","x","/")
         FindID()
         lifecycleScope.launch { withContext(Dispatchers.IO){ buscaPruebate()}
-            //CargaPruebate.visibility = View.VISIBLE
-            delay(100)
+            delay(220)
                 CargaPruebate.visibility = View.GONE
                 Pruebate.visibility = View.VISIBLE
 
@@ -327,7 +326,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -465,7 +464,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -579,7 +578,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -727,7 +726,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }

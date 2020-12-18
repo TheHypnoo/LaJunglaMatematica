@@ -4,6 +4,8 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -306,7 +308,7 @@ class countDown : AppCompatActivity() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val textContraReloj = view.findViewById<TextView>(R.id.textContraReloj)
-        textContraReloj.text = "Bienvenido al Contra Reloj Matematico,\n para empezar a jugar apriete JUGAR!"
+        textContraReloj.text = "Bienvenido al Contra Reloj Matemático,\n para empezar a jugar apriete JUGAR!"
 
         val btn_confirm = view.findViewById<Button>(R.id.btn_leaveCountDown)
         btn_confirm.setOnClickListener{
@@ -326,37 +328,38 @@ class countDown : AppCompatActivity() {
 
         if (!(this@countDown as Activity).isFinishing) {
             try {
-                val view = View.inflate(this, R.layout.dialog_countdown_finish, null)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val view = View.inflate(this, R.layout.dialog_countdown_finish, null)
+                    val builder = AlertDialog.Builder(this)
+                    builder.setView(view)
+                    builder.setCancelable(false);
+                    val dialog = builder.create()
+                    dialog.show()
+                    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val builder = AlertDialog.Builder(this)
-                builder.setView(view)
-                builder.setCancelable(false);
-                val dialog = builder.create()
-                dialog.show()
-                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                    val textContraReloj = view.findViewById<TextView>(R.id.textContraReloj)
+                    textContraReloj.text = "Ha finalizado el reloj, has ganado $puntuacionGanada puntos.\nEn total tienes: $puntuacion\n¿Quieres volver a jugar?"
 
-                val textContraReloj = view.findViewById<TextView>(R.id.textContraReloj)
-                textContraReloj.text = "Ha finalizado el reloj, has ganado $puntuacionGanada puntos.\nEn total tienes: $puntuacion\n¿Quieres volver a jugar?"
-
-                //JUGAR!
-                val btn_playCountDown = view.findViewById<Button>(R.id.btn_playCountDown)
-                btn_playCountDown.setOnClickListener{
-                    puntuacion = dbPuntuacion
-                    puntuacionMaximaCountDown.text = "Puntuacion Maxima: $puntuacion"
-                    time_in_milli_seconds = START_MILLI_SECONDS
-                    startTimer(time_in_milli_seconds)
-                    level()
-                    resultado1.isClickable = true
-                    resultado2.isClickable = true
-                    resultado3.isClickable = true
-                    dialog.dismiss()
-                }
-                //Salir
-                val btn_leaveCountDown = view.findViewById<Button>(R.id.btn_leaveCountDown)
-                btn_leaveCountDown.setOnClickListener{
-                    finish()
-                    dialog.dismiss()
-                }
+                    //JUGAR!
+                    val btn_playCountDown = view.findViewById<Button>(R.id.btn_playCountDown)
+                    btn_playCountDown.setOnClickListener{
+                        puntuacion = dbPuntuacion
+                        puntuacionMaximaCountDown.text = "Puntuacion Maxima: $puntuacion"
+                        time_in_milli_seconds = START_MILLI_SECONDS
+                        startTimer(time_in_milli_seconds)
+                        level()
+                        resultado1.isClickable = true
+                        resultado2.isClickable = true
+                        resultado3.isClickable = true
+                        dialog.dismiss()
+                    }
+                    //Salir
+                    val btn_leaveCountDown = view.findViewById<Button>(R.id.btn_leaveCountDown)
+                    btn_leaveCountDown.setOnClickListener{
+                        finish()
+                        dialog.dismiss()
+                    }
+                }, 2500)
             } catch (e: BadTokenException) {
                 Log.e("WindowManagerBad ", e.toString())
             }
