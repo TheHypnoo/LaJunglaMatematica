@@ -1,17 +1,17 @@
 package com.sergigonzalez.lajunglamatematica
 
+import android.app.Activity
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.view.WindowManager.BadTokenException
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
@@ -38,7 +38,7 @@ class countDown : AppCompatActivity() {
     private lateinit var countdown_timer: CountDownTimer
     private lateinit var correctAnimation: LottieAnimationView
     private lateinit var incorrectAnimation: LottieAnimationView
-    private var list = arrayOf("+","-","x","/")
+    private var list = arrayOf("+", "-", "x", "/")
     var time_in_milli_seconds = 0L
     var correct = true
     private var resultado = -1
@@ -98,7 +98,7 @@ class countDown : AppCompatActivity() {
     }
 
     private fun startTimer(time_in_seconds: Long) {
-        countdown_timer = object : CountDownTimer(time_in_seconds,750) {
+        countdown_timer = object : CountDownTimer(time_in_seconds, 750) {
             override fun onFinish() {
                 resultado1.isClickable = false
                 resultado2.isClickable = false
@@ -323,36 +323,43 @@ class countDown : AppCompatActivity() {
     }
 
     private fun finishDialog(){
-        val view = View.inflate(this, R.layout.dialog_countdown_finish, null)
 
-        val builder = AlertDialog.Builder(this)
-        builder.setView(view)
-        builder.setCancelable(false);
-        val dialog = builder.create()
-        dialog.show()
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        if (!(this@countDown as Activity).isFinishing) {
+            try {
+                val view = View.inflate(this, R.layout.dialog_countdown_finish, null)
 
-        val textContraReloj = view.findViewById<TextView>(R.id.textContraReloj)
-        textContraReloj.text = "Ha finalizado el reloj, has ganado $puntuacionGanada puntos.\nEn total tienes: $puntuacion\n¿Quieres volver a jugar?"
+                val builder = AlertDialog.Builder(this)
+                builder.setView(view)
+                builder.setCancelable(false);
+                val dialog = builder.create()
+                dialog.show()
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        //JUGAR!
-        val btn_playCountDown = view.findViewById<Button>(R.id.btn_playCountDown)
-        btn_playCountDown.setOnClickListener{
-            puntuacion = dbPuntuacion
-            puntuacionMaximaCountDown.text = "Puntuacion Maxima: $puntuacion"
-            time_in_milli_seconds = START_MILLI_SECONDS
-            startTimer(time_in_milli_seconds)
-            level()
-            resultado1.isClickable = true
-            resultado2.isClickable = true
-            resultado3.isClickable = true
-            dialog.dismiss()
-        }
-        //Salir
-        val btn_leaveCountDown = view.findViewById<Button>(R.id.btn_leaveCountDown)
-        btn_leaveCountDown.setOnClickListener{
-            finish()
-            dialog.dismiss()
+                val textContraReloj = view.findViewById<TextView>(R.id.textContraReloj)
+                textContraReloj.text = "Ha finalizado el reloj, has ganado $puntuacionGanada puntos.\nEn total tienes: $puntuacion\n¿Quieres volver a jugar?"
+
+                //JUGAR!
+                val btn_playCountDown = view.findViewById<Button>(R.id.btn_playCountDown)
+                btn_playCountDown.setOnClickListener{
+                    puntuacion = dbPuntuacion
+                    puntuacionMaximaCountDown.text = "Puntuacion Maxima: $puntuacion"
+                    time_in_milli_seconds = START_MILLI_SECONDS
+                    startTimer(time_in_milli_seconds)
+                    level()
+                    resultado1.isClickable = true
+                    resultado2.isClickable = true
+                    resultado3.isClickable = true
+                    dialog.dismiss()
+                }
+                //Salir
+                val btn_leaveCountDown = view.findViewById<Button>(R.id.btn_leaveCountDown)
+                btn_leaveCountDown.setOnClickListener{
+                    finish()
+                    dialog.dismiss()
+                }
+            } catch (e: BadTokenException) {
+                Log.e("WindowManagerBad ", e.toString())
+            }
         }
     }
 }
