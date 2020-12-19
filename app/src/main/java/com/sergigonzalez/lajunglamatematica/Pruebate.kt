@@ -14,9 +14,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class Pruebate : AppCompatActivity() {
@@ -118,28 +123,28 @@ class Pruebate : AppCompatActivity() {
         setContentView(R.layout.activity_pruebate)
         val Signos = arrayOf("+","-","x","/")
         FindID()
-        buscaPruebate()
-        CargaPruebate.visibility = View.VISIBLE
-        Handler(Looper.getMainLooper()).postDelayed({
-        CargaPruebate.visibility = View.GONE
-        Pruebate.visibility = View.VISIBLE
+        lifecycleScope.launch { withContext(Dispatchers.IO){ buscaPruebate()}
+            delay(220)
+                CargaPruebate.visibility = View.GONE
+                Pruebate.visibility = View.VISIBLE
 
-        when {
-            !pruebateSuma -> {
-                Suma(Signos)
-            }
-            !pruebateResta -> {
-                Resta(Signos)
-            }
-            !pruebateMultiplica -> {
-                Multiplica(Signos)
-            }
-            !pruebateDivision -> {
-                Division(Signos)
-            }
+                when {
+                    !pruebateSuma -> {
+                        Suma(Signos)
+                    }
+                    !pruebateResta -> {
+                        Resta(Signos)
+                    }
+                    !pruebateMultiplica -> {
+                        Multiplica(Signos)
+                    }
+                    !pruebateDivision -> {
+                        Division(Signos)
+                    }
+                }
         }
 
-    },2500)
+
     }
 
     private fun buscaPruebate(){
@@ -265,7 +270,7 @@ class Pruebate : AppCompatActivity() {
         if(!pruebateSuma) {
 
             TituloTextView.text = "¿Qué és la suma?"
-            DefinicionTextView.text = "Consiste en añadir dos números o más para obtener una cantidad total."
+            DefinicionTextView.text = "Consiste en añadir dos números o más para obtener una cantidad total.\nEjemplo: 1+1 = 2"
 
             //Fila1 Columna1
             Number1TextView.text = generaNumeros().toString()
@@ -321,7 +326,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -379,7 +384,7 @@ class Pruebate : AppCompatActivity() {
         if(!pruebateResta) {
 
             TituloTextView.text = "¿Qué és la Resta?"
-            DefinicionTextView.text = "Consiste en restar dos números o más para obtener una cantidad total."
+            DefinicionTextView.text = "Consiste en restar dos números o más para obtener una cantidad total.\nEjemplo: 5-4 = 1"
 
             //Fila1 Columna1
             Number1TextView.text = generaNumeros().toString()
@@ -459,7 +464,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -517,7 +522,7 @@ class Pruebate : AppCompatActivity() {
         if(!pruebateMultiplica) {
 
             TituloTextView.text = "¿Qué és la Multiplicación?"
-            DefinicionTextView.text = "Consiste en multiplicar dos números o más para obtener una cantidad total."
+            DefinicionTextView.text = "Consiste en multiplicar dos números o más para obtener una cantidad total.\nEjemplo: 2x2 = 4"
 
             //Fila1 Columna1
             Number1TextView.text = generaNumeros().toString()
@@ -573,7 +578,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }
@@ -631,7 +636,7 @@ class Pruebate : AppCompatActivity() {
         if(!pruebateDivision) {
 
             TituloTextView.text = "¿Qué és la Division?"
-            DefinicionTextView.text = "Consiste en dividir dos números o más para obtener una cantidad total."
+            DefinicionTextView.text = "Consiste en dividir dos números o más para obtener una cantidad total.\nEjemplo: 4/2 = 2"
 
             //Fila1 Columna1
             Number1TextView.text = generaNumeros().toString()
@@ -721,7 +726,7 @@ class Pruebate : AppCompatActivity() {
                         val mainIntent = Intent(this, Nivel::class.java)
                         startActivity(mainIntent)
                         finish()
-                    }, 5000)
+                    }, 2500)
                 }
                 mLastClickTime = SystemClock.elapsedRealtime()
             }

@@ -10,9 +10,14 @@ import android.view.Window
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Ranking : AppCompatActivity() {
 
@@ -53,14 +58,15 @@ class Ranking : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_ranking)
-        buscaPuntuacion()
         FindID()
-        Handler(Looper.getMainLooper()).postDelayed({
-            LayoutCarga.visibility = View.GONE
-            LayoutRanking.visibility = View.VISIBLE
+        LayoutCarga.visibility = View.GONE
+        LayoutRanking.visibility = View.VISIBLE
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO){ buscaPuntuacion() }
+            delay(300)
             ordenaMejor()
             escribe()
-        },2000)
+        }
     }
 
     private fun FindID(){
@@ -143,8 +149,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 1 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -155,8 +162,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 2 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -165,8 +173,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -177,8 +186,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 3 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -187,8 +197,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -197,8 +208,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -209,8 +221,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 4 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -219,7 +232,8 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
                     puntuacion++
                 } else {
@@ -229,8 +243,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -239,8 +254,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -251,8 +267,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 5 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -261,8 +278,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -271,8 +289,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -281,8 +300,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -291,8 +311,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top5.text = Jugadores[puntuacion]
-                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    top5.setTextColor(Color.BLUE)
                     puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuaTop5.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top5.text = Jugadores[puntuacion]
@@ -304,8 +325,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 6 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -314,8 +336,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -324,8 +347,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -334,8 +358,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -344,8 +369,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top5.text = Jugadores[puntuacion]
-                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    top5.setTextColor(Color.BLUE)
                     puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuaTop5.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top5.text = Jugadores[puntuacion]
@@ -354,8 +380,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top6.text = Jugadores[puntuacion]
-                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    top6.setTextColor(Color.BLUE)
                     puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuaTop6.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top6.text = Jugadores[puntuacion]
@@ -366,8 +393,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 7 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -376,8 +404,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -386,8 +415,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -396,8 +426,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -406,8 +437,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top5.text = Jugadores[puntuacion]
-                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    top5.setTextColor(Color.BLUE)
                     puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuaTop5.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top5.text = Jugadores[puntuacion]
@@ -416,8 +448,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top6.text = Jugadores[puntuacion]
-                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    top6.setTextColor(Color.BLUE)
                     puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuaTop6.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top6.text = Jugadores[puntuacion]
@@ -426,8 +459,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top7.text = Jugadores[puntuacion]
-                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    top7.setTextColor(Color.BLUE)
                     puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuaTop7.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top7.text = Jugadores[puntuacion]
@@ -438,8 +472,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 8 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -448,8 +483,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -458,8 +494,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -468,8 +505,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -478,8 +516,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top5.text = Jugadores[puntuacion]
-                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    top5.setTextColor(Color.BLUE)
                     puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuaTop5.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top5.text = Jugadores[puntuacion]
@@ -488,8 +527,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top6.text = Jugadores[puntuacion]
-                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    top6.setTextColor(Color.BLUE)
                     puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuaTop6.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top6.text = Jugadores[puntuacion]
@@ -498,8 +538,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top7.text = Jugadores[puntuacion]
-                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    top7.setTextColor(Color.BLUE)
                     puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuaTop7.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top7.text = Jugadores[puntuacion]
@@ -508,8 +549,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top8.text = Jugadores[puntuacion]
-                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    top8.setTextColor(Color.BLUE)
                     puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuaTop8.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top8.text = Jugadores[puntuacion]
@@ -520,8 +562,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size == 9 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -530,8 +573,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -540,8 +584,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -550,8 +595,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -560,8 +606,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top5.text = Jugadores[puntuacion]
-                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    top5.setTextColor(Color.BLUE)
                     puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuaTop5.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top5.text = Jugadores[puntuacion]
@@ -570,8 +617,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top6.text = Jugadores[puntuacion]
-                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    top6.setTextColor(Color.BLUE)
                     puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuaTop6.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top6.text = Jugadores[puntuacion]
@@ -580,8 +628,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top7.text = Jugadores[puntuacion]
-                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    top7.setTextColor(Color.BLUE)
                     puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuaTop7.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top7.text = Jugadores[puntuacion]
@@ -590,8 +639,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top8.text = Jugadores[puntuacion]
-                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    top8.setTextColor(Color.BLUE)
                     puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuaTop8.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top8.text = Jugadores[puntuacion]
@@ -600,8 +650,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top9.text = Jugadores[puntuacion]
-                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    top9.setTextColor(Color.BLUE)
                     puntuaTop9.text = Puntuacion[puntuacion].toString()
+                    puntuaTop9.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top9.text = Jugadores[puntuacion]
@@ -612,8 +663,9 @@ class Ranking : AppCompatActivity() {
             Jugadores.size >= 10 -> {
                 if(Jugadores[puntuacion] == yo) {
                     top1.text = Jugadores[puntuacion]
-                    top1.setTextColor(Color.parseColor("#FF8D33"))
+                    top1.setTextColor(Color.BLUE)
                     puntuaTop1.text = Puntuacion[puntuacion].toString()
+                    puntuaTop1.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top1.text = Jugadores[puntuacion]
@@ -622,8 +674,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top2.text = Jugadores[puntuacion]
-                    top2.setTextColor(Color.parseColor("#FF8D33"))
+                    top2.setTextColor(Color.BLUE)
                     puntuaTop2.text = Puntuacion[puntuacion].toString()
+                    puntuaTop2.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top2.text = Jugadores[puntuacion]
@@ -632,8 +685,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top3.text = Jugadores[puntuacion]
-                    top3.setTextColor(Color.parseColor("#FF8D33"))
+                    top3.setTextColor(Color.BLUE)
                     puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    puntuaTop3.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top3.text = Jugadores[puntuacion]
@@ -642,8 +696,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top4.text = Jugadores[puntuacion]
-                    top4.setTextColor(Color.parseColor("#FF8D33"))
-                    puntuaTop3.text = Puntuacion[puntuacion].toString()
+                    top4.setTextColor(Color.BLUE)
+                    puntuaTop4.text = Puntuacion[puntuacion].toString()
+                    puntuaTop4.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top4.text = Jugadores[puntuacion]
@@ -652,8 +707,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top5.text = Jugadores[puntuacion]
-                    top5.setTextColor(Color.parseColor("#FF8D33"))
+                    top5.setTextColor(Color.BLUE)
                     puntuaTop5.text = Puntuacion[puntuacion].toString()
+                    puntuaTop5.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top5.text = Jugadores[puntuacion]
@@ -662,8 +718,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top6.text = Jugadores[puntuacion]
-                    top6.setTextColor(Color.parseColor("#FF8D33"))
+                    top6.setTextColor(Color.BLUE)
                     puntuaTop6.text = Puntuacion[puntuacion].toString()
+                    puntuaTop6.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top6.text = Jugadores[puntuacion]
@@ -672,8 +729,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top7.text = Jugadores[puntuacion]
-                    top7.setTextColor(Color.parseColor("#FF8D33"))
+                    top7.setTextColor(Color.BLUE)
                     puntuaTop7.text = Puntuacion[puntuacion].toString()
+                    puntuaTop7.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top7.text = Jugadores[puntuacion]
@@ -682,8 +740,9 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top8.text = Jugadores[puntuacion]
-                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    top8.setTextColor(Color.BLUE)
                     puntuaTop8.text = Puntuacion[puntuacion].toString()
+                    puntuaTop8.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top8.text = Jugadores[puntuacion]
@@ -692,18 +751,21 @@ class Ranking : AppCompatActivity() {
                 }
                 if(Jugadores[puntuacion] == yo) {
                     top9.text = Jugadores[puntuacion]
-                    top8.setTextColor(Color.parseColor("#FF8D33"))
+                    top9.setTextColor(Color.BLUE)
                     puntuaTop9.text = Puntuacion[puntuacion].toString()
+                    puntuaTop9.setTextColor(Color.BLUE)
                     puntuacion++
                 } else {
                     top9.text = Jugadores[puntuacion]
                     puntuaTop9.text = Puntuacion[puntuacion].toString()
                     puntuacion++
                 }
+
                 if(Jugadores[puntuacion] == yo) {
                     top10.text = Jugadores[puntuacion]
-                    top10.setTextColor(Color.parseColor("#FF8D33"))
+                    top10.setTextColor(Color.BLUE)
                     puntuaTop10.text = Puntuacion[puntuacion].toString()
+                    puntuaTop10.setTextColor(Color.BLUE)
                 } else {
                     top10.text = Jugadores[puntuacion]
                     puntuaTop10.text = Puntuacion[puntuacion].toString()

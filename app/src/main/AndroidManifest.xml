@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/logo_jungla_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaJunglaMatematica">
+        <activity android:name=".countDown"/>
         <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

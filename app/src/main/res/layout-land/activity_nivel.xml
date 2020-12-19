@@ -7,48 +7,54 @@
     android:background="@mipmap/background"
     tools:context=".Nivel">
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/cargaNivel"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
+            android:layout_height="150dp"
             android:gravity="center"
             android:text="Cargando el nivel..."
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:visibility="gone" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loadingAnimation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_gravity="center"
             android:visibility="visible"
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/charge"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/todoNivel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="gone"
             tools:visibility="visible">
@@ -57,36 +63,49 @@
                 android:id="@+id/queHacer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/abril_fatface"
                 android:gravity="center"
                 android:hint="Suma los dos numeros y escribe el resultado abajo."
-                android:textSize="22sp"
+                android:textColor="#423E3E"
+                android:textColorHint="#000000"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.01" />
 
             <TextView
                 android:id="@+id/enunciadoNivel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/andika"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/colorBackgroundEnunciado"
+                android:fontFamily="@font/belgrano"
                 android:gravity="center"
-                android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas  y 2 peras. ¿Cuantas piezas de fruta  tengo que comprar en total?"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:hint=" ¡Hola amigo! Necesito tu ayuda. Mi mama me ha pedido que vaya a comprar fruta al mercado y me ha pedido que compre 4 manzanas y 2 peras. ¿Cuantas piezas de fruta tengo que comprar en total?"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.01" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_weight="1"
                 android:gravity="left"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/iconLevel"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="left"
                     app:srcCompat="@mipmap/tortuga" />
             </LinearLayout>
@@ -94,18 +113,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/Correcto"
-                    android:layout_width="190dp"
-                    android:layout_height="90dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginLeft="0dp"
                     android:gravity="left"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:lottie_autoPlay="false"
                     app:lottie_loop="false"
                     app:lottie_rawRes="@raw/correct"
@@ -133,15 +151,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <EditText
                     android:id="@+id/ResultadoEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number" />
 
@@ -150,8 +170,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -159,7 +179,7 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.01" />
 
                 <Button
                     android:id="@+id/bt_corregir"
@@ -172,13 +192,13 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="0.01" />
 
                 <TextView
                     android:id="@+id/lvlPuntua"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/andika"
                     android:gravity="center"
                     android:textColor="#000000"
@@ -187,28 +207,27 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/lvlDown"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="left"
                         android:clickable="true"
                         android:focusable="true"
                         android:visibility="gone"
                         app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
+                        app:lottie_loop="false"
                         app:lottie_rawRes="@raw/back"
                         tools:ignore="MissingConstraints"
                         tools:visibility="visible" />
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/lvlUP"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="right"
                         android:clickable="true"
                         android:focusable="true"
@@ -222,19 +241,17 @@
 
             </LinearLayout>
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/AnimalAnimation"
-                android:layout_width="wrap_content"
-                android:layout_height="75dp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/animalsanimation"
-                tools:ignore="MissingConstraints"
-                tools:visibility="visible" />
-
         </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimalAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animalsanimation"
+            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 

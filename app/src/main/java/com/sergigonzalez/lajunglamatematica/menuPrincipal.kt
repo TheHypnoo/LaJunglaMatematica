@@ -1,7 +1,6 @@
 package com.sergigonzalez.lajunglamatematica
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,12 +10,9 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +23,7 @@ import java.util.*
 class menuPrincipal : AppCompatActivity() {
 
     private lateinit var startGame: Button
+    private lateinit var timeTrial: Button
     private lateinit var ranking: Button
     private lateinit var leave: Button
     private lateinit var LayoutMenu: ConstraintLayout
@@ -39,6 +36,7 @@ class menuPrincipal : AppCompatActivity() {
     private var haJugado: Boolean = false
     private lateinit var animalAnimation: LottieAnimationView
     private var yo: String = ""
+    private var quiero = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,22 +48,19 @@ class menuPrincipal : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             animalAnimation.visibility = View.GONE
             initListeners()
+            quiero = false
         }, 3000)
     }
 
     override fun onResume() {
         super.onResume()
-        buscaPruebate()
         findID()
-        animalAnimation.speed = 0.40F
-        Handler(Looper.getMainLooper()).postDelayed({
-            animalAnimation.visibility = View.GONE
-            initListeners()
-        }, 3000)
+        buscaPruebate()
     }
 
     private fun findID() {
         startGame = findViewById(R.id.startGame)
+        timeTrial = findViewById(R.id.timeTrial)
         ranking = findViewById(R.id.ranking)
         leave = findViewById(R.id.leave)
         animalAnimation = findViewById(R.id.AnimalAnimation)
@@ -91,17 +86,17 @@ class menuPrincipal : AppCompatActivity() {
     }
 
     private fun initListeners() {
-
-        if(haJugado) {
-            Snackbar.make(LayoutMenu, "Bienvenido de nuevo! $yo", Snackbar.LENGTH_LONG).show()
-            startGame.text = getString((R.string.Continue))
-        } else {
-            Snackbar.make(LayoutMenu, "Bienvenido! $yo", Snackbar.LENGTH_LONG).show()
-            startGame.text = getString((R.string.startGame))
-            haJugado = true
-            Handler(Looper.getMainLooper()).postDelayed({
+        if(quiero) {
+            if (haJugado) {
+                Snackbar.make(LayoutMenu, "Bienvenido de nuevo! $yo", Snackbar.LENGTH_LONG).show()
+                startGame.text = getString((R.string.Continue))
+            } else {
+                Snackbar.make(LayoutMenu, "Bienvenido! $yo", Snackbar.LENGTH_LONG).show()
+                startGame.text = getString((R.string.startGame))
+                haJugado = true
                 db.collection("users").document(id).update("haJugado", haJugado)
-            }, 2000)
+
+            }
         }
         startGame.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed({
@@ -123,6 +118,15 @@ class menuPrincipal : AppCompatActivity() {
                 }
             }, 500)
             }
+
+        timeTrial.setOnClickListener{
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {
+                return@setOnClickListener
+            } else {
+                startActivity(Intent(applicationContext, countDown::class.java))
+            }
+            mLastClickTime = SystemClock.elapsedRealtime()
+        }
 
         ranking.setOnClickListener {
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1500) {

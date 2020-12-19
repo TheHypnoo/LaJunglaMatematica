@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -10,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:orientation="vertical"
         android:background="@drawable/bg_linear_layout"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,14 +23,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
-            android:text="¡Cuidado!"
+            android:text="Contra Reloj Matematico"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textMessage"
+            android:id="@+id/textContraReloj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -37,7 +38,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="50dp"
             android:gravity="center_horizontal"
-            android:text="Los datos son incorrectos"
+            android:text="Ha finalizado el reloj, has ganado X puntos.\n¿Quieres volver a jugar?"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
             android:textSize="16sp"
@@ -48,8 +49,7 @@
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@drawable/ic_close"
-        android:backgroundTint="#FF0000"
+        android:background="@mipmap/chronometer"
         android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@id/ll"
         app:layout_constraintEnd_toEndOf="@id/ll"
@@ -58,20 +58,38 @@
 
     <Button
         android:id="@+id/btn_leaveCountDown"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="Confirmar"
-        android:background="@drawable/bordes_redondos"
-        android:textColor="@color/colorWhite"
-        android:textAllCaps="false"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bordes_redondos"
+        android:text="Salir"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/ll"
+        app:layout_constraintBottom_toBottomOf="@id/ll"
         app:layout_constraintEnd_toEndOf="@id/ll"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="@id/ll"
         app:layout_constraintTop_toBottomOf="@id/ll"
-        app:layout_constraintBottom_toBottomOf="@id/ll"/>
+        app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/btn_playCountDown"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/bordes_redondos"
+        android:text="Jugar"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/ll"
+        app:layout_constraintEnd_toEndOf="@id/ll"
+        app:layout_constraintStart_toEndOf="@+id/btn_leaveCountDown"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

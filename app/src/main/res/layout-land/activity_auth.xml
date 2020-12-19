@@ -31,7 +31,7 @@
             android:gravity="bottom|center|center_horizontal"
             android:rotationX="-20"
             android:text="La Jungla Matematica"
-            android:textColor="#514A4A"
+            android:textColor="@color/colorWhite"
             android:textSize="48sp"
             android:textStyle="bold" />
 
@@ -75,12 +75,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/RegisterButton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bordes_redondos"
                 android:text="Login"
+                android:textSize="16sp"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                app:icon="@mipmap/door"
+                app:iconGravity="end"
+                app:iconPadding="0dp"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

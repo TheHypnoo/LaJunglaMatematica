@@ -16,6 +16,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,7 @@
         <TextView
             android:id="@+id/cargandoNivel"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="150dp"
             android:gravity="center"
             android:text="Cargando el Tutorial..."
             android:textColor="#000000"
@@ -38,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:visibility="visible"
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
@@ -70,9 +70,9 @@
             android:id="@+id/TituloTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:hint="¿Qué és la suma?"
+            android:textColor="#000000"
             android:textColorLink="#000000"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -81,9 +81,9 @@
             android:id="@+id/DefinicionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@color/colorBackgroundEnunciado"
             android:gravity="center"
-            android:hint="Consiste en añadir dos números o más para obtener una cantidad total."
+            android:hint="Consiste en añadir dos números o más para obtener una cantidad total.\nEjemplo: 1+1 = 2"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -105,8 +105,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/SignoTextView"
@@ -115,8 +115,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number2TextView"
@@ -125,8 +125,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado1"
@@ -136,7 +136,9 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:gravity="center|left"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -177,8 +179,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo1TextView"
@@ -187,8 +189,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number4TextView"
@@ -196,8 +198,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado2"
@@ -205,7 +207,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="0"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -242,7 +246,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0.01" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -257,8 +261,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo2TextView"
@@ -267,8 +271,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/Number6TextView"
@@ -277,15 +281,17 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -329,8 +335,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/Signo3TextView"
@@ -339,8 +345,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number8TextView"
@@ -349,8 +355,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado4"
@@ -358,7 +364,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="0"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -395,7 +403,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0.01" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -410,8 +418,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo4TextView"
@@ -420,25 +428,27 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/Number10TextView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -482,8 +492,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo5TextView"
@@ -492,8 +502,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number12TextView"
@@ -502,8 +512,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp"/>
 
             <EditText
                 android:id="@+id/Resultado6"
@@ -511,7 +521,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="0"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -548,7 +560,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0.01" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -563,8 +575,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo6TextView"
@@ -573,8 +585,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number14TextView"
@@ -583,15 +595,17 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado7"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -635,8 +649,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/Signo7TextView"
@@ -645,8 +659,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number16TextView"
@@ -655,8 +669,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado8"
@@ -664,7 +678,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="0"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -701,7 +717,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0.01" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -716,8 +732,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo8TextView"
@@ -726,8 +742,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number18TextView"
@@ -736,15 +752,17 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado9"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -788,8 +806,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Signo9TextView"
@@ -798,8 +816,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="+"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/Number20TextView"
@@ -808,8 +826,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Resultado10"
@@ -817,7 +835,9 @@
                 android:layout_height="50dp"
                 android:layout_weight="0"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -854,7 +874,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0.01" />
 
         <Button
             android:id="@+id/BT_Corregir"
